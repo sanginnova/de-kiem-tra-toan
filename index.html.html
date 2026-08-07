@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề kiểm tra: Mệnh đề</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+<style>
+  :root{
+    --ink: #14213D;
+    --ink-deep: #0B1428;
+    --paper: #F5F1E8;
+    --chalk: #ECE9DF;
+    --amber: #E8B84B;
+    --correct: #4C9A6A;
+    --wrong: #C1443C;
+    --muted: #7C8AA5;
+    --line: rgba(237,237,228,0.14);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--ink);
+    color: var(--chalk);
+    font-family: var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height:100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top:0; z-index: 40;
+    background: linear-gradient(180deg, var(--ink-deep) 0%, rgba(11,20,40,0.96) 100%);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+  }
+  .header-inner{
+    max-width: 880px; margin:0 auto; padding: 18px 24px 14px;
+  }
+  .eyebrow{
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 6px;
+  }
+  h1{
+    font-family: var(--serif); font-weight:500; font-size: clamp(22px, 4vw, 30px);
+    margin: 0 0 12px; color: var(--paper);
+  }
+  .meta-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  #timer{
+    font-family: var(--mono); font-size: 18px; font-weight:600; letter-spacing:0.03em;
+    color: var(--amber);
+    border: 1px solid rgba(232,184,75,0.35);
+    padding: 5px 12px; border-radius: 3px;
+    background: rgba(232,184,75,0.06);
+    white-space:nowrap;
+  }
+  #timer.low{ color: var(--wrong); border-color: rgba(193,68,60,0.5); background: rgba(193,68,60,0.08); }
+
+  /* truth strip */
+  .strip{
+    display:grid; grid-template-columns: repeat(20, 1fr); gap:4px; margin-top:12px;
+  }
+  .cell{
+    height:8px; border-radius:1px;
+    background: rgba(237,237,228,0.10);
+    border: 1px solid rgba(237,237,228,0.16);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .cell.filled{ background: var(--amber); border-color: var(--amber); }
+  .cell.correct{ background: var(--correct); border-color: var(--correct); }
+  .cell.wrong{ background: var(--wrong); border-color: var(--wrong); }
+
+  /* ---------- Main ---------- */
+  main{ max-width: 880px; margin: 0 auto; padding: 8px 24px 120px; }
+
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin: 46px 0 20px;
+    border-top: 1px solid var(--line); padding-top: 22px;
+  }
+  .section-head:first-of-type{ border-top:none; margin-top:26px; padding-top:0; }
+  .section-num{
+    font-family: var(--serif); font-size: 32px; color: var(--amber); font-weight:500; line-height:1;
+  }
+  .section-titles{ display:flex; flex-direction:column; gap:2px; }
+  .section-title{ font-family: var(--serif); font-size: 19px; color: var(--paper); font-weight:500; }
+  .section-sub{ font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing:0.03em; }
+
+  .qcard{
+    background: rgba(245,241,232,0.03);
+    border: 1px solid var(--line);
+    border-left: 3px solid rgba(237,237,228,0.18);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    scroll-margin-top: 190px;
+  }
+  .qcard.answered{ border-left-color: var(--amber); }
+  .qcard.is-correct{ border-left-color: var(--correct); background: rgba(76,154,106,0.06); }
+  .qcard.is-wrong{ border-left-color: var(--wrong); background: rgba(193,68,60,0.06); }
+
+  .qhead{ display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
+  .qnum{
+    font-family: var(--mono); font-size: 12px; color: var(--ink-deep);
+    background: var(--chalk); border-radius: 3px;
+    width: 26px; height:26px; min-width:26px; display:flex; align-items:center; justify-content:center;
+    font-weight:600; margin-top:1px;
+  }
+  .qtext{ font-size: 15.5px; color: var(--paper); }
+  .qtext p{ margin:0; }
+
+  .options{ display:flex; flex-direction:column; gap:8px; margin-left: 38px; }
+  .opt{
+    display:flex; align-items:flex-start; gap:10px;
+    padding: 9px 12px; border-radius: 3px;
+    border: 1px solid rgba(237,237,228,0.14);
+    cursor:pointer; font-size: 14.5px;
+    background: transparent;
+  }
+  .opt:hover{ background: rgba(237,237,228,0.05); }
+  .opt input{
+    margin-top:3px; accent-color: var(--amber);
+  }
+  .opt:focus-within{ outline: 2px solid var(--amber); outline-offset: 1px; }
+  .opt-letter{
+    font-family: var(--mono); font-weight:600; color: var(--muted); min-width:16px;
+  }
+  .opt.picked{ border-color: var(--amber); background: rgba(232,184,75,0.08); }
+  .opt.picked .opt-letter{ color: var(--amber); }
+  .opt.reveal-correct{ border-color: var(--correct); background: rgba(76,154,106,0.10); }
+  .opt.reveal-correct .opt-letter{ color: var(--correct); }
+  .opt.reveal-wrong{ border-color: var(--wrong); background: rgba(193,68,60,0.10); }
+  .opt.reveal-wrong .opt-letter{ color: var(--wrong); }
+  .opt input:disabled{ cursor:default; }
+  .opt.locked{ cursor:default; }
+
+  .explain{
+    display:none; margin: 12px 0 0 38px; padding: 10px 12px;
+    background: rgba(11,20,40,0.5); border-radius:3px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--muted); line-height:1.6;
+    border-left: 2px solid var(--muted);
+  }
+  .explain.show{ display:block; }
+  .explain b{ color: var(--chalk); }
+
+  .katex{ font-size: 1.02em; }
+
+  /* ---------- Footer / submit ---------- */
+  .footer-bar{
+    position: fixed; bottom:0; left:0; right:0; z-index: 40;
+    background: linear-gradient(0deg, var(--ink-deep) 70%, rgba(11,20,40,0));
+    padding: 24px 24px 20px;
+  }
+  .footer-inner{
+    max-width: 880px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .progress-note{ font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .progress-note b{ color: var(--amber); }
+  #submitBtn{
+    font-family: var(--sans); font-weight:600; font-size: 14.5px;
+    background: var(--amber); color: var(--ink-deep);
+    border:none; padding: 12px 26px; border-radius: 3px; cursor:pointer;
+    letter-spacing: 0.01em;
+  }
+  #submitBtn:hover{ filter: brightness(1.06); }
+  #submitBtn:focus-visible{ outline: 2px solid var(--chalk); outline-offset:2px; }
+  #submitBtn:disabled{ opacity:0.5; cursor:default; }
+
+  /* ---------- Score panel ---------- */
+  .score-panel{
+    display:none;
+    background: var(--paper); color: var(--ink-deep);
+    border-radius: 6px; padding: 26px 28px; margin: 6px 0 40px;
+  }
+  .score-panel.show{ display:block; }
+  .score-top{ display:flex; align-items:baseline; gap: 18px; flex-wrap:wrap; }
+  .score-big{ font-family: var(--serif); font-size: 46px; font-weight:600; }
+  .score-label{ font-family: var(--mono); font-size: 12.5px; color: #55607A; letter-spacing:0.05em; text-transform:uppercase; }
+  .score-time{ font-family: var(--mono); font-size: 13px; color:#55607A; margin-left:auto; }
+  .score-msg{ margin-top: 10px; font-size: 14.5px; color:#333d54; }
+
+  @media (max-width: 600px){
+    .options, .explain{ margin-left: 0; }
+    .strip{ grid-template-columns: repeat(10, 1fr); }
+    .score-time{ margin-left:0; }
+  }
+
+  /* ---------- Start screen ---------- */
+  body.pre-start header,
+  body.pre-start main,
+  body.pre-start .footer-bar{
+    visibility: hidden;
+  }
+
+  #startScreen{
+    position: fixed; inset: 0; z-index: 100;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(ellipse at 30% 20%, rgba(232,184,75,0.07), transparent 55%), var(--ink);
+    padding: 24px;
+  }
+  #startScreen.hidden{ display:none; }
+  .start-card{
+    max-width: 520px; width:100%;
+    text-align:left;
+  }
+  .start-card .eyebrow{ margin-bottom: 10px; }
+  .start-card h1{ margin-bottom: 18px; }
+  .start-facts{
+    display:flex; gap: 22px; flex-wrap:wrap; margin: 0 0 26px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+  }
+  .start-facts b{ color: var(--paper); font-size: 15px; display:block; font-family: var(--serif); font-weight:500; }
+  .start-rules{
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+    margin: 0 0 30px; padding-left: 18px;
+  }
+  .start-rules li{ margin-bottom: 4px; }
+  .start-rules b{ color: var(--chalk); }
+  #startBtn{
+    font-family: var(--sans); font-weight:600; font-size: 15px;
+    background: var(--amber); color: var(--ink-deep);
+    border:none; padding: 13px 30px; border-radius: 3px; cursor:pointer;
+    letter-spacing: 0.01em;
+  }
+  #startBtn:hover{ filter: brightness(1.06); }
+  #startBtn:focus-visible{ outline: 2px solid var(--chalk); outline-offset:2px; }
+</style>
+</head>
+<body class="pre-start">
+
+<div id="startScreen">
+  <div class="start-card">
+    <p class="eyebrow">Đề kiểm tra trắc nghiệm</p>
+    <h1>Mệnh đề — Phủ định, kéo theo, tương đương, ∀ / ∃</h1>
+    <div class="start-facts">
+      <span><b>20</b>câu hỏi</span>
+      <span><b>20:00</b>thời gian</span>
+      <span><b>4</b>phần</span>
+    </div>
+    <ul class="start-rules">
+      <li>Đồng hồ bắt đầu chạy ngay khi bạn bấm <b>Bắt đầu làm bài</b>.</li>
+      <li>Hết giờ, bài làm sẽ <b>tự động được nộp</b>.</li>
+      <li>Sau khi nộp bài, bạn sẽ thấy điểm số và giải thích cho từng câu.</li>
+    </ul>
+    <button id="startBtn">Bắt đầu làm bài</button>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">Đề kiểm tra trắc nghiệm · 20 phút</p>
+    <h1>Mệnh đề — Phủ định, kéo theo, tương đương, ∀ / ∃</h1>
+    <div class="meta-row">
+      <span id="timer">20:00</span>
+      <span class="progress-note" id="answeredCount">Đã trả lời: <b>0</b> / 20</span>
+    </div>
+    <div class="strip" id="strip"></div>
+  </div>
+</header>
+
+<main>
+  <div id="quiz"></div>
+  <div class="score-panel" id="scorePanel">
+    <div class="score-top">
+      <div>
+        <div class="score-label">Kết quả</div>
+        <div class="score-big"><span id="scoreVal">0</span>/20</div>
+      </div>
+      <div class="score-time" id="timeUsed"></div>
+    </div>
+    <p class="score-msg" id="scoreMsg"></p>
+  </div>
+</main>
+
+<div class="footer-bar">
+  <div class="footer-inner">
+    <span class="progress-note" id="footerNote">Chọn đáp án cho từng câu, sau đó nộp bài.</span>
+    <button id="submitBtn">Nộp bài</button>
+  </div>
+</div>
+
+<script>
+const SECTIONS = [
+  { num:'I', title:'Mệnh đề phủ định', sub:'Câu 1 – 5' },
+  { num:'II', title:'Mệnh đề kéo theo', sub:'Câu 6 – 10' },
+  { num:'III', title:'Mệnh đề đảo & tương đương', sub:'Câu 11 – 15' },
+  { num:'IV', title:'Ký hiệu ∀ và ∃', sub:'Câu 16 – 20' },
+];
+
+const QUESTIONS = [
+{ text:'Mệnh đề phủ định của mệnh đề "\\(2026\\) là số tự nhiên chẵn" là:',
+  options:['\\(2026\\) là số chẵn.','\\(2026\\) là số nguyên tố.','\\(2026\\) không là số tự nhiên chẵn.','\\(2026\\) là số chính phương.'],
+  correct:2, explain:'Phủ định của một khẳng định là "không phải" khẳng định đó.' },
+
+{ text:'Cho mệnh đề \\(P\\): "Hình thoi có hai đường chéo vuông góc với nhau". Mệnh đề phủ định \\(\\overline{P}\\) là:',
+  options:['Hình thoi có hai đường chéo không vuông góc với nhau.','Hình thoi là hình có bốn cạnh bằng nhau.','Mọi hình thoi đều không có hai đường chéo vuông góc.','Tồn tại hình thoi có hai đường chéo không vuông góc với nhau.'],
+  correct:0, explain:'Tính chất X đổi thành "không X" (vuông góc → không vuông góc).' },
+
+{ text:'Mệnh đề phủ định của mệnh đề "Có một học sinh trong lớp 10A không thích học môn Toán" là:',
+  options:['"Mọi học sinh trong lớp 10A đều thích học môn Toán".','"Mọi học sinh trong lớp 10A đều không thích học môn Toán".','"Mọi học sinh trong lớp 10A đều thích học môn Văn".','"Có một học sinh trong lớp 10A thích học môn Toán".'],
+  correct:0, explain:'Phủ định của "Có một... không" (∃x, khôngP(x)) là "Mọi... đều" (∀x, P(x)).' },
+
+{ text:'Cho mệnh đề \\(R\\): "\\(2^{2003}-1\\) là số nguyên tố". Mệnh đề phủ định \\(\\overline{R}\\) là:',
+  options:['\\(\\overline{R}\\): "\\(2^{2003}-1\\) là hợp số".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) không là số nguyên tố".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) là số chẵn".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) chia hết cho 2".'],
+  correct:1, explain:'Phủ định của "là số nguyên tố" là "không là số nguyên tố".' },
+
+{ text:'Mệnh đề phủ định của mệnh đề "Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) vô nghiệm" là:',
+  options:['Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có nghiệm.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có 2 nghiệm phân biệt.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có nghiệm kép.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) không có nghiệm.'],
+  correct:0, explain:'Phủ định của "vô nghiệm" là "có nghiệm".' },
+
+{ text:'Cho hai mệnh đề \\(P\\) và \\(Q\\). Mệnh đề "Nếu \\(P\\) thì \\(Q\\)" được gọi là:',
+  options:['Mệnh đề tương đương.','Mệnh đề kéo theo.','Mệnh đề đảo.','Mệnh đề chứa biến.'],
+  correct:1, explain:'Đây là định nghĩa cấu trúc của mệnh đề kéo theo.' },
+
+{ text:'Mệnh đề kéo theo \\(P \\Rightarrow Q\\) chỉ sai khi nào?',
+  options:['\\(P\\) đúng và \\(Q\\) đúng.','\\(P\\) sai và \\(Q\\) đúng.','\\(P\\) đúng và \\(Q\\) sai.','\\(P\\) sai và \\(Q\\) sai.'],
+  correct:2, explain:'Mệnh đề kéo theo chỉ sai khi tiền đề P đúng và kết luận Q sai.' },
+
+{ text:'Khi mệnh đề kéo theo \\(P \\Rightarrow Q\\) là một định lý toán học, ta phát biểu \\(Q\\) là:',
+  options:['Giả thiết của định lí.','Kết luận của định lí.','Điều kiện đủ để có \\(P\\).','Điều kiện cần để có \\(P\\).'],
+  correct:1, explain:'Theo định nghĩa định lý toán học dạng kéo theo, Q là kết luận.' },
+
+{ text:'Trong các mệnh đề sau, câu nào là một mệnh đề kéo theo đúng?',
+  options:['Nếu \\(a \\geq b\\) thì \\(a^2 \\geq b^2\\).','Nếu \\(a\\) chia hết cho \\(9\\) thì \\(a\\) chia hết cho \\(3\\).','Nếu em chăm chỉ thì em thành công.','Nếu một tam giác có một góc bằng \\(60^{\\circ}\\) thì tam giác đó đều.'],
+  correct:1, explain:'Vì 9 chia hết cho 3, số chia hết cho 9 hiển nhiên chia hết cho 3.' },
+
+{ text:'Cho tam giác \\(ABC\\). Xét định lý: "Nếu tam giác \\(ABC\\) vuông tại \\(A\\) thì \\(AB^2 + AC^2 = BC^2\\)". Phát biểu nào sau đây dùng sai thuật ngữ?',
+  options:['Tam giác \\(ABC\\) vuông tại \\(A\\) là giả thiết của định lý.','Tam giác \\(ABC\\) vuông tại \\(A\\) là điều kiện cần để có \\(AB^2 + AC^2 = BC^2\\).','Tam giác \\(ABC\\) vuông tại \\(A\\) là điều kiện đủ để có \\(AB^2 + AC^2 = BC^2\\).','\\(AB^2 + AC^2 = BC^2\\) là kết luận của định lý.'],
+  correct:1, explain:'Giả thiết phải là điều kiện đủ; phát biểu "điều kiện cần" ở đây dùng sai.' },
+
+{ text:'Mệnh đề đảo của mệnh đề \\(P \\Rightarrow Q\\) là mệnh đề nào?',
+  options:['\\(\\overline{P} \\Rightarrow \\overline{Q}\\).','\\(Q \\Rightarrow P\\).','\\(\\overline{Q} \\Rightarrow \\overline{P}\\).','\\(P \\Rightarrow \\overline{Q}\\).'],
+  correct:1, explain:'Mệnh đề đảo của P⇒Q là Q⇒P.' },
+
+{ text:'Hai mệnh đề \\(P\\) và \\(Q\\) được gọi là tương đương khi nào?',
+  options:['Kéo theo từ \\(P\\) suy ra \\(Q\\) đúng.','Cả hai mệnh đề kéo theo \\(P \\Rightarrow Q\\) và \\(Q \\Rightarrow P\\) đều đúng.','Mệnh đề \\(P\\) và \\(Q\\) cùng sai.','Mệnh đề \\(P\\) đúng và mệnh đề \\(Q\\) sai.'],
+  correct:1, explain:'Định nghĩa hai mệnh đề tương đương: cả hai chiều kéo theo đều đúng.' },
+
+{ text:'Kí hiệu mối quan hệ tương đương giữa hai mệnh đề \\(P\\) và \\(Q\\) là:',
+  options:['\\(P \\Rightarrow Q\\).','\\(P \\subset Q\\).','\\(P \\Leftrightarrow Q\\).','\\(P \\in Q\\).'],
+  correct:2, explain:'Kí hiệu mũi tên hai đầu (⇔) biểu thị sự tương đương.' },
+
+{ text:'Phát biểu nào sau đây không phải là cách đọc của mệnh đề \\(P \\Leftrightarrow Q\\)?',
+  options:['\\(P\\) tương đương \\(Q\\).','\\(P\\) là điều kiện cần và đủ để có \\(Q\\).','\\(P\\) khi và chỉ khi \\(Q\\).','\\(P\\) là điều kiện đủ để có \\(Q\\).'],
+  correct:3, explain:'"Điều kiện đủ" chỉ mô tả một chiều của mệnh đề kéo theo, không phải cách đọc của ⇔.' },
+
+{ text:'Trong các mệnh đề sau đây, mệnh đề nào có mệnh đề đảo là đúng?',
+  options:['Nếu \\(a\\) và \\(b\\) cùng chia hết cho \\(c\\) thì \\(a+b\\) chia hết cho \\(c\\).','Nếu hai tam giác bằng nhau thì diện tích bằng nhau.','Nếu \\(a\\) chia hết cho \\(3\\) thì \\(a\\) chia hết cho \\(9\\).','Nếu một số tận cùng bằng \\(0\\) thì số đó chia hết cho \\(5\\).'],
+  correct:2, explain:'Đảo lại: "Nếu a chia hết cho 9 thì a chia hết cho 3" — mệnh đề đúng.' },
+
+{ text:'Mệnh đề "\\(\\exists x \\in \\mathbb{R}, x^2 = 3\\)" khẳng định rằng:',
+  options:['Bình phương của mỗi số thực bằng \\(3\\).','Có ít nhất một số thực mà bình phương của nó bằng \\(3\\).','Chỉ có một số thực có bình phương bằng \\(3\\).','Nếu \\(x\\) là số thực thì \\(x^2 = 3\\).'],
+  correct:1, explain:'Kí hiệu ∃ nghĩa là "tồn tại" hay "có ít nhất một".' },
+
+{ text:'Dùng kí hiệu \\(\\forall, \\exists\\) để viết câu: "Với mọi số thực, bình phương của nó là số không âm" là:',
+  options:['\\(\\exists x \\in \\mathbb{R}, x^2 \\geq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 > 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 \\geq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 \\neq 0\\).'],
+  correct:2, explain:'"Với mọi" dùng ∀, "không âm" nghĩa là ≥ 0.' },
+
+{ text:'Cho mệnh đề chứa biến \\(P(x): "x > x^3"\\) với \\(x \\in \\mathbb{N}\\). Mệnh đề nào sau đây là mệnh đề đúng?',
+  options:['\\(\\forall x \\in \\mathbb{N}, P(x)\\).','\\(P(1)\\).','\\(\\exists x \\in \\mathbb{N}, P(x)\\).','\\(P\\left(\\frac{1}{3}\\right)\\).'],
+  correct:2, explain:'Tồn tại x ∈ ℕ (ví dụ x = 0) thỏa P(x), dù không đúng với mọi x.' },
+
+{ text:'Tìm mệnh đề phủ định của mệnh đề: "\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 > 0\\)".',
+  options:['\\(\\exists x \\in \\mathbb{R}, x^2 + x + 5 \\leq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 \\leq 0\\).','\\(\\exists x \\in \\mathbb{R}, x^2 + x + 5 < 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 < 0\\).'],
+  correct:0, explain:'Quy tắc phủ định: ∀ → ∃, và dấu ">" đảo thành "≤".' },
+
+{ text:'Phủ định của mệnh đề "\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 = 0\\)" là:',
+  options:['"\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 > 0\\)".','"\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 \\neq 0\\)".','"\\(\\forall x \\in \\mathbb{Q} : 2x^2 - 5x + 2 \\neq 0\\)".','"\\(\\forall x \\in \\mathbb{Q} : 2x^2 - 5x + 2 = 0\\)".'],
+  correct:2, explain:'Quy tắc phủ định: ∃ → ∀, và dấu "=" đảo thành "≠".' },
+];
+
+const LETTERS = ['A','B','C','D'];
+const answers = new Array(QUESTIONS.length).fill(null);
+let submitted = false;
+let timeLeft = 20 * 60;
+let timerId = null;
+
+function buildStrip(){
+  const strip = document.getElementById('strip');
+  QUESTIONS.forEach((_, i) => {
+    const c = document.createElement('div');
+    c.className = 'cell';
+    c.id = 'cell-' + i;
+    strip.appendChild(c);
+  });
+}
+
+function buildQuiz(){
+  const quiz = document.getElementById('quiz');
+  let qIndex = 0;
+  SECTIONS.forEach((sec, sIdx) => {
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.innerHTML = `
+      <span class="section-num">${sec.num}</span>
+      <span class="section-titles">
+        <span class="section-title">${sec.title}</span>
+        <span class="section-sub">${sec.sub}</span>
+      </span>`;
+    quiz.appendChild(head);
+
+    for(let k=0; k<5; k++){
+      const i = qIndex;
+      const q = QUESTIONS[i];
+      const card = document.createElement('div');
+      card.className = 'qcard';
+      card.id = 'qcard-' + i;
+
+      const qhead = document.createElement('div');
+      qhead.className = 'qhead';
+      qhead.innerHTML = `<span class="qnum">${i+1}</span><span class="qtext"><p>${q.text}</p></span>`;
+      card.appendChild(qhead);
+
+      const opts = document.createElement('div');
+      opts.className = 'options';
+      q.options.forEach((optText, oIdx) => {
+        const label = document.createElement('label');
+        label.className = 'opt';
+        label.id = `opt-${i}-${oIdx}`;
+        label.innerHTML = `
+          <input type="radio" name="q${i}" value="${oIdx}">
+          <span class="opt-letter">${LETTERS[oIdx]}</span>
+          <span class="opt-body">${optText}</span>`;
+        label.addEventListener('click', () => selectAnswer(i, oIdx));
+        opts.appendChild(label);
+      });
+      card.appendChild(opts);
+
+      const explain = document.createElement('div');
+      explain.className = 'explain';
+      explain.id = 'explain-' + i;
+      explain.innerHTML = `<b>Giải thích:</b> ${q.explain}`;
+      card.appendChild(explain);
+
+      quiz.appendChild(card);
+      qIndex++;
+    }
+  });
+}
+
+function selectAnswer(i, oIdx){
+  if(submitted) return;
+  answers[i] = oIdx;
+  const card = document.getElementById('qcard-' + i);
+  card.classList.add('answered');
+  for(let o=0; o<4; o++){
+    document.getElementById(`opt-${i}-${o}`).classList.toggle('picked', o === oIdx);
+  }
+  document.getElementById('cell-' + i).classList.add('filled');
+  updateAnsweredCount();
+}
+
+function updateAnsweredCount(){
+  const n = answers.filter(a => a !== null).length;
+  document.getElementById('answeredCount').innerHTML = `Đã trả lời: <b>${n}</b> / ${QUESTIONS.length}`;
+}
+
+function formatTime(s){
+  const m = Math.floor(s/60);
+  const sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function tick(){
+  timeLeft--;
+  const timerEl = document.getElementById('timer');
+  timerEl.textContent = formatTime(Math.max(timeLeft,0));
+  if(timeLeft <= 120) timerEl.classList.add('low');
+  if(timeLeft <= 0){
+    clearInterval(timerId);
+    doSubmit(true);
+  }
+}
+
+function doSubmit(auto){
+  if(submitted) return;
+  if(!auto){
+    const unanswered = answers.filter(a => a === null).length;
+    if(unanswered > 0){
+      const ok = confirm(`Bạn còn ${unanswered} câu chưa trả lời. Vẫn nộp bài?`);
+      if(!ok) return;
+    }
+  }
+  submitted = true;
+  clearInterval(timerId);
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('footerNote').textContent = auto ? 'Đã hết giờ — bài làm được tự động nộp.' : 'Bài đã được nộp.';
+
+  let score = 0;
+  QUESTIONS.forEach((q, i) => {
+    const picked = answers[i];
+    const card = document.getElementById('qcard-' + i);
+    const cell = document.getElementById('cell-' + i);
+    for(let o=0; o<4; o++){
+      const optEl = document.getElementById(`opt-${i}-${o}`);
+      optEl.classList.add('locked');
+      const input = optEl.querySelector('input');
+      input.disabled = true;
+      if(o === q.correct) optEl.classList.add('reveal-correct');
+      if(picked === o && o !== q.correct) optEl.classList.add('reveal-wrong');
+    }
+    if(picked === q.correct){
+      score++;
+      card.classList.add('is-correct');
+      cell.classList.add('correct');
+    } else {
+      card.classList.add('is-wrong');
+      cell.classList.add('wrong');
+    }
+    document.getElementById('explain-' + i).classList.add('show');
+  });
+
+  const panel = document.getElementById('scorePanel');
+  panel.classList.add('show');
+  document.getElementById('scoreVal').textContent = score;
+  const used = 20*60 - Math.max(timeLeft,0);
+  document.getElementById('timeUsed').textContent = 'Thời gian làm bài: ' + formatTime(used);
+
+  let msg;
+  if(score >= 18) msg = 'Xuất sắc — nắm rất vững các quy tắc phủ định, kéo theo và lượng từ.';
+  else if(score >= 14) msg = 'Khá tốt — xem lại phần giải thích ở các câu sai để củng cố thêm.';
+  else if(score >= 10) msg = 'Trung bình — nên ôn lại quy tắc phủ định mệnh đề chứa ∀, ∃ và điều kiện cần/đủ.';
+  else msg = 'Cần ôn tập lại toàn bộ chủ đề — đọc kỹ phần giải thích bên dưới từng câu.';
+  document.getElementById('scoreMsg').textContent = msg;
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  renderMath();
+}
+
+function renderMath(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left:'\\(', right:'\\)', display:false},
+        {left:'$$', right:'$$', display:true}
+      ]
+    });
+  }
+}
+
+buildStrip();
+buildQuiz();
+document.getElementById('submitBtn').addEventListener('click', () => doSubmit(false));
+
+function startQuiz(){
+  document.body.classList.remove('pre-start');
+  document.getElementById('startScreen').classList.add('hidden');
+  timerId = setInterval(tick, 1000);
+  renderMath();
+}
+
+document.getElementById('startBtn').addEventListener('click', startQuiz);
+
+window.addEventListener('load', () => {
+  renderMath();
+  setTimeout(renderMath, 400);
+});
+</script>
+</body>
+</html>
