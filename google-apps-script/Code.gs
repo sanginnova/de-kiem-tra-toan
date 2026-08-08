@@ -23,7 +23,7 @@ function doPost(e) {
     const score = Math.round(correct * 10 / ANSWERS.length * 100) / 100;
     const duration = startedAt ? formatDuration_(Date.now() - new Date(startedAt).getTime()) : '';
 
-    const ss = SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID'));
+    const ss = getSpreadsheet_();
     const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     ensureHeader_(sheet);
     sheet.appendRow([new Date(), name, className, EXAM_CODE, score, correct, ANSWERS.length, duration, autoSubmit ? 'Có' : 'Không']);
@@ -32,6 +32,22 @@ function doPost(e) {
   } catch (err) {
     return json_({ok:false, error:String(err.message || err)});
   }
+}
+
+function getSpreadsheet_() {
+  const props = PropertiesService.getScriptProperties();
+  const id = String(props.getProperty('SPREADSHEET_ID') || '').trim();
+  if (id) return SpreadsheetApp.openById(id);
+
+  // Nếu Code.gs là script liên kết trực tiếp với Google Sheet,
+  // tự lấy file đang liên kết và lưu ID để các lần sau dùng lại.
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) {
+    props.setProperty('SPREADSHEET_ID', active.getId());
+    return active;
+  }
+
+  throw new Error('Chưa liên kết Google Sheet. Hãy mở Apps Script từ Google Sheet và chạy setupSheet() một lần.');
 }
 
 function ensureHeader_(sheet) {
@@ -44,10 +60,12 @@ function ensureHeader_(sheet) {
 
 function setupSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error('Hãy mở Apps Script từ Google Sheet này rồi chạy lại setupSheet().');
   PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', ss.getId());
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  sheet.clear();
-  sheet.appendRow(['Timestamp','Họ tên','Lớp','Mã đề','Điểm','Số câu đúng','Tổng số câu','Thời gian làm','Tự động nộp']);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(['Timestamp','Họ tên','Lớp','Mã đề','Điểm','Số câu đúng','Tổng số câu','Thời gian làm','Tự động nộp']);
+  }
   sheet.setFrozenRows(1);
   sheet.getRange(1,1,1,9).setFontWeight('bold');
   sheet.autoResizeColumns(1,9);
