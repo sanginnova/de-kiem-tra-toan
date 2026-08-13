@@ -1,580 +1,523 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đề kiểm tra: Mệnh đề</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra 15 phút: Tập hợp và các phép toán</title>
+    
+    <!-- Tailwind CSS cho Giao diện -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- KaTeX cho Công thức Toán học -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initMath()"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-
-<style>
-  :root{
-    --ink: #14213D;
-    --ink-deep: #0B1428;
-    --paper: #F5F1E8;
-    --chalk: #ECE9DF;
-    --amber: #E8B84B;
-    --correct: #4C9A6A;
-    --wrong: #C1443C;
-    --muted: #7C8AA5;
-    --line: rgba(237,237,228,0.14);
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-  }
-
-  *{ box-sizing:border-box; }
-  html,body{ margin:0; padding:0; }
-  body{
-    background: var(--ink);
-    color: var(--chalk);
-    font-family: var(--sans);
-    line-height:1.55;
-    -webkit-font-smoothing: antialiased;
-    min-height:100vh;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
-  }
-
-  a{ color: inherit; }
-
-  /* ---------- Header ---------- */
-  header{
-    position: sticky; top:0; z-index: 40;
-    background: linear-gradient(180deg, var(--ink-deep) 0%, rgba(11,20,40,0.96) 100%);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(6px);
-  }
-  .header-inner{
-    max-width: 880px; margin:0 auto; padding: 18px 24px 14px;
-  }
-  .eyebrow{
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted); margin: 0 0 6px;
-  }
-  h1{
-    font-family: var(--serif); font-weight:500; font-size: clamp(22px, 4vw, 30px);
-    margin: 0 0 12px; color: var(--paper);
-  }
-  .meta-row{
-    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-  }
-  #timer{
-    font-family: var(--mono); font-size: 18px; font-weight:600; letter-spacing:0.03em;
-    color: var(--amber);
-    border: 1px solid rgba(232,184,75,0.35);
-    padding: 5px 12px; border-radius: 3px;
-    background: rgba(232,184,75,0.06);
-    white-space:nowrap;
-  }
-  #timer.low{ color: var(--wrong); border-color: rgba(193,68,60,0.5); background: rgba(193,68,60,0.08); }
-
-  /* truth strip */
-  .strip{
-    display:grid; grid-template-columns: repeat(20, 1fr); gap:4px; margin-top:12px;
-  }
-  .cell{
-    height:8px; border-radius:1px;
-    background: rgba(237,237,228,0.10);
-    border: 1px solid rgba(237,237,228,0.16);
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  .cell.filled{ background: var(--amber); border-color: var(--amber); }
-  .cell.correct{ background: var(--correct); border-color: var(--correct); }
-  .cell.wrong{ background: var(--wrong); border-color: var(--wrong); }
-
-  /* ---------- Main ---------- */
-  main{ max-width: 880px; margin: 0 auto; padding: 8px 24px 120px; }
-
-  .section-head{
-    display:flex; align-items:baseline; gap:14px; margin: 46px 0 20px;
-    border-top: 1px solid var(--line); padding-top: 22px;
-  }
-  .section-head:first-of-type{ border-top:none; margin-top:26px; padding-top:0; }
-  .section-num{
-    font-family: var(--serif); font-size: 32px; color: var(--amber); font-weight:500; line-height:1;
-  }
-  .section-titles{ display:flex; flex-direction:column; gap:2px; }
-  .section-title{ font-family: var(--serif); font-size: 19px; color: var(--paper); font-weight:500; }
-  .section-sub{ font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing:0.03em; }
-
-  .qcard{
-    background: rgba(245,241,232,0.03);
-    border: 1px solid var(--line);
-    border-left: 3px solid rgba(237,237,228,0.18);
-    border-radius: 4px;
-    padding: 20px 22px;
-    margin-bottom: 14px;
-    transition: border-color 0.2s ease, background 0.2s ease;
-    scroll-margin-top: 190px;
-  }
-  .qcard.answered{ border-left-color: var(--amber); }
-  .qcard.is-correct{ border-left-color: var(--correct); background: rgba(76,154,106,0.06); }
-  .qcard.is-wrong{ border-left-color: var(--wrong); background: rgba(193,68,60,0.06); }
-
-  .qhead{ display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
-  .qnum{
-    font-family: var(--mono); font-size: 12px; color: var(--ink-deep);
-    background: var(--chalk); border-radius: 3px;
-    width: 26px; height:26px; min-width:26px; display:flex; align-items:center; justify-content:center;
-    font-weight:600; margin-top:1px;
-  }
-  .qtext{ font-size: 15.5px; color: var(--paper); }
-  .qtext p{ margin:0; }
-
-  .options{ display:flex; flex-direction:column; gap:8px; margin-left: 38px; }
-  .opt{
-    display:flex; align-items:flex-start; gap:10px;
-    padding: 9px 12px; border-radius: 3px;
-    border: 1px solid rgba(237,237,228,0.14);
-    cursor:pointer; font-size: 14.5px;
-    background: transparent;
-  }
-  .opt:hover{ background: rgba(237,237,228,0.05); }
-  .opt input{
-    margin-top:3px; accent-color: var(--amber);
-  }
-  .opt:focus-within{ outline: 2px solid var(--amber); outline-offset: 1px; }
-  .opt-letter{
-    font-family: var(--mono); font-weight:600; color: var(--muted); min-width:16px;
-  }
-  .opt.picked{ border-color: var(--amber); background: rgba(232,184,75,0.08); }
-  .opt.picked .opt-letter{ color: var(--amber); }
-  .opt.reveal-correct{ border-color: var(--correct); background: rgba(76,154,106,0.10); }
-  .opt.reveal-correct .opt-letter{ color: var(--correct); }
-  .opt.reveal-wrong{ border-color: var(--wrong); background: rgba(193,68,60,0.10); }
-  .opt.reveal-wrong .opt-letter{ color: var(--wrong); }
-  .opt input:disabled{ cursor:default; }
-  .opt.locked{ cursor:default; }
-
-  .explain{
-    display:none; margin: 12px 0 0 38px; padding: 10px 12px;
-    background: rgba(11,20,40,0.5); border-radius:3px;
-    font-family: var(--mono); font-size: 12.5px; color: var(--muted); line-height:1.6;
-    border-left: 2px solid var(--muted);
-  }
-  .explain.show{ display:block; }
-  .explain b{ color: var(--chalk); }
-
-  .katex{ font-size: 1.02em; }
-
-  /* ---------- Footer / submit ---------- */
-  .footer-bar{
-    position: fixed; bottom:0; left:0; right:0; z-index: 40;
-    background: linear-gradient(0deg, var(--ink-deep) 70%, rgba(11,20,40,0));
-    padding: 24px 24px 20px;
-  }
-  .footer-inner{
-    max-width: 880px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-  }
-  .progress-note{ font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-  .progress-note b{ color: var(--amber); }
-  #submitBtn{
-    font-family: var(--sans); font-weight:600; font-size: 14.5px;
-    background: var(--amber); color: var(--ink-deep);
-    border:none; padding: 12px 26px; border-radius: 3px; cursor:pointer;
-    letter-spacing: 0.01em;
-  }
-  #submitBtn:hover{ filter: brightness(1.06); }
-  #submitBtn:focus-visible{ outline: 2px solid var(--chalk); outline-offset:2px; }
-  #submitBtn:disabled{ opacity:0.5; cursor:default; }
-
-  /* ---------- Score panel ---------- */
-  .score-panel{
-    display:none;
-    background: var(--paper); color: var(--ink-deep);
-    border-radius: 6px; padding: 26px 28px; margin: 6px 0 40px;
-  }
-  .score-panel.show{ display:block; }
-  .score-top{ display:flex; align-items:baseline; gap: 18px; flex-wrap:wrap; }
-  .score-big{ font-family: var(--serif); font-size: 46px; font-weight:600; }
-  .score-label{ font-family: var(--mono); font-size: 12.5px; color: #55607A; letter-spacing:0.05em; text-transform:uppercase; }
-  .score-time{ font-family: var(--mono); font-size: 13px; color:#55607A; margin-left:auto; }
-  .score-msg{ margin-top: 10px; font-size: 14.5px; color:#333d54; }
-
-  @media (max-width: 600px){
-    .options, .explain{ margin-left: 0; }
-    .strip{ grid-template-columns: repeat(10, 1fr); }
-    .score-time{ margin-left:0; }
-  }
-
-  /* ---------- Start screen ---------- */
-  body.pre-start header,
-  body.pre-start main,
-  body.pre-start .footer-bar{
-    visibility: hidden;
-  }
-
-  #startScreen{
-    position: fixed; inset: 0; z-index: 100;
-    display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(ellipse at 30% 20%, rgba(232,184,75,0.07), transparent 55%), var(--ink);
-    padding: 24px;
-  }
-  #startScreen.hidden{ display:none; }
-  .start-card{
-    max-width: 520px; width:100%;
-    text-align:left;
-  }
-  .start-card .eyebrow{ margin-bottom: 10px; }
-  .start-card h1{ margin-bottom: 18px; }
-  .start-facts{
-    display:flex; gap: 22px; flex-wrap:wrap; margin: 0 0 26px;
-    font-family: var(--mono); font-size: 12.5px; color: var(--muted);
-  }
-  .start-facts b{ color: var(--paper); font-size: 15px; display:block; font-family: var(--serif); font-weight:500; }
-  .start-rules{
-    font-size: 14px; color: var(--muted); line-height: 1.7;
-    margin: 0 0 30px; padding-left: 18px;
-  }
-  .start-rules li{ margin-bottom: 4px; }
-  .start-rules b{ color: var(--chalk); }
-  #startBtn{
-    font-family: var(--sans); font-weight:600; font-size: 15px;
-    background: var(--amber); color: var(--ink-deep);
-    border:none; padding: 13px 30px; border-radius: 3px; cursor:pointer;
-    letter-spacing: 0.01em;
-  }
-  #startBtn:hover{ filter: brightness(1.06); }
-  #startBtn:focus-visible{ outline: 2px solid var(--chalk); outline-offset:2px; }
-</style>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
+        .option-btn { transition: all 0.2s; }
+        .option-btn.selected { background-color: #3b82f6; color: white; border-color: #3b82f6; }
+        .option-btn:hover:not(.selected) { background-color: #e5e7eb; }
+        
+        .review-correct { background-color: #d1fae5; border-color: #10b981; }
+        .review-incorrect { background-color: #fee2e2; border-color: #ef4444; }
+        .review-missed { border: 2px solid #f59e0b; }
+    </style>
 </head>
-<body class="pre-start">
+<body class="text-gray-800 h-screen flex flex-col">
 
-<div id="startScreen">
-  <div class="start-card">
-    <p class="eyebrow">Đề kiểm tra trắc nghiệm</p>
-    <h1>Mệnh đề — Phủ định, kéo theo, tương đương, ∀ / ∃</h1>
-    <div class="start-facts">
-      <span><b>20</b>câu hỏi</span>
-      <span><b>20:00</b>thời gian</span>
-      <span><b>4</b>phần</span>
+    <!-- Header / Navbar -->
+    <header class="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center z-10 relative">
+        <h1 class="text-xl font-bold truncate">Toán 10: Tập hợp & Các phép toán</h1>
+        <div id="timer-display" class="hidden text-xl font-mono bg-blue-800 px-3 py-1 rounded shadow">15:00</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-2 sm:p-4 overflow-hidden relative">
+        
+        <!-- Màn hình Bắt đầu -->
+        <div id="start-screen" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg max-w-lg w-full text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Bài Kiểm Tra 15 Phút</h2>
+            <p class="mb-4 font-medium">Chủ đề: BÀI 2 - TẬP HỢP. CÁC PHÉP TOÁN TẬP HỢP</p>
+            <ul class="text-left mb-6 space-y-2 text-sm text-gray-700 bg-blue-50 p-4 rounded border border-blue-100">
+                <li>🕒 <b>Thời gian:</b> 15 phút</li>
+                <li>📝 <b>Số lượng:</b> 15 câu hỏi (Trắc nghiệm & Đúng/Sai)</li>
+                <li>📊 <b>Mức độ:</b> Nhận biết, Thông hiểu, Vận dụng</li>
+                <li>💡 <b>Tính năng:</b> Chấm điểm tự động và xem lời giải chi tiết.</li>
+                <li class="text-red-600">⚠️ Hệ thống sẽ tự động nộp bài khi hết giờ.</li>
+            </ul>
+            <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition hover:scale-105 w-full sm:w-auto">
+                BẮT ĐẦU LÀM BÀI
+            </button>
+        </div>
+
+        <!-- Màn hình Làm bài -->
+        <div id="quiz-screen" class="hidden bg-white p-5 md:p-8 rounded-lg shadow-lg max-w-3xl w-full h-full md:h-auto max-h-full flex flex-col">
+            
+            <div class="flex justify-between items-center mb-4 border-b pb-2 shrink-0">
+                <span class="text-sm font-semibold text-gray-500 uppercase tracking-wider" id="question-level">Mức độ</span>
+                <span class="font-bold text-blue-600 text-lg">Câu <span id="current-q-num">1</span>/15</span>
+            </div>
+
+            <div class="overflow-y-auto flex-grow pr-2 mb-4">
+                <div id="question-text" class="text-lg md:text-xl font-medium mb-6 text-gray-800">
+                    <!-- Nội dung câu hỏi -->
+                </div>
+
+                <div id="options-container" class="space-y-3">
+                    <!-- Các nút đáp án -->
+                </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t shrink-0 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex justify-between w-full sm:w-auto gap-2">
+                    <button onclick="prevQuestion()" id="btn-prev" class="px-5 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 font-medium transition disabled:opacity-50 disabled:cursor-not-allowed">Quay lại</button>
+                    <button onclick="nextQuestion()" id="btn-next" class="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-medium transition sm:hidden">Tiếp theo</button>
+                </div>
+                
+                <div class="hidden sm:flex flex-wrap justify-center gap-1 max-w-[200px] md:max-w-none" id="question-dots">
+                    <!-- Dots pagination -->
+                </div>
+
+                <div class="flex w-full sm:w-auto gap-2 justify-end">
+                    <button onclick="nextQuestion()" id="btn-next-desktop" class="hidden sm:block px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-medium transition">Tiếp theo</button>
+                    <button onclick="confirmSubmit()" id="btn-submit" class="px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-bold shadow-md transition w-full sm:w-auto">Nộp Bài</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình Kết quả -->
+        <div id="result-screen" class="hidden bg-white p-5 md:p-8 rounded-lg shadow-lg max-w-4xl w-full h-full max-h-full flex flex-col">
+            <div class="text-center mb-6 border-b pb-6 shrink-0">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Kết quả làm bài</h2>
+                <div class="text-5xl font-extrabold text-blue-600 mb-2"><span id="score-display">0</span>/15</div>
+                <p class="text-gray-600">Thời gian làm bài: <span id="time-taken" class="font-bold text-gray-800">00:00</span></p>
+                <p id="feedback-msg" class="mt-3 text-lg font-medium"></p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-4 shrink-0 text-gray-800">Chi tiết đáp án & Lời giải:</h3>
+            
+            <div id="review-container" class="space-y-6 overflow-y-auto pr-2 flex-grow">
+                <!-- Review câu hỏi và giải thích sẽ được render tại đây -->
+            </div>
+            
+            <div class="text-center mt-6 pt-4 border-t shrink-0">
+                <button onclick="location.reload()" class="bg-blue-600 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-blue-700 transform transition hover:scale-105">Làm lại bài kiểm tra</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Xác nhận nộp bài -->
+    <div id="submit-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center transform transition-all">
+            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl">⚠️</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">Xác nhận nộp bài?</h3>
+            <p class="mb-6 text-gray-600" id="unanswered-warning"></p>
+            <div class="flex justify-center space-x-3">
+                <button onclick="closeModal()" class="flex-1 px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded hover:bg-gray-300 transition">Tiếp tục làm</button>
+                <button onclick="submitQuiz()" class="flex-1 px-4 py-2 bg-green-600 text-white font-bold rounded hover:bg-green-700 shadow transition">Nộp bài ngay</button>
+            </div>
+        </div>
     </div>
-    <ul class="start-rules">
-      <li>Đồng hồ bắt đầu chạy ngay khi bạn bấm <b>Bắt đầu làm bài</b>.</li>
-      <li>Hết giờ, bài làm sẽ <b>tự động được nộp</b>.</li>
-      <li>Sau khi nộp bài, bạn sẽ thấy điểm số và giải thích cho từng câu.</li>
-    </ul>
-    <button id="startBtn">Bắt đầu làm bài</button>
-  </div>
-</div>
 
-<header>
-  <div class="header-inner">
-    <p class="eyebrow">Đề kiểm tra trắc nghiệm · 20 phút</p>
-    <h1>Mệnh đề — Phủ định, kéo theo, tương đương, ∀ / ∃</h1>
-    <div class="meta-row">
-      <span id="timer">20:00</span>
-      <span class="progress-note" id="answeredCount">Đã trả lời: <b>0</b> / 20</span>
-    </div>
-    <div class="strip" id="strip"></div>
-  </div>
-</header>
+    <script>
+        // Dữ liệu câu hỏi kèm Giải thích
+        const quizData = [
+            // --- NHẬN BIẾT (5 câu) ---
+            {
+                id: 1, type: "MC", level: "Nhận biết",
+                question: "Kí hiệu nào sau đây dùng để chỉ tập hợp rỗng?",
+                options: ["$\\{0\\}$", "$\\emptyset$", "$\\{\\emptyset\\}$", "$0$"],
+                correct: 1,
+                explanation: "Theo định nghĩa SGK, tập hợp không chứa phần tử nào được gọi là tập hợp rỗng (tập rỗng), kí hiệu là $\\emptyset$. Chú ý: Không được viết là $\\{\\emptyset\\}$."
+            },
+            {
+                id: 2, type: "MC", level: "Nhận biết",
+                question: "Cho hai tập hợp $A$ và $B$. Mệnh đề nào sau đây mô tả đúng tập hợp giao $A \\cap B$?",
+                options: [
+                    "$\\{x | x \\in A \\text{ hoặc } x \\in B\\}$",
+                    "$\\{x | x \\in A \\text{ và } x \\notin B\\}$",
+                    "$\\{x | x \\in A \\text{ và } x \\in B\\}$",
+                    "$\\{x | x \\notin A \\text{ và } x \\in B\\}$"
+                ],
+                correct: 2,
+                explanation: "Tập hợp gồm tất cả các phần tử **vừa thuộc** tập hợp A **vừa thuộc** tập hợp B được gọi là giao của hai tập hợp A và B. Kí hiệu $A \\cap B = \\{x | x \\in A \\text{ và } x \\in B\\}$."
+            },
+            {
+                id: 3, type: "TF", level: "Nhận biết",
+                question: "Tập hợp số tự nhiên $\\mathbb{N}$ là tập con của tập hợp số nguyên $\\mathbb{Z}$.",
+                options: ["Đúng", "Sai"],
+                correct: 0,
+                explanation: "Ta có quan hệ các tập hợp số: $\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$. Mọi số tự nhiên đều là số nguyên, do đó $\\mathbb{N} \\subset \\mathbb{Z}$ là mệnh đề đúng."
+            },
+            {
+                id: 4, type: "MC", level: "Nhận biết",
+                question: "Cho tập hợp $A \\subset B$. Kí hiệu $C_B A$ mang ý nghĩa gì?",
+                options: [
+                    "Hợp của hai tập hợp A và B",
+                    "Giao của hai tập hợp A và B",
+                    "Phần bù của A trong B",
+                    "Tập hợp các phần tử thuộc A nhưng không thuộc B"
+                ],
+                correct: 2,
+                explanation: "Cho tập hợp A là tập con của tập hợp B. Tập hợp những phần tử thuộc B mà không thuộc A được gọi là **phần bù của A trong B**, kí hiệu $C_B A$."
+            },
+            {
+                id: 5, type: "TF", level: "Nhận biết",
+                question: "Hai tập hợp $A$ và $B$ được gọi là bằng nhau nếu $A \\subset B$ <b>hoặc</b> $B \\subset A$.",
+                options: ["Đúng", "Sai"], 
+                correct: 1,
+                explanation: "Sai. Định nghĩa đúng là: Khi $A \\subset B$ **và** $B \\subset A$ thì ta nói hai tập hợp A và B bằng nhau, viết là $A=B$. Phải đồng thời thoả mãn cả 2 điều kiện (chữ 'và' chứ không phải 'hoặc')."
+            },
+            
+            // --- THÔNG HIỂU (6 câu) ---
+            {
+                id: 6, type: "MC", level: "Thông hiểu",
+                question: "Tập hợp $A = \\{x \\in \\mathbb{R} | -3 \\le x < 5\\}$ được viết dưới kí hiệu khoảng, đoạn, nửa khoảng nào sau đây?",
+                options: ["$(-3; 5]$", "$[-3; 5]$", "$(-3; 5)$", "$[-3; 5)$"],
+                correct: 3,
+                explanation: "Tại vị trí số $-3$ có dấu '$\\le$' (nhỏ hơn hoặc bằng) nên ta dùng ngoặc vuông $[$. Tại vị trí số $5$ là dấu '$<$' (nhỏ hơn ngặt) nên ta dùng ngoặc tròn $)$. Vậy $A = [-3; 5)$."
+            },
+            {
+                id: 7, type: "MC", level: "Thông hiểu",
+                question: "Hãy liệt kê các phần tử của tập hợp $X = \\{x \\in \\mathbb{Z} | 3x^2 + x - 2 = 0\\}$.",
+                options: ["$X = \\{-1; \\frac{2}{3}\\}$", "$X = \\{-1\\}$", "$X = \\{0\\}$", "$X = \\{\\frac{2}{3}\\}$"],
+                correct: 1,
+                explanation: "Giải phương trình $3x^2 + x - 2 = 0$, ta được 2 nghiệm là $x = -1$ và $x = \\frac{2}{3}$. <br>Tuy nhiên, điều kiện là $x \\in \\mathbb{Z}$ (số nguyên), nên ta chỉ lấy nghiệm nguyên là $x = -1$. Vậy $X = \\{-1\\}$."
+            },
+            {
+                id: 8, type: "MC", level: "Thông hiểu",
+                question: "Trong các tập hợp sau, tập hợp nào là tập rỗng?",
+                options: [
+                    "$A = \\{x \\in \\mathbb{N} | x^2 - 4 = 0\\}$",
+                    "$B = \\{x \\in \\mathbb{Q} | x^2 + x - 12 = 0\\}$",
+                    "$C = \\{x \\in \\mathbb{R} | x^2 + 2x + 3 = 0\\}$",
+                    "$D = \\{x \\in \\mathbb{R} | x^2 - 5 = 0\\}$"
+                ],
+                correct: 2,
+                explanation: "Xét phương trình $x^2 + 2x + 3 = 0$ có $\\Delta = 2^2 - 4.1.3 = -8 < 0$, phương trình vô nghiệm trên $\\mathbb{R}$. Do đó tập $C$ không có phần tử nào, tức $C = \\emptyset$."
+            },
+            {
+                id: 9, type: "MC", level: "Thông hiểu",
+                question: "Cho hai tập hợp $A = [-5; 3)$ và $B = (1; +\\infty)$. Khi đó tập hợp $A \\setminus B$ là:",
+                options: ["$[-5; 1]$", "$(-5; 1]$", "$[-5; 1)$", "$(1; 3)$"],
+                correct: 0,
+                explanation: "Tập hợp hiệu $A \\setminus B$ là các phần tử thuộc A nhưng không thuộc B. <br>Thuộc $A = [-5; 3)$ và không thuộc $B = (1; +\\infty)$. Các phần tử không thuộc B là các số $\\le 1$. <br>Giao lại ta được đoạn $[-5; 1]$."
+            },
+            {
+                id: 10, type: "TF", level: "Thông hiểu",
+                question: "Cho tập hợp $B = [-1; +\\infty)$. Khi đó phần bù của $B$ trong $\\mathbb{R}$ là $C_{\\mathbb{R}}B = (-\\infty; -1]$.",
+                options: ["Đúng", "Sai"], 
+                correct: 1,
+                explanation: "Sai. Phần bù của B trong $\\mathbb{R}$ là tập các số thực không thuộc B. <br>Vì $B$ lấy từ $-1$ trở đi (có chứa số -1), nên phần bù sẽ là các số nhỏ hơn ngặt $-1$. <br>Do đó $C_{\\mathbb{R}}B = (-\\infty; -1)$ (sử dụng ngoặc tròn, không phải ngoặc vuông)."
+            },
+            {
+                id: 11, type: "TF", level: "Thông hiểu",
+                question: "Cho tập hợp $A = \\{1; 3\\}$ và $B = \\{x \\in \\mathbb{R} | (x-1)(x-3)=0\\}$. Khi đó $A = B$.",
+                options: ["Đúng", "Sai"], 
+                correct: 0,
+                explanation: "Đúng. Ta giải phương trình đặc trưng của tập B: $(x-1)(x-3)=0 \\Leftrightarrow x=1$ hoặc $x=3$. Suy ra liệt kê các phần tử của tập B ta được $B = \\{1; 3\\}$. Vậy hai tập hợp A và B giống hệt nhau."
+            },
 
-<main>
-  <div id="quiz"></div>
-  <div class="score-panel" id="scorePanel">
-    <div class="score-top">
-      <div>
-        <div class="score-label">Kết quả</div>
-        <div class="score-big"><span id="scoreVal">0</span>/20</div>
-      </div>
-      <div class="score-time" id="timeUsed"></div>
-    </div>
-    <p class="score-msg" id="scoreMsg"></p>
-  </div>
-</main>
+            // --- VẬN DỤNG (4 câu) ---
+            {
+                id: 12, type: "MC", level: "Vận dụng",
+                question: "Cho tập hợp $A = \\{6; 7; 8; 9\\}$. Tập hợp A có tất cả bao nhiêu tập con có đúng 3 phần tử?",
+                options: ["3", "4", "5", "16"],
+                correct: 1, 
+                explanation: "Tập hợp A có 4 phần tử. Các tập con có đúng 3 phần tử được tạo ra bằng cách bỏ đi đúng 1 phần tử của A. Lần lượt bỏ đi 6, 7, 8, 9 ta được 4 tập con: $\\{7;8;9\\}, \\{6;8;9\\}, \\{6;7;9\\}, \\{6;7;8\\}$."
+            },
+            {
+                id: 13, type: "MC", level: "Vận dụng",
+                question: "Lớp 10A9 có 45 học sinh, trong đó mỗi học sinh giỏi ít nhất một trong hai môn Toán và Văn. Biết rằng có 25 bạn học giỏi Toán, 35 bạn học giỏi Văn. Hỏi lớp 10A9 có bao nhiêu bạn học sinh giỏi CẢ HAI môn Toán và Văn?",
+                options: ["10", "20", "15", "5"],
+                correct: 2, 
+                explanation: "Sử dụng công thức của biểu đồ Venn (hoặc công thức tính số phần tử của hợp 2 tập hợp): <br>$n(T \\cup V) = n(T) + n(V) - n(T \\cap V)$ <br>$\\Leftrightarrow 45 = 25 + 35 - n(T \\cap V)$ <br>$\\Leftrightarrow n(T \\cap V) = 60 - 45 = 15$ bạn."
+            },
+            {
+                id: 14, type: "TF", level: "Vận dụng",
+                question: "Cho hai tập hợp $A = (-4; 4)$ và $B = [-1; 1]$. Khi đó phép toán giao $A \\cap B = (-1; 1)$.",
+                options: ["Đúng", "Sai"],
+                correct: 1,
+                explanation: "Sai. Dễ thấy mọi phần tử của tập B (từ -1 đến 1, bao gồm cả hai đầu mút) đều nằm gọn trong khoảng (-4; 4) của tập A. Nói cách khác $B \\subset A$. Do đó khi lấy giao $A \\cap B$, kết quả chính là tập con $B = [-1; 1]$, chứ không phải $(-1; 1)$."
+            },
+            {
+                id: 15, type: "MC", level: "Vận dụng",
+                question: "Trong đợt thi chạy cấp trường, lớp 10B có 40 học sinh. Biết có 19 học sinh KHÔNG đăng kí thi nội dung nào; 15 học sinh đăng kí chạy 100m, 10 học sinh đăng kí chạy 200m. Hỏi có bao nhiêu bạn đăng kí thi CẢ HAI nội dung?",
+                options: ["4", "5", "6", "10"],
+                correct: 0, 
+                explanation: "Số học sinh CÓ tham gia thi (ít nhất 1 nội dung) là: $40 - 19 = 21$ (học sinh).<br>Tổng số lượt đăng ký là $15 + 10 = 25$ (lượt).<br>Vì chỉ có 21 học sinh đăng ký nhưng lại có tới 25 lượt đăng ký, nên phần dư ra chính là số học sinh đăng ký cả 2 nội dung: $25 - 21 = 4$ (học sinh)."
+            }
+        ];
 
-<div class="footer-bar">
-  <div class="footer-inner">
-    <span class="progress-note" id="footerNote">Chọn đáp án cho từng câu, sau đó nộp bài.</span>
-    <button id="submitBtn">Nộp bài</button>
-  </div>
-</div>
+        // Biến trạng thái
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let timerInterval;
+        let timeLeft = 15 * 60; // 15 phút tính bằng giây
+        
+        // Khởi tạo KaTeX
+        function initMath() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        }
 
-<script>
-const SECTIONS = [
-  { num:'I', title:'Mệnh đề phủ định', sub:'Câu 1 – 5' },
-  { num:'II', title:'Mệnh đề kéo theo', sub:'Câu 6 – 10' },
-  { num:'III', title:'Mệnh đề đảo & tương đương', sub:'Câu 11 – 15' },
-  { num:'IV', title:'Ký hiệu ∀ và ∃', sub:'Câu 16 – 20' },
-];
+        // Bắt đầu Quiz
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('timer-display').classList.remove('hidden');
+            
+            generateDots();
+            renderQuestion();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
 
-const QUESTIONS = [
-{ text:'Mệnh đề phủ định của mệnh đề "\\(2026\\) là số tự nhiên chẵn" là:',
-  options:['\\(2026\\) là số chẵn.','\\(2026\\) là số nguyên tố.','\\(2026\\) không là số tự nhiên chẵn.','\\(2026\\) là số chính phương.'],
-  correct:2, explain:'Phủ định của một khẳng định là "không phải" khẳng định đó.' },
+        function updateTimerDisplay() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            const timerEl = document.getElementById('timer-display');
+            timerEl.innerText = `${m}:${s}`;
+            
+            if (timeLeft <= 60) {
+                timerEl.classList.remove('bg-blue-800');
+                timerEl.classList.add('bg-red-600', 'animate-pulse');
+            }
+        }
 
-{ text:'Cho mệnh đề \\(P\\): "Hình thoi có hai đường chéo vuông góc với nhau". Mệnh đề phủ định \\(\\overline{P}\\) là:',
-  options:['Hình thoi có hai đường chéo không vuông góc với nhau.','Hình thoi là hình có bốn cạnh bằng nhau.','Mọi hình thoi đều không có hai đường chéo vuông góc.','Tồn tại hình thoi có hai đường chéo không vuông góc với nhau.'],
-  correct:0, explain:'Tính chất X đổi thành "không X" (vuông góc → không vuông góc).' },
+        // Render Pagination Dots
+        function generateDots() {
+            const dotsContainer = document.getElementById('question-dots');
+            dotsContainer.innerHTML = '';
+            quizData.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = `w-7 h-7 sm:w-8 sm:h-8 rounded-full font-bold text-xs sm:text-sm mx-0.5 sm:mx-1 my-1 transition ${userAnswers[index] !== null ? 'bg-blue-200 text-blue-800' : 'bg-gray-200 text-gray-600'}`;
+                dot.innerText = index + 1;
+                dot.onclick = () => {
+                    currentQuestionIndex = index;
+                    renderQuestion();
+                };
+                dotsContainer.appendChild(dot);
+            });
+        }
 
-{ text:'Mệnh đề phủ định của mệnh đề "Có một học sinh trong lớp 10A không thích học môn Toán" là:',
-  options:['"Mọi học sinh trong lớp 10A đều thích học môn Toán".','"Mọi học sinh trong lớp 10A đều không thích học môn Toán".','"Mọi học sinh trong lớp 10A đều thích học môn Văn".','"Có một học sinh trong lớp 10A thích học môn Toán".'],
-  correct:0, explain:'Phủ định của "Có một... không" (∃x, khôngP(x)) là "Mọi... đều" (∀x, P(x)).' },
+        function updateDots() {
+            const dots = document.getElementById('question-dots').children;
+            for (let i = 0; i < dots.length; i++) {
+                // Đánh dấu đã làm
+                if (userAnswers[i] !== null) {
+                    dots[i].classList.remove('bg-gray-200', 'text-gray-600');
+                    dots[i].classList.add('bg-blue-200', 'text-blue-800');
+                }
+                // Đánh dấu câu hiện tại
+                if (i === currentQuestionIndex) {
+                    dots[i].classList.add('ring-2', 'ring-blue-500', 'ring-offset-1');
+                } else {
+                    dots[i].classList.remove('ring-2', 'ring-blue-500', 'ring-offset-1');
+                }
+            }
+        }
 
-{ text:'Cho mệnh đề \\(R\\): "\\(2^{2003}-1\\) là số nguyên tố". Mệnh đề phủ định \\(\\overline{R}\\) là:',
-  options:['\\(\\overline{R}\\): "\\(2^{2003}-1\\) là hợp số".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) không là số nguyên tố".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) là số chẵn".','\\(\\overline{R}\\): "\\(2^{2003}-1\\) chia hết cho 2".'],
-  correct:1, explain:'Phủ định của "là số nguyên tố" là "không là số nguyên tố".' },
+        // Render câu hỏi hiện tại
+        function renderQuestion() {
+            const q = quizData[currentQuestionIndex];
+            
+            document.getElementById('current-q-num').innerText = currentQuestionIndex + 1;
+            
+            // Màu sắc cho mức độ
+            const levelEl = document.getElementById('question-level');
+            levelEl.innerText = q.level;
+            
+            let levelClass = 'bg-gray-100 text-gray-700';
+            if (q.level === 'Nhận biết') levelClass = 'bg-green-100 text-green-700';
+            else if (q.level === 'Thông hiểu') levelClass = 'bg-yellow-100 text-yellow-700';
+            else if (q.level === 'Vận dụng') levelClass = 'bg-red-100 text-red-700';
+            
+            levelEl.className = `text-xs sm:text-sm font-bold uppercase px-3 py-1 rounded shadow-sm ${levelClass}`;
 
-{ text:'Mệnh đề phủ định của mệnh đề "Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) vô nghiệm" là:',
-  options:['Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có nghiệm.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có 2 nghiệm phân biệt.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) có nghiệm kép.','Phương trình \\(ax^2 + bx + c = 0 \\; (a \\neq 0)\\) không có nghiệm.'],
-  correct:0, explain:'Phủ định của "vô nghiệm" là "có nghiệm".' },
+            document.getElementById('question-text').innerHTML = `<b>Câu ${currentQuestionIndex + 1}:</b> ${q.question}`;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left p-3 sm:p-4 rounded border-2 ${userAnswers[currentQuestionIndex] === idx ? 'selected' : 'border-gray-200'}`;
+                
+                // Tiền tố A, B, C, D cho câu trắc nghiệm 4 đáp án
+                const prefix = q.type === 'MC' ? `<span class="font-bold mr-2">${String.fromCharCode(65 + idx)}.</span> ` : '';
+                
+                btn.innerHTML = `${prefix} ${opt}`;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
 
-{ text:'Cho hai mệnh đề \\(P\\) và \\(Q\\). Mệnh đề "Nếu \\(P\\) thì \\(Q\\)" được gọi là:',
-  options:['Mệnh đề tương đương.','Mệnh đề kéo theo.','Mệnh đề đảo.','Mệnh đề chứa biến.'],
-  correct:1, explain:'Đây là định nghĩa cấu trúc của mệnh đề kéo theo.' },
+            // Re-render math cho nội dung mới
+            initMath();
 
-{ text:'Mệnh đề kéo theo \\(P \\Rightarrow Q\\) chỉ sai khi nào?',
-  options:['\\(P\\) đúng và \\(Q\\) đúng.','\\(P\\) sai và \\(Q\\) đúng.','\\(P\\) đúng và \\(Q\\) sai.','\\(P\\) sai và \\(Q\\) sai.'],
-  correct:2, explain:'Mệnh đề kéo theo chỉ sai khi tiền đề P đúng và kết luận Q sai.' },
+            // Cập nhật trạng thái nút bấm
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            
+            const btnNext = document.getElementById('btn-next');
+            const btnNextDesktop = document.getElementById('btn-next-desktop');
+            
+            if (currentQuestionIndex === quizData.length - 1) {
+                btnNext.classList.add('invisible');
+                btnNextDesktop.classList.add('hidden');
+            } else {
+                btnNext.classList.remove('invisible');
+                btnNextDesktop.classList.remove('hidden');
+            }
 
-{ text:'Khi mệnh đề kéo theo \\(P \\Rightarrow Q\\) là một định lý toán học, ta phát biểu \\(Q\\) là:',
-  options:['Giả thiết của định lí.','Kết luận của định lí.','Điều kiện đủ để có \\(P\\).','Điều kiện cần để có \\(P\\).'],
-  correct:1, explain:'Theo định nghĩa định lý toán học dạng kéo theo, Q là kết luận.' },
+            updateDots();
+        }
 
-{ text:'Trong các mệnh đề sau, câu nào là một mệnh đề kéo theo đúng?',
-  options:['Nếu \\(a \\geq b\\) thì \\(a^2 \\geq b^2\\).','Nếu \\(a\\) chia hết cho \\(9\\) thì \\(a\\) chia hết cho \\(3\\).','Nếu em chăm chỉ thì em thành công.','Nếu một tam giác có một góc bằng \\(60^{\\circ}\\) thì tam giác đó đều.'],
-  correct:1, explain:'Vì 9 chia hết cho 3, số chia hết cho 9 hiển nhiên chia hết cho 3.' },
+        function selectOption(idx) {
+            userAnswers[currentQuestionIndex] = idx;
+            renderQuestion(); // Render lại để cập nhật CSS
+        }
 
-{ text:'Cho tam giác \\(ABC\\). Xét định lý: "Nếu tam giác \\(ABC\\) vuông tại \\(A\\) thì \\(AB^2 + AC^2 = BC^2\\)". Phát biểu nào sau đây dùng sai thuật ngữ?',
-  options:['Tam giác \\(ABC\\) vuông tại \\(A\\) là giả thiết của định lý.','Tam giác \\(ABC\\) vuông tại \\(A\\) là điều kiện cần để có \\(AB^2 + AC^2 = BC^2\\).','Tam giác \\(ABC\\) vuông tại \\(A\\) là điều kiện đủ để có \\(AB^2 + AC^2 = BC^2\\).','\\(AB^2 + AC^2 = BC^2\\) là kết luận của định lý.'],
-  correct:1, explain:'Giả thiết phải là điều kiện đủ; phát biểu "điều kiện cần" ở đây dùng sai.' },
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
 
-{ text:'Mệnh đề đảo của mệnh đề \\(P \\Rightarrow Q\\) là mệnh đề nào?',
-  options:['\\(\\overline{P} \\Rightarrow \\overline{Q}\\).','\\(Q \\Rightarrow P\\).','\\(\\overline{Q} \\Rightarrow \\overline{P}\\).','\\(P \\Rightarrow \\overline{Q}\\).'],
-  correct:1, explain:'Mệnh đề đảo của P⇒Q là Q⇒P.' },
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
 
-{ text:'Hai mệnh đề \\(P\\) và \\(Q\\) được gọi là tương đương khi nào?',
-  options:['Kéo theo từ \\(P\\) suy ra \\(Q\\) đúng.','Cả hai mệnh đề kéo theo \\(P \\Rightarrow Q\\) và \\(Q \\Rightarrow P\\) đều đúng.','Mệnh đề \\(P\\) và \\(Q\\) cùng sai.','Mệnh đề \\(P\\) đúng và mệnh đề \\(Q\\) sai.'],
-  correct:1, explain:'Định nghĩa hai mệnh đề tương đương: cả hai chiều kéo theo đều đúng.' },
+        function confirmSubmit() {
+            const unanswered = userAnswers.filter(a => a === null).length;
+            const warningEl = document.getElementById('unanswered-warning');
+            if (unanswered > 0) {
+                warningEl.innerHTML = `Bạn còn <b class="text-red-500 text-lg">${unanswered} câu</b> chưa trả lời.<br>Bạn có chắc chắn muốn nộp bài không?`;
+            } else {
+                warningEl.innerHTML = "Bạn đã hoàn thành tất cả các câu hỏi. Xác nhận nộp bài để xem điểm.";
+            }
+            document.getElementById('submit-modal').classList.remove('hidden');
+        }
 
-{ text:'Kí hiệu mối quan hệ tương đương giữa hai mệnh đề \\(P\\) và \\(Q\\) là:',
-  options:['\\(P \\Rightarrow Q\\).','\\(P \\subset Q\\).','\\(P \\Leftrightarrow Q\\).','\\(P \\in Q\\).'],
-  correct:2, explain:'Kí hiệu mũi tên hai đầu (⇔) biểu thị sự tương đương.' },
+        function closeModal() {
+            document.getElementById('submit-modal').classList.add('hidden');
+        }
 
-{ text:'Phát biểu nào sau đây không phải là cách đọc của mệnh đề \\(P \\Leftrightarrow Q\\)?',
-  options:['\\(P\\) tương đương \\(Q\\).','\\(P\\) là điều kiện cần và đủ để có \\(Q\\).','\\(P\\) khi và chỉ khi \\(Q\\).','\\(P\\) là điều kiện đủ để có \\(Q\\).'],
-  correct:3, explain:'"Điều kiện đủ" chỉ mô tả một chiều của mệnh đề kéo theo, không phải cách đọc của ⇔.' },
+        // Nộp bài và chấm điểm
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('submit-modal').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('timer-display').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
 
-{ text:'Trong các mệnh đề sau đây, mệnh đề nào có mệnh đề đảo là đúng?',
-  options:['Nếu \\(a\\) và \\(b\\) cùng chia hết cho \\(c\\) thì \\(a+b\\) chia hết cho \\(c\\).','Nếu hai tam giác bằng nhau thì diện tích bằng nhau.','Nếu \\(a\\) chia hết cho \\(3\\) thì \\(a\\) chia hết cho \\(9\\).','Nếu một số tận cùng bằng \\(0\\) thì số đó chia hết cho \\(5\\).'],
-  correct:2, explain:'Đảo lại: "Nếu a chia hết cho 9 thì a chia hết cho 3" — mệnh đề đúng.' },
+            let score = 0;
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
 
-{ text:'Mệnh đề "\\(\\exists x \\in \\mathbb{R}, x^2 = 3\\)" khẳng định rằng:',
-  options:['Bình phương của mỗi số thực bằng \\(3\\).','Có ít nhất một số thực mà bình phương của nó bằng \\(3\\).','Chỉ có một số thực có bình phương bằng \\(3\\).','Nếu \\(x\\) là số thực thì \\(x^2 = 3\\).'],
-  correct:1, explain:'Kí hiệu ∃ nghĩa là "tồn tại" hay "có ít nhất một".' },
+            quizData.forEach((q, idx) => {
+                const userAnswer = userAnswers[idx];
+                const isCorrect = userAnswer === q.correct;
+                if (isCorrect) score++;
 
-{ text:'Dùng kí hiệu \\(\\forall, \\exists\\) để viết câu: "Với mọi số thực, bình phương của nó là số không âm" là:',
-  options:['\\(\\exists x \\in \\mathbb{R}, x^2 \\geq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 > 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 \\geq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 \\neq 0\\).'],
-  correct:2, explain:'"Với mọi" dùng ∀, "không âm" nghĩa là ≥ 0.' },
+                // Container câu hỏi
+                const revBox = document.createElement('div');
+                revBox.className = `p-4 sm:p-5 rounded-lg border-2 mb-5 shadow-sm ${userAnswer === null ? 'review-missed bg-yellow-50' : (isCorrect ? 'review-correct' : 'review-incorrect')}`;
+                
+                // Trạng thái đúng/sai ở header
+                const statusBadge = userAnswer === null 
+                    ? `<span class="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs font-bold rounded">Chưa làm</span>`
+                    : (isCorrect ? `<span class="px-2 py-1 bg-green-200 text-green-800 text-xs font-bold rounded">Đúng</span>` : `<span class="px-2 py-1 bg-red-200 text-red-800 text-xs font-bold rounded">Sai</span>`);
 
-{ text:'Cho mệnh đề chứa biến \\(P(x): "x > x^3"\\) với \\(x \\in \\mathbb{N}\\). Mệnh đề nào sau đây là mệnh đề đúng?',
-  options:['\\(\\forall x \\in \\mathbb{N}, P(x)\\).','\\(P(1)\\).','\\(\\exists x \\in \\mathbb{N}, P(x)\\).','\\(P\\left(\\frac{1}{3}\\right)\\).'],
-  correct:2, explain:'Tồn tại x ∈ ℕ (ví dụ x = 0) thỏa P(x), dù không đúng với mọi x.' },
+                let answerHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    let optClass = 'text-gray-600';
+                    let icon = '';
+                    let bgClass = '';
+                    
+                    if (optIdx === q.correct) {
+                        optClass = 'text-green-800 font-bold';
+                        icon = '✅';
+                        bgClass = 'bg-green-100 rounded px-2 py-1';
+                    } else if (optIdx === userAnswer && !isCorrect) {
+                        optClass = 'text-red-600 line-through';
+                        icon = '❌';
+                        bgClass = 'bg-red-50 rounded px-2 py-1';
+                    }
 
-{ text:'Tìm mệnh đề phủ định của mệnh đề: "\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 > 0\\)".',
-  options:['\\(\\exists x \\in \\mathbb{R}, x^2 + x + 5 \\leq 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 \\leq 0\\).','\\(\\exists x \\in \\mathbb{R}, x^2 + x + 5 < 0\\).','\\(\\forall x \\in \\mathbb{R}, x^2 + x + 5 < 0\\).'],
-  correct:0, explain:'Quy tắc phủ định: ∀ → ∃, và dấu ">" đảo thành "≤".' },
+                    const prefix = q.type === 'MC' ? `<span class="font-semibold">${String.fromCharCode(65 + optIdx)}.</span>` : '';
+                    answerHtml += `<div class="${optClass} ${bgClass} mt-1.5 flex items-start gap-2"><span>${icon}</span> <span>${prefix} ${opt}</span></div>`;
+                });
 
-{ text:'Phủ định của mệnh đề "\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 = 0\\)" là:',
-  options:['"\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 > 0\\)".','"\\(\\exists x \\in \\mathbb{Q} : 2x^2 - 5x + 2 \\neq 0\\)".','"\\(\\forall x \\in \\mathbb{Q} : 2x^2 - 5x + 2 \\neq 0\\)".','"\\(\\forall x \\in \\mathbb{Q} : 2x^2 - 5x + 2 = 0\\)".'],
-  correct:2, explain:'Quy tắc phủ định: ∃ → ∀, và dấu "=" đảo thành "≠".' },
-];
+                revBox.innerHTML = `
+                    <div class="flex justify-between items-center mb-3">
+                        <p class="font-bold text-gray-800 text-lg">Câu ${idx + 1} <span class="font-normal text-sm text-gray-500 ml-1">(${q.level})</span></p>
+                        ${statusBadge}
+                    </div>
+                    <p class="mb-4 text-gray-800">${q.question}</p>
+                    <div class="ml-2 sm:ml-4 border-l-2 pl-3 sm:pl-4 border-gray-300">
+                        ${answerHtml}
+                    </div>
+                    
+                    <!-- Khối Giải thích / Lời giải -->
+                    <div class="mt-5 p-4 bg-blue-50 border border-blue-200 rounded-md">
+                        <div class="flex items-center gap-2 mb-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-bold text-blue-800">Giải thích / Lời giải:</span>
+                        </div>
+                        <div class="text-sm text-gray-700 ml-7 leading-relaxed">
+                            ${q.explanation}
+                        </div>
+                    </div>
+                `;
+                reviewContainer.appendChild(revBox);
+            });
 
-const LETTERS = ['A','B','C','D'];
-const answers = new Array(QUESTIONS.length).fill(null);
-let submitted = false;
-let timeLeft = 20 * 60;
-let timerId = null;
+            // Re-render math cho màn hình kết quả
+            initMath();
 
-function buildStrip(){
-  const strip = document.getElementById('strip');
-  QUESTIONS.forEach((_, i) => {
-    const c = document.createElement('div');
-    c.className = 'cell';
-    c.id = 'cell-' + i;
-    strip.appendChild(c);
-  });
-}
+            // Hiển thị điểm
+            document.getElementById('score-display').innerText = score;
+            const timeTakenSec = (15 * 60) - timeLeft;
+            const m = Math.floor(timeTakenSec / 60).toString().padStart(2, '0');
+            const s = (timeTakenSec % 60).toString().padStart(2, '0');
+            document.getElementById('time-taken').innerText = `${m}:${s}`;
 
-function buildQuiz(){
-  const quiz = document.getElementById('quiz');
-  let qIndex = 0;
-  SECTIONS.forEach((sec, sIdx) => {
-    const head = document.createElement('div');
-    head.className = 'section-head';
-    head.innerHTML = `
-      <span class="section-num">${sec.num}</span>
-      <span class="section-titles">
-        <span class="section-title">${sec.title}</span>
-        <span class="section-sub">${sec.sub}</span>
-      </span>`;
-    quiz.appendChild(head);
-
-    for(let k=0; k<5; k++){
-      const i = qIndex;
-      const q = QUESTIONS[i];
-      const card = document.createElement('div');
-      card.className = 'qcard';
-      card.id = 'qcard-' + i;
-
-      const qhead = document.createElement('div');
-      qhead.className = 'qhead';
-      qhead.innerHTML = `<span class="qnum">${i+1}</span><span class="qtext"><p>${q.text}</p></span>`;
-      card.appendChild(qhead);
-
-      const opts = document.createElement('div');
-      opts.className = 'options';
-      q.options.forEach((optText, oIdx) => {
-        const label = document.createElement('label');
-        label.className = 'opt';
-        label.id = `opt-${i}-${oIdx}`;
-        label.innerHTML = `
-          <input type="radio" name="q${i}" value="${oIdx}">
-          <span class="opt-letter">${LETTERS[oIdx]}</span>
-          <span class="opt-body">${optText}</span>`;
-        label.addEventListener('click', () => selectAnswer(i, oIdx));
-        opts.appendChild(label);
-      });
-      card.appendChild(opts);
-
-      const explain = document.createElement('div');
-      explain.className = 'explain';
-      explain.id = 'explain-' + i;
-      explain.innerHTML = `<b>Giải thích:</b> ${q.explain}`;
-      card.appendChild(explain);
-
-      quiz.appendChild(card);
-      qIndex++;
-    }
-  });
-}
-
-function selectAnswer(i, oIdx){
-  if(submitted) return;
-  answers[i] = oIdx;
-  const card = document.getElementById('qcard-' + i);
-  card.classList.add('answered');
-  for(let o=0; o<4; o++){
-    document.getElementById(`opt-${i}-${o}`).classList.toggle('picked', o === oIdx);
-  }
-  document.getElementById('cell-' + i).classList.add('filled');
-  updateAnsweredCount();
-}
-
-function updateAnsweredCount(){
-  const n = answers.filter(a => a !== null).length;
-  document.getElementById('answeredCount').innerHTML = `Đã trả lời: <b>${n}</b> / ${QUESTIONS.length}`;
-}
-
-function formatTime(s){
-  const m = Math.floor(s/60);
-  const sec = s % 60;
-  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-}
-
-function tick(){
-  timeLeft--;
-  const timerEl = document.getElementById('timer');
-  timerEl.textContent = formatTime(Math.max(timeLeft,0));
-  if(timeLeft <= 120) timerEl.classList.add('low');
-  if(timeLeft <= 0){
-    clearInterval(timerId);
-    doSubmit(true);
-  }
-}
-
-function doSubmit(auto){
-  if(submitted) return;
-  if(!auto){
-    const unanswered = answers.filter(a => a === null).length;
-    if(unanswered > 0){
-      const ok = confirm(`Bạn còn ${unanswered} câu chưa trả lời. Vẫn nộp bài?`);
-      if(!ok) return;
-    }
-  }
-  submitted = true;
-  clearInterval(timerId);
-  document.getElementById('submitBtn').disabled = true;
-  document.getElementById('footerNote').textContent = auto ? 'Đã hết giờ — bài làm được tự động nộp.' : 'Bài đã được nộp.';
-
-  let score = 0;
-  QUESTIONS.forEach((q, i) => {
-    const picked = answers[i];
-    const card = document.getElementById('qcard-' + i);
-    const cell = document.getElementById('cell-' + i);
-    for(let o=0; o<4; o++){
-      const optEl = document.getElementById(`opt-${i}-${o}`);
-      optEl.classList.add('locked');
-      const input = optEl.querySelector('input');
-      input.disabled = true;
-      if(o === q.correct) optEl.classList.add('reveal-correct');
-      if(picked === o && o !== q.correct) optEl.classList.add('reveal-wrong');
-    }
-    if(picked === q.correct){
-      score++;
-      card.classList.add('is-correct');
-      cell.classList.add('correct');
-    } else {
-      card.classList.add('is-wrong');
-      cell.classList.add('wrong');
-    }
-    document.getElementById('explain-' + i).classList.add('show');
-  });
-
-  const panel = document.getElementById('scorePanel');
-  panel.classList.add('show');
-  document.getElementById('scoreVal').textContent = score;
-  const used = 20*60 - Math.max(timeLeft,0);
-  document.getElementById('timeUsed').textContent = 'Thời gian làm bài: ' + formatTime(used);
-
-  let msg;
-  if(score >= 18) msg = 'Xuất sắc — nắm rất vững các quy tắc phủ định, kéo theo và lượng từ.';
-  else if(score >= 14) msg = 'Khá tốt — xem lại phần giải thích ở các câu sai để củng cố thêm.';
-  else if(score >= 10) msg = 'Trung bình — nên ôn lại quy tắc phủ định mệnh đề chứa ∀, ∃ và điều kiện cần/đủ.';
-  else msg = 'Cần ôn tập lại toàn bộ chủ đề — đọc kỹ phần giải thích bên dưới từng câu.';
-  document.getElementById('scoreMsg').textContent = msg;
-
-  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  renderMath();
-}
-
-function renderMath(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left:'\\(', right:'\\)', display:false},
-        {left:'$$', right:'$$', display:true}
-      ]
-    });
-  }
-}
-
-buildStrip();
-buildQuiz();
-document.getElementById('submitBtn').addEventListener('click', () => doSubmit(false));
-
-function startQuiz(){
-  document.body.classList.remove('pre-start');
-  document.getElementById('startScreen').classList.add('hidden');
-  timerId = setInterval(tick, 1000);
-  renderMath();
-}
-
-document.getElementById('startBtn').addEventListener('click', startQuiz);
-
-window.addEventListener('load', () => {
-  renderMath();
-  setTimeout(renderMath, 400);
-});
-</script>
+            const feedback = document.getElementById('feedback-msg');
+            if (score >= 12) {
+                feedback.innerHTML = "🎉 Xuất sắc! Bạn nắm rất vững kiến thức về Tập hợp.";
+                feedback.className = "mt-3 text-xl font-bold text-green-600";
+            } else if (score >= 8) {
+                feedback.innerHTML = "👍 Khá tốt! Đọc kỹ phần giải thích để khắc phục các câu sai nhé.";
+                feedback.className = "mt-3 text-xl font-bold text-blue-600";
+            } else {
+                feedback.innerHTML = "📚 Bạn cần xem lại phần giải thích chi tiết và lý thuyết bài học!";
+                feedback.className = "mt-3 text-xl font-bold text-red-600";
+            }
+        }
+    </script>
 </body>
 </html>
