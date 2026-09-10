@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10</title>
+  <meta name="description" content="Đề kiểm tra trắc nghiệm 15 phút môn Toán 10 bám sát tài liệu Bài 1: Bất phương trình bậc nhất hai ẩn, có hình vẽ đồ thị trực quan, chấm điểm tự động và lời giải chi tiết.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for crisp Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="quiz-header">
+      <div class="header-left">
+        <div class="brand-badge">
+          <i data-lucide="book-marked" class="brand-icon"></i>
+          <span>TOÁN 10 • BÁM SÁT TÀI LIỆU BÀI 1: BPT BẬC NHẤT HAI ẨN</span>
+        </div>
+        <h1 class="quiz-title">Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn</h1>
+      </div>
+
+      <div class="header-right">
+        <!-- Timer Display (15 phút) -->
+        <div class="timer-box" id="timerContainer" title="Thời gian làm bài còn lại">
+          <i data-lucide="clock" class="timer-icon"></i>
+          <span class="timer-text" id="timer">15:00</span>
+          <div class="timer-progress-ring">
+            <svg viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="timerRing" class="ring-fill" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="icon-btn" title="Chuyển đổi giao diện Sáng / Tối">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Submit Button in Header -->
+        <button id="headerSubmitBtn" class="btn btn-primary submit-action-btn">
+          <i data-lucide="send" class="btn-icon"></i>
+          <span>Nộp bài</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Quiz Sub-bar (Student Info & Quick Stats) -->
+    <section class="info-bar">
+      <div class="student-meta">
+        <div class="meta-item">
+          <i data-lucide="user" class="meta-icon"></i>
+          <span>Thí sinh: </span>
+          <input type="text" id="studentNameInput" placeholder="Nhập họ và tên..." class="student-name-input" value="Học sinh Toán 10">
+        </div>
+        <div class="meta-item">
+          <i data-lucide="layers" class="meta-icon"></i>
+          <span>Số lượng: <strong>10 câu trắc nghiệm</strong></span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="timer" class="meta-icon"></i>
+          <span>Thời gian: <strong>15 phút</strong></span>
+        </div>
+      </div>
+
+      <div class="quiz-status-indicators">
+        <span class="status-tag answered"><span class="dot"></span> Đã làm: <b id="answeredCount">0</b>/10</span>
+        <span class="status-tag flagged"><span class="dot"></span> Đặt cờ: <b id="flaggedCount">0</b></span>
+      </div>
+    </section>
+
+    <!-- Main Quiz Layout -->
+    <main class="quiz-body" id="quizBody">
+      
+      <!-- Left Column: Current Question Card -->
+      <section class="question-pane">
+        <div class="question-card" id="questionCard">
+          <div class="question-card-header">
+            <div class="question-level-badge" id="questionLevel">
+              <i data-lucide="award" class="level-icon"></i>
+              <span id="questionLevelText">Mức độ: Nhận biết</span>
+            </div>
+            
+            <div class="card-tools">
+              <button id="flagBtn" class="tool-btn" title="Đánh dấu xem lại">
+                <i data-lucide="flag" class="tool-icon"></i>
+                <span id="flagText">Đặt cờ</span>
+              </button>
+              <button id="clearAnswerBtn" class="tool-btn" title="Hủy chọn câu trả lời">
+                <i data-lucide="rotate-ccw" class="tool-icon"></i>
+                <span>Xóa lựa chọn</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Content -->
+          <div class="question-content">
+            <h2 class="question-prompt" id="questionPrompt">Đang tải câu hỏi...</h2>
+            
+            <!-- Dynamic Diagram Area (SVG) -->
+            <div class="diagram-wrapper" id="diagramWrapper" style="display: none;">
+              <div class="diagram-caption">
+                <i data-lucide="image" class="caption-icon"></i>
+                <span id="diagramCaptionText">Hình vẽ minh họa miền nghiệm trên mặt phẳng tọa độ Oxy</span>
+              </div>
+              <div class="svg-canvas-container" id="svgContainer">
+                <!-- Injected SVG Diagram -->
+              </div>
+            </div>
+
+            <!-- Options Grid -->
+            <div class="options-container" id="optionsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Card Navigation Footer -->
+          <div class="question-card-footer">
+            <button id="prevQuestionBtn" class="btn btn-secondary">
+              <i data-lucide="chevron-left" class="btn-icon"></i>
+              <span>Câu trước</span>
+            </button>
+
+            <span class="question-indicator" id="questionIndexIndicator">Câu 1 / 10</span>
+
+            <button id="nextQuestionBtn" class="btn btn-secondary">
+              <span>Câu tiếp theo</span>
+              <i data-lucide="chevron-right" class="btn-icon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Question Navigator & Summary -->
+      <aside class="sidebar-pane">
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">
+            <h3><i data-lucide="grid" class="sidebar-icon"></i> Bảng câu hỏi</h3>
+            <span class="legend-hint">Nhấp vào số câu để chuyển nhanh</span>
+          </div>
+
+          <!-- Question Grid Numbers (1 -> 10) -->
+          <div class="nav-grid" id="navGrid">
+            <!-- 1 to 10 rendered in JS -->
+          </div>
+
+          <!-- Status Legend -->
+          <div class="nav-legend">
+            <div class="legend-item"><span class="badge-sample active"></span> Đang làm</div>
+            <div class="legend-item"><span class="badge-sample answered"></span> Đã chọn</div>
+            <div class="legend-item"><span class="badge-sample flagged"></span> Đặt cờ</div>
+            <div class="legend-item"><span class="badge-sample unanswered"></span> Chưa làm</div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="sidebar-actions">
+            <button id="submitQuizBtn" class="btn btn-primary btn-block submit-action-btn">
+              <i data-lucide="check-circle-2" class="btn-icon"></i>
+              <span>NỘP BÀI THI</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Document Reference Guide -->
+        <div class="sidebar-card formula-mini-card">
+          <div class="sidebar-card-header">
+            <h3><i data-lucide="book-open" class="sidebar-icon"></i> Nhắc nhớ trọng tâm</h3>
+          </div>
+          <ul class="mini-notes-list">
+            <li>Dạng tổng quát: $ax + by \le c$ ($a^2 + b^2 \neq 0$).</li>
+            <li>Đường bờ $d: ax + by = c$:
+              <br>&bull; Có dấu $\le, \ge$: vẽ <strong>nét liền</strong> (lấy cả bờ).
+              <br>&bull; Có dấu $<, >$: vẽ <strong>nét đứt</strong> (không lấy bờ).
+            </li>
+            <li>Phương pháp: Thử điểm $O(0;0)$ khi đường bờ không đi qua gốc tọa độ.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Results & Review Section (Hidden during exam) -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+      <!-- Score summary card -->
+      <div class="score-card">
+        <div class="score-header">
+          <div class="score-badge-icon" id="scoreBadgeIcon">
+            <i data-lucide="trophy" class="trophy-icon"></i>
+          </div>
+          <div class="score-info">
+            <h2 class="score-congrats" id="scoreCongrats">Hoàn thành bài kiểm tra 15 phút!</h2>
+            <p class="score-subtext" id="scoreSubtext">Học sinh: <strong id="resultStudentName">...</strong></p>
+          </div>
+        </div>
+
+        <div class="score-metrics-grid">
+          <div class="metric-card main-score">
+            <span class="metric-label">ĐIỂM SỐ</span>
+            <div class="metric-value" id="finalScore">0.0</div>
+            <span class="metric-sub">Thang điểm 10</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Số câu đúng</span>
+            <div class="metric-value text-success" id="correctCount">0 / 10</div>
+            <span class="metric-sub" id="accuracyRate">Tỉ lệ: 0%</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Thời gian làm bài</span>
+            <div class="metric-value text-info" id="timeSpent">00:00</div>
+            <span class="metric-sub">Giới hạn: 15 phút</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Đánh giá chung</span>
+            <div class="metric-value text-highlight" id="rankCategory">Khá</div>
+            <span class="metric-sub" id="rankFeedback">Cố gắng rèn luyện thêm</span>
+          </div>
+        </div>
+
+        <div class="score-actions">
+          <button id="retakeQuizBtn" class="btn btn-secondary">
+            <i data-lucide="rotate-ccw" class="btn-icon"></i>
+            <span>Làm lại bài thi</span>
+          </button>
+          <button id="printResultBtn" class="btn btn-outline">
+            <i data-lucide="printer" class="btn-icon"></i>
+            <span>In đề & Lời giải (PDF)</span>
+          </button>
+          <button id="scrollToReviewBtn" class="btn btn-primary">
+            <i data-lucide="file-text" class="btn-icon"></i>
+            <span>Xem lời giải chi tiết bên dưới</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Solutions and Detailed Breakdown -->
+      <div class="solutions-container" id="solutionsContainer">
+        <div class="solutions-header">
+          <h2><i data-lucide="check-square" class="section-icon"></i> Bảng Đáp Án & Lời Giải Chi Tiết (Tài liệu Bài 1)</h2>
+          
+          <!-- Filter options -->
+          <div class="solution-filter">
+            <button class="filter-chip active" data-filter="all">Tất cả (10)</button>
+            <button class="filter-chip" data-filter="wrong">Chỉ câu sai (<span id="filterWrongCount">0</span>)</button>
+            <button class="filter-chip" data-filter="correct">Chỉ câu đúng (<span id="filterCorrectCount">0</span>)</button>
+          </div>
+        </div>
+
+        <!-- Rendered solution cards -->
+        <div class="solution-list" id="solutionList">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-icon-wrap">
+            <i data-lucide="help-circle" class="modal-icon"></i>
+          </div>
+          <h3>Xác nhận nộp bài kiểm tra</h3>
+        </div>
+        <div class="modal-body">
+          <p id="confirmModalText">Bạn có chắc chắn muốn hoàn thành và nộp bài kiểm tra 15 phút?</p>
+          <div class="unanswered-warning" id="unansweredWarning" style="display: none;">
+            <i data-lucide="alert-triangle" class="warning-icon"></i>
+            <span>Cảnh báo: Bạn còn <strong id="unansweredModalCount">0</strong> câu chưa chọn đáp án!</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelModalBtn" class="btn btn-secondary">Tiếp tục làm bài</button>
+          <button id="confirmSubmitBtn" class="btn btn-primary">Đồng ý nộp bài</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="quiz-footer">
+      <p>Đề kiểm tra trắc nghiệm 15 phút bám sát tài liệu <strong>Bài 1: Bất phương trình bậc nhất hai ẩn (Toán 10)</strong>.</p>
+      <p class="footer-sub">Hệ thống hỗ trợ tự động chấm điểm, hiển thị đồ thị vector SVG sắc nét, tương thích trên mọi thiết bị máy tính và điện thoại di động.</p>
+    </footer>
+
+  </div>
+
+  <!-- App Script -->
+  <script src="script.js"></script>
+</body>
+</html>
