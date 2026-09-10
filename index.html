@@ -60,6 +60,12 @@
           <i data-lucide="moon" id="themeIcon"></i>
         </button>
 
+        <!-- Print / Export PDF Button -->
+        <button id="headerPrintBtn" class="btn btn-secondary print-action-btn" title="In hoặc Xuất đề thi ra PDF (Khổ A4)">
+          <i data-lucide="printer" class="btn-icon"></i>
+          <span>In / Xuất PDF</span>
+        </button>
+
         <!-- Submit Button in Header -->
         <button id="headerSubmitBtn" class="btn btn-primary submit-action-btn">
           <i data-lucide="send" class="btn-icon"></i>
@@ -295,6 +301,45 @@
           <button id="confirmSubmitBtn" class="btn btn-primary">Đồng ý nộp bài</button>
         </div>
       </div>
+    </div>
+
+    <!-- Print Options Modal -->
+    <div class="modal-overlay" id="printModal" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-icon-wrap">
+            <i data-lucide="printer" class="modal-icon"></i>
+          </div>
+          <h3>Tùy chọn In / Xuất file PDF</h3>
+        </div>
+        <div class="modal-body">
+          <p>Thầy/Cô vui lòng chọn định dạng muốn in hoặc lưu thành file PDF:</p>
+          <div class="print-choice-list">
+            <button id="printExamOnlyBtn" class="print-choice-card">
+              <div class="choice-icon"><i data-lucide="file-text"></i></div>
+              <div class="choice-info">
+                <strong>1. In Đề thi giấy (Dành cho học sinh)</strong>
+                <span>Trang in A4 gồm 10 câu trắc nghiệm, hình vẽ đồ thị và bảng điền đáp án, không có lời giải.</span>
+              </div>
+            </button>
+            <button id="printFullSolutionBtn" class="print-choice-card">
+              <div class="choice-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="choice-info">
+                <strong>2. In Đề thi kèm Đáp án & Lời giải chi tiết</strong>
+                <span>Đầy đủ 10 câu hỏi, hình vẽ kèm lời giải chi tiết từng bước cho giáo viên và học sinh ôn tập.</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="closePrintModalBtn" class="btn btn-secondary">Đóng</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container In Ấn Chuyên Dụng Khổ A4 (Chỉ xuất hiện khi in / xuất PDF) -->
+    <div id="printableExamSheet" class="printable-exam-sheet" style="display: none;">
+      <!-- Nội dung 10 câu in giấy được render tự động -->
     </div>
 
     <!-- Footer -->

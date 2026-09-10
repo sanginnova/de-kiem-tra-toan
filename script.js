@@ -337,7 +337,13 @@ function bindEvents() {
 
   // Results Actions
   document.getElementById("retakeQuizBtn").addEventListener("click", resetQuiz);
-  document.getElementById("printResultBtn").addEventListener("click", () => window.print());
+  document.getElementById("printResultBtn").addEventListener("click", openPrintModal);
+
+  // Print / Export PDF Actions
+  document.getElementById("headerPrintBtn")?.addEventListener("click", openPrintModal);
+  document.getElementById("closePrintModalBtn")?.addEventListener("click", closePrintModal);
+  document.getElementById("printExamOnlyBtn")?.addEventListener("click", handlePrintExamOnly);
+  document.getElementById("printFullSolutionBtn")?.addEventListener("click", handlePrintFullSolution);
   document.getElementById("scrollToReviewBtn").addEventListener("click", () => {
     document.getElementById("solutionsContainer").scrollIntoView({ behavior: "smooth" });
   });
@@ -870,4 +876,114 @@ function setFontSize(size, save = true) {
     localStorage.setItem("mathQuizFontSize", size);
   }
 }
+
+// ==========================================
+// 15. HỆ THỐNG IN ẤN VÀ XUẤT FILE PDF KHỔ A4
+// ==========================================
+function openPrintModal() {
+  document.getElementById("printModal").style.display = "flex";
+  initIcons();
+}
+
+function closePrintModal() {
+  document.getElementById("printModal").style.display = "none";
+}
+
+function handlePrintExamOnly() {
+  closePrintModal();
+  document.body.classList.remove("print-mode-solution");
+  renderPrintableExamSheet();
+  setTimeout(() => {
+    window.print();
+  }, 300);
+}
+
+function handlePrintFullSolution() {
+  closePrintModal();
+  document.body.classList.add("print-mode-solution");
+  renderDetailedSolutions();
+  setTimeout(() => {
+    window.print();
+  }, 300);
+}
+
+function renderPrintableExamSheet() {
+  const container = document.getElementById("printableExamSheet");
+  if (!container) return;
+
+  const optionLetters = ["A", "B", "C", "D"];
+
+  let questionsHtml = QUIZ_QUESTIONS.map((q, idx) => {
+    let diagramHtml = "";
+    if (q.svgType && SVG_DIAGRAMS[q.svgType]) {
+      diagramHtml = `
+        <div class="paper-diagram-box">
+          ${SVG_DIAGRAMS[q.svgType]()}
+        </div>
+      `;
+    }
+
+    let optionsHtml = q.options.map((optText, optIdx) => `
+      <div class="paper-opt">
+        <strong>${optionLetters[optIdx]}.</strong>
+        <span>${optText}</span>
+      </div>
+    `).join("");
+
+    return `
+      <div class="paper-question-item">
+        <div class="paper-question-prompt">
+          <strong>Câu ${idx + 1}:</strong> ${q.prompt}
+        </div>
+        ${diagramHtml}
+        <div class="paper-options-grid">
+          ${optionsHtml}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  // Bảng điền đáp án 10 câu
+  let tableHeaderCols = "";
+  let tableEmptyCols = "";
+  for (let i = 1; i <= QUIZ_QUESTIONS.length; i++) {
+    tableHeaderCols += `<th>Câu ${i}</th>`;
+    tableEmptyCols += `<td style="height: 26px;">&nbsp;</td>`;
+  }
+
+  container.innerHTML = `
+    <div class="paper-exam-header">
+      <div class="paper-header-left">
+        <h3>SỞ GD&ĐT • TRƯỜNG THPT: .................................</h3>
+        <p>Tổ chuyên môn: Toán - Tin học</p>
+      </div>
+      <div class="paper-header-right">
+        <h2>ĐỀ KIỂM TRA 15 PHÚT MÔN TOÁN 10</h2>
+        <p><strong>Chủ đề:</strong> Bất phương trình bậc nhất hai ẩn</p>
+        <p><em>(Thời gian làm bài: 15 phút, gồm 10 câu trắc nghiệm)</em></p>
+      </div>
+    </div>
+
+    <div class="paper-student-info">
+      <span><strong>Họ và tên thí sinh:</strong> ${QuizState.studentName || '................................................'}</span>
+      <span><strong>Lớp:</strong> .................</span>
+      <span><strong>Điểm số:</strong> ................. / 10</span>
+    </div>
+
+    <div class="paper-questions-list">
+      ${questionsHtml}
+    </div>
+
+    <div class="paper-answer-sheet-box">
+      <p style="font-weight: bold; margin-bottom: 4px;">BẢNG TRẢ LỜI CỦA HỌC SINH (Khoanh tròn hoặc điền A, B, C, D):</p>
+      <table class="paper-answer-table">
+        <tr>${tableHeaderCols}</tr>
+        <tr>${tableEmptyCols}</tr>
+      </table>
+    </div>
+  `;
+
+  renderMathInElementSafely(container);
+}
+
 
