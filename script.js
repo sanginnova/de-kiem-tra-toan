@@ -276,6 +276,7 @@ const QuizState = {
 document.addEventListener("DOMContentLoaded", () => {
   initIcons();
   loadSavedTheme();
+  loadSavedFontSize();
   bindEvents();
   renderNavigationGrid();
   renderQuestion(QuizState.currentQuestionIndex);
@@ -292,6 +293,11 @@ function bindEvents() {
   // Theme Toggle
   const themeBtn = document.getElementById("themeToggleBtn");
   themeBtn.addEventListener("click", toggleTheme);
+
+  // Font Size Buttons
+  document.getElementById("fontDecreaseBtn")?.addEventListener("click", () => setFontSize("normal"));
+  document.getElementById("fontResetBtn")?.addEventListener("click", () => setFontSize("normal"));
+  document.getElementById("fontIncreaseBtn")?.addEventListener("click", () => setFontSize("large"));
 
   // Student Name
   const nameInput = document.getElementById("studentNameInput");
@@ -829,3 +835,39 @@ function renderMathInElementSafely(element) {
     }, 300);
   }
 }
+
+// ==========================================
+// 14. ĐIỀU CHỈNH CỠ CHỮ PHÙ HỢP THỊ LỰC
+// ==========================================
+function loadSavedFontSize() {
+  const saved = localStorage.getItem("mathQuizFontSize") || "normal";
+  setFontSize(saved, false);
+}
+
+function setFontSize(size, save = true) {
+  const resetBtn = document.getElementById("fontResetBtn");
+  const incBtn = document.getElementById("fontIncreaseBtn");
+  const decBtn = document.getElementById("fontDecreaseBtn");
+
+  if (size === "large") {
+    document.documentElement.setAttribute("data-font-size", "large");
+    incBtn?.classList.add("active");
+    resetBtn?.classList.remove("active");
+    decBtn?.classList.remove("active");
+  } else if (size === "xlarge") {
+    document.documentElement.setAttribute("data-font-size", "xlarge");
+    incBtn?.classList.add("active");
+    resetBtn?.classList.remove("active");
+    decBtn?.classList.remove("active");
+  } else {
+    document.documentElement.removeAttribute("data-font-size");
+    resetBtn?.classList.add("active");
+    decBtn?.classList.remove("active");
+    incBtn?.classList.remove("active");
+  }
+
+  if (save) {
+    localStorage.setItem("mathQuizFontSize", size);
+  }
+}
+
