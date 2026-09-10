@@ -1,0 +1,3518 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bản Viết Tay: Bài 1 - Bất Phương Trình Bậc Nhất Hai Ẩn (Toán 10)</title>
+  <meta name="description" content="Bản viết tay tự luận chuẩn sư phạm môn Toán 10 Bài 1: Bất phương trình bậc nhất hai ẩn, gồm 41 câu hỏi với 10 dòng kẻ tự luận mỗi câu, hỗ trợ in A4 và xuất PDF.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for crisp Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --font-scale: 1;
+      --bg-page: #f0f4f8;
+      --bg-surface: #ffffff;
+      --border-box: #f43f5e;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-light: #eef2ff;
+      --grid-line: rgba(59, 130, 246, 0.15);
+      --dotted-line: #cbd5e1;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-surface: #111827;
+      --border-box: #fb7185;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-light: rgba(99, 102, 241, 0.18);
+      --grid-line: rgba(59, 130, 246, 0.08);
+      --dotted-line: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: calc(15px * var(--font-scale));
+      min-height: 100vh;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    /* Math Squared Grid Background (Giấy kẻ ô ly caro vuông 5mm) */
+    .grid-bg {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    }
+
+    .katex {
+      font-size: 1.15em !important;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Top Sticky Control Bar */
+    .top-actions-bar {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] .top-actions-bar {
+      background: rgba(17, 24, 39, 0.95);
+      border-color: #334155;
+    }
+
+    .bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      border: 1px solid #cbd5e1;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    [data-theme="dark"] .action-btn {
+      border-color: #334155;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .action-btn.primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    .action-btn.primary:hover {
+      background: #4338ca;
+      color: #ffffff;
+    }
+
+    /* Student Info Sheet Header */
+    .sheet-header-card {
+      background: var(--bg-surface);
+      border: 2px solid #0f172a;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .sheet-top-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+    }
+
+    .school-info h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .school-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    .exam-title-box {
+      text-align: right;
+    }
+
+    .exam-title-box h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #e11d48;
+      text-transform: uppercase;
+    }
+
+    .exam-title-box p {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .student-fields-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .field-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px dotted #64748b;
+      padding-bottom: 4px;
+    }
+
+    .field-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      width: 100%;
+    }
+
+    /* Section Banner */
+    .section-banner {
+      background: linear-gradient(135deg, #e11d48, #be123c);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 3px 8px rgba(225, 29, 72, 0.25);
+      margin-top: 10px;
+    }
+
+    /* Question Box (Border Rose / Pink like sample) */
+    .question-block {
+      background: var(--bg-surface);
+      border: 1.8px solid var(--border-box);
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .question-title {
+      font-size: calc(1.08rem * var(--font-scale));
+      font-weight: 800;
+      color: #e11d48;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .question-text {
+      font-size: calc(1.05rem * var(--font-scale));
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    /* Options Grid (A, B, C, D) */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      margin-top: 4px;
+      font-size: calc(1rem * var(--font-scale));
+    }
+
+    .options-grid.four-cols {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .option-cell {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .option-label {
+      font-weight: 800;
+      color: #e11d48;
+    }
+
+    /* Question Diagrams / Images */
+    .question-diagram-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+      padding: 12px;
+      background: #fdf2f8;
+      border: 1px dashed #f43f5e;
+      border-radius: 8px;
+    }
+
+    [data-theme="dark"] .question-diagram-box {
+      background: rgba(225, 29, 72, 0.1);
+      border-color: #fb7185;
+    }
+
+    .question-diagram-box img {
+      max-width: 320px;
+      max-height: 220px;
+      width: auto;
+      height: auto;
+      border-radius: 6px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+    }
+
+    .diagram-options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .diagram-option-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      background: #ffffff;
+    }
+
+    .diagram-option-card img {
+      max-width: 100%;
+      height: auto;
+      max-height: 160px;
+    }
+
+    /* 10 Lined Writing Rows for Essay / Working Out */
+    .handwriting-section {
+      margin-top: 8px;
+      border-top: 1.5px dashed #cbd5e1;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .handwriting-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #e11d48;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .lines-container {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    [data-theme="dark"] .lines-container {
+      background: rgba(17, 24, 39, 0.7);
+      border-color: rgba(99, 102, 241, 0.25);
+    }
+
+    .write-row {
+      height: 30px;
+      border-bottom: 1px dotted var(--dotted-line);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .write-row:last-child {
+      border-bottom: none;
+    }
+
+    .write-row .line-num {
+      width: 22px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #94a3b8;
+      user-select: none;
+    }
+
+    .write-row-input {
+      flex-grow: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    /* Print Formatting (A4 Portrait) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 15mm 12mm 15mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt !important;
+      }
+
+      .top-actions-bar {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 12px !important;
+      }
+
+      .sheet-header-card {
+        border: 1.5px solid #000 !important;
+        box-shadow: none !important;
+        padding: 12px 16px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .section-banner {
+        background: #000000 !important;
+        color: #ffffff !important;
+        box-shadow: none !important;
+        padding: 6px 12px !important;
+        font-size: 10pt !important;
+        break-after: avoid;
+      }
+
+      .question-block {
+        border: 1.2px solid #000000 !important;
+        box-shadow: none !important;
+        padding: 10px 14px !important;
+        margin-bottom: 12px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .question-title {
+        color: #000000 !important;
+      }
+
+      .option-label {
+        color: #000000 !important;
+      }
+
+      .handwriting-header {
+        color: #000000 !important;
+      }
+
+      .lines-container {
+        border: 1px solid #000000 !important;
+        background: #ffffff !important;
+      }
+
+      .write-row {
+        border-bottom: 1px dotted #888888 !important;
+        height: 26px !important;
+      }
+
+      .write-row .line-num {
+        color: #666666 !important;
+      }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+  <!-- Top Sticky Actions Bar -->
+  <div class="top-actions-bar">
+    <div class="bar-left">
+      <i data-lucide="book-open"></i>
+      <span>BẢN VIẾT TAY: BÀI 1 - BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN (41 CÂU)</span>
+    </div>
+    <div class="bar-right">
+      <a href="index.html" class="action-btn" title="Chuyển sang Đề thi trắc nghiệm 15 phút" style="text-decoration:none;">
+        <i data-lucide="timer"></i>
+        <span>Đề trắc nghiệm 15p</span>
+      </a>
+      <button id="toggleGridBtn" class="action-btn" title="Bật / Tắt giấy kẻ ô ly caro">
+        <i data-lucide="grid"></i>
+        <span>Lưới ô ly</span>
+      </button>
+      <button id="fontToggleBtn" class="action-btn" title="Tăng cỡ chữ">
+        <i data-lucide="type"></i>
+        <span>Cỡ chữ</span>
+      </button>
+      <button id="themeToggleBtn" class="action-btn" title="Đổi giao diện Sáng / Tối">
+        <i data-lucide="moon" id="themeIcon"></i>
+      </button>
+      <button onclick="window.print()" class="action-btn primary" title="In ra giấy hoặc xuất file PDF">
+        <i data-lucide="printer"></i>
+        <span>In / Xuất PDF</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- Sheet Header -->
+    <div class="sheet-header-card">
+      <div class="sheet-top-title">
+        <div class="school-info">
+          <h4>SỞ GD&ĐT • TRƯỜNG THPT: ....................................................</h4>
+          <p>Tổ chuyên môn: Toán - Tin học • Năm học 2026</p>
+        </div>
+        <div class="exam-title-box">
+          <h1>BẢN VIẾT TAY TỰ LUẬN MÔN TOÁN 10</h1>
+          <p>Chuyên đề: Bất phương trình bậc nhất hai ẩn</p>
+        </div>
+      </div>
+
+      <div class="student-fields-grid">
+        <div class="field-item">
+          <span>Họ tên:</span>
+          <input type="text" class="field-input" placeholder="Nhập tên học sinh...">
+        </div>
+        <div class="field-item">
+          <span>Lớp:</span>
+          <input type="text" class="field-input" placeholder="10A...">
+        </div>
+        <div class="field-item">
+          <span>Điểm số:</span>
+          <input type="text" class="field-input" placeholder="... / 10">
+        </div>
+        <div class="field-item">
+          <span>Lời phê:</span>
+          <input type="text" class="field-input" placeholder="................................">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-banner">
+      <i data-lucide="check-circle"></i> DẠNG 1: CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN (CÂU 1 - 24)
+    </div>
+    <div class="question-block" id="cau_1">
+      <div class="question-header">
+        <span class="question-title">Câu 1.</span>
+      </div>
+
+      <div class="question-text">Bất phương trình nào sau đây <strong>không phải là bất phương trình bậc nhất hai ẩn</strong>?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$2x - 3y^3 + 2 \le 0$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$\dfrac{x}{2} - \dfrac{y}{3} + 10 < 0$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x - 5y - 5 \ge 0$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x + 3y - 1 \le 0$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_2">
+      <div class="question-header">
+        <span class="question-title">Câu 2.</span>
+      </div>
+
+      <div class="question-text">Cho bất phương trình $x - 2y + 5 > 0$ có tập nghiệm là $S$. Mệnh đề nào sau đây là <strong>đúng</strong>?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$(-2; 2) \in S$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$(2; 2) \in S$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$(-2; 4) \in S$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$(1; 3) \in S$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_3">
+      <div class="question-header">
+        <span class="question-title">Câu 3.</span>
+      </div>
+
+      <div class="question-text">Trong các bất phương trình sau, đâu là một <strong>bất phương trình bậc nhất hai ẩn</strong>?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$2x - y < 1$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$2x + y^2 < 1$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x^3 - y \ge 1$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x \cdot y \le 1$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_4">
+      <div class="question-header">
+        <span class="question-title">Câu 4.</span>
+      </div>
+
+      <div class="question-text">Cặp số nào sau đây là <strong>nghiệm</strong> của bất phương trình $2x + 3y > 2$?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$(x, y) = (0; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$(x, y) = (2; -1)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$(x, y) = (1; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$(x, y) = (1; 1)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_5">
+      <div class="question-header">
+        <span class="question-title">Câu 5.</span>
+      </div>
+
+      <div class="question-text">Cho bất phương trình $2x - y > 2$. Điểm nào sau đây thuộc miền nghiệm của bất phương trình đã cho?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$O(0; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$D(1; 1)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$E(1; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$F(1; -1)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_6">
+      <div class="question-header">
+        <span class="question-title">Câu 6.</span>
+      </div>
+
+      <div class="question-text">Cho bất phương trình bậc nhất hai ẩn $x + 2y \le 3$. Cặp số nào sau đây <strong>không phải là một nghiệm</strong> của bất phương trình đã cho?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$(-2; 1)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$(-1; -2)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$(1; 2)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$(-2; -1)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_7">
+      <div class="question-header">
+        <span class="question-title">Câu 7.</span>
+      </div>
+
+      <div class="question-text">Trong các bất phương trình bên dưới, bất phương trình nào có <strong>miền nghiệm tô màu</strong> được biểu diễn trên hệ trục toạ độ $Oxy$ như hình vẽ bên dưới?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p5_0.png" alt="Hình vẽ minh họa Câu 7">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$2x + 2y \le 0$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$x + y \ge 2$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x + y \le 2$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x - y \le 2$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_8">
+      <div class="question-header">
+        <span class="question-title">Câu 8.</span>
+      </div>
+
+      <div class="question-text">Miền nghiệm của bất phương trình $-2x + y < 4$ được biểu diễn bởi miền nào (nửa mặt phẳng không bị tô màu và không kể đường thẳng $d$) trong các hình sau đây?</div>
+
+      <div class="diagram-options-grid">
+              <div class="diagram-option-card">
+                <strong>Hình A</strong>
+                <img src="images/img_p5_1.png" alt="Phương án A">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình B</strong>
+                <img src="images/img_p5_2.png" alt="Phương án B">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình C</strong>
+                <img src="images/img_p5_3.png" alt="Phương án C">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình D</strong>
+                <img src="images/img_p5_4.png" alt="Phương án D">
+              </div></div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>Hình A (bên dưới)</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>Hình B (bên dưới)</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>Hình C (bên dưới)</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>Hình D (bên dưới)</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_9">
+      <div class="question-header">
+        <span class="question-title">Câu 9.</span>
+      </div>
+
+      <div class="question-text">Để chuẩn bị cho năm học mới, bạn Nam mua $x$ chiếc bút bi và $y$ chiếc bút chì. Biết rằng Nam chỉ đủ tiền để mua tối đa 10 chiếc bút các loại. Bất phương trình biểu diễn số bút mà Nam mua được là:</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$x + y < 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$x + y \le 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x + y > 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x + y \ge 0$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_10">
+      <div class="question-header">
+        <span class="question-title">Câu 10.</span>
+      </div>
+
+      <div class="question-text">Miền nghiệm của bất phương trình $x + 2y < 3$ là phần không tô đậm (không kể đường thẳng) là hình nào trong các hình vẽ dưới đây?</div>
+
+      <div class="diagram-options-grid">
+              <div class="diagram-option-card">
+                <strong>Hình A</strong>
+                <img src="images/img_p6_0.png" alt="Phương án A">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình B</strong>
+                <img src="images/img_p6_1.png" alt="Phương án B">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình C</strong>
+                <img src="images/img_p6_2.png" alt="Phương án C">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình D</strong>
+                <img src="images/img_p6_3.png" alt="Phương án D">
+              </div></div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>Hình A</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>Hình B</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>Hình C</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>Hình D</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_11">
+      <div class="question-header">
+        <span class="question-title">Câu 11.</span>
+      </div>
+
+      <div class="question-text">Cho đường thẳng $d: 7x - 9y + 2 = 0$ chia mặt phẳng tọa độ làm hai nửa mặt phẳng, trong đó miền nghiệm của bất phương trình $7x - 9y + 2 \ge 0$ là nửa mặt phẳng:</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>Có bờ là đường thẳng $d$ và không chứa điểm $O(0; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>Có bờ là đường thẳng $d$ và chứa điểm $O(0; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>Có bờ là đường thẳng $d$ và không chứa điểm $M(1; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>Có bờ là đường thẳng $d$ và chứa điểm $N(0; 1)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_12">
+      <div class="question-header">
+        <span class="question-title">Câu 12.</span>
+      </div>
+
+      <div class="question-text">Phần không tô màu trong hình vẽ dưới đây (không bao gồm đường thẳng $d$) là miền nghiệm của bất phương trình bậc nhất hai ẩn nào dưới đây?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p6_4.png" alt="Hình vẽ minh họa Câu 12">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$x - 2y < 0$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$x - 2y < 2$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x - 2y < -2$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x - 2y > 1$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_13">
+      <div class="question-header">
+        <span class="question-title">Câu 13.</span>
+      </div>
+
+      <div class="question-text">Trong các cặp số sau đây, cặp nào <strong>không là nghiệm</strong> của bất phương trình $x - 4y + 5 \ge 0$?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$(0; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$(1; -3)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$(-2; 1)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$(-5; 0)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_14">
+      <div class="question-header">
+        <span class="question-title">Câu 14.</span>
+      </div>
+
+      <div class="question-text">Miền tô màu trong hình dưới đây (tính cả đường thẳng bờ) là miền nghiệm của bất phương trình nào?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p7_0.png" alt="Hình vẽ minh họa Câu 14">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$3x - 2y \le -6$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$3x - 2y \ge -6$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$2x - 3y \ge -6$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$3x - 2y > -6$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_15">
+      <div class="question-header">
+        <span class="question-title">Câu 15.</span>
+      </div>
+
+      <div class="question-text">Bạn Lan mang $150.000$ đồng đi nhà sách để mua một số quyển vở và bút cùng loại. Biết rằng mỗi quyển vở có giá $8.000$ đồng và mỗi chiếc bút có giá $6.000$ đồng. Gọi $x$ và $y$ lần lượt là số quyển vở và số chiếc bút Lan đã mua. Tìm bất phương trình biểu diễn điều kiện của $x$ và $y$.</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$8x + 6y > 150$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$8x - 6y \ge 150$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$8x + 6y \le 15$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$8x + 6y \le 150$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_16">
+      <div class="question-header">
+        <span class="question-title">Câu 16.</span>
+      </div>
+
+      <div class="question-text">Cho tam giác $ABC$ có $A(0; 3); B(-1; 2); C(2; 1)$. Điều kiện của tham số $m$ để điểm $M(m; m+2)$ nằm bên trong tam giác $ABC$ có dạng $\dfrac{a}{4} < m < \dfrac{1}{b}$ với $a; b$ là các số nguyên. Tính giá trị $S = a + b$.</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$S = -2$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$S = 3$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$S = 1$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$S = -1$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_17">
+      <div class="question-header">
+        <span class="question-title">Câu 17.</span>
+      </div>
+
+      <div class="question-text">Nhu cầu canxi tối thiểu cho một người đang ở độ tuổi trưởng thành trong một ngày là $1000$ mg. Trong một lạng đậu nành có $277$ mg canxi, một lạng thịt bò có $18$ mg canxi. Gọi $x, y$ lần lượt là số lạng đậu nành và số lạng thịt bò mà một người đang ở độ tuổi trưởng thành ăn trong một ngày. Bất phương trình bậc nhất hai ẩn $x, y$ để biểu diễn lượng canxi cần thiết có dạng $bx + 18y \ge a$ với $a, b$ là các số nguyên dương. Tính giá trị $T = \dfrac{a}{2} - b$.</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p7_1.jpeg" alt="Hình vẽ minh họa Câu 17">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$T = 446$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$T = 777$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$T = 223$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$T = 723$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_18">
+      <div class="question-header">
+        <span class="question-title">Câu 18.</span>
+      </div>
+
+      <div class="question-text">Để chuẩn bị cho năm học mới, bạn Nam mua $x$ chiếc bút bi và $y$ chiếc bút chì. Biết rằng Nam chỉ đủ tiền để mua tối đa 10 chiếc bút các loại. Bất phương trình biểu diễn số bút mà Nam mua được là:</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$x + y < 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$x + y \le 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$x + y > 10$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$x + y \ge 0$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_19">
+      <div class="question-header">
+        <span class="question-title">Câu 19.</span>
+      </div>
+
+      <div class="question-text">Cặp số nào sau đây là một nghiệm của bất phương trình $4x - y \ge 2$?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$(1; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$(-1; 0)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$(1; 3)$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$(0; 1)$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_20">
+      <div class="question-header">
+        <span class="question-title">Câu 20.</span>
+      </div>
+
+      <div class="question-text">Cho bất phương trình bậc nhất hai ẩn $x + 2y \le 20$. Có bao nhiêu giá trị nguyên dương của tham số $m$ để cặp $(m; 2m - 1)$ là một nghiệm của bất phương trình đã cho?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>4</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>5</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>3</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>Vô số</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_21">
+      <div class="question-header">
+        <span class="question-title">Câu 21.</span>
+      </div>
+
+      <div class="question-text">Hình nào dưới đây biểu diễn miền nghiệm của bất phương trình $3x + 2y \ge 6$?</div>
+
+      <div class="diagram-options-grid">
+              <div class="diagram-option-card">
+                <strong>Hình A</strong>
+                <img src="images/img_p8_0.png" alt="Phương án A">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình B</strong>
+                <img src="images/img_p8_1.png" alt="Phương án B">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình C</strong>
+                <img src="images/img_p8_2.png" alt="Phương án C">
+              </div>
+              <div class="diagram-option-card">
+                <strong>Hình D</strong>
+                <img src="images/img_p8_3.png" alt="Phương án D">
+              </div></div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>Hình A</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>Hình B</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>Hình C</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>Hình D</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_22">
+      <div class="question-header">
+        <span class="question-title">Câu 22.</span>
+      </div>
+
+      <div class="question-text">Nhân dịp trung thu, hai bạn Minh và Ngọc muốn mua quà cho các em nhỏ có hoàn cảnh khó khăn ở khu phố. Tổng số tiền hai em có là $700$ nghìn đồng. Một chiếc bánh trung thu có giá là $25$ nghìn đồng, một chiếc đèn ông sao có giá $10$ nghìn đồng. Gọi $x$ và $y$ lần lượt là số bánh và số đèn ông sao mà hai bạn định mua. Viết bất phương trình thể hiện số tiền hai bạn đã mua quà, biết các bạn phải để lại $400$ nghìn làm kinh phí tổ chức đêm trung thu.</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p8_4.jpeg" alt="Hình vẽ minh họa Câu 22">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>$5x + 2y \ge 80$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>$5x + 2y \le 60$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>$5x + 2y \le 140$</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>$2x + 5y \le 60$</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_23">
+      <div class="question-header">
+        <span class="question-title">Câu 23.</span>
+      </div>
+
+      <div class="question-text">Có tất cả bao nhiêu giá trị nguyên của tham số $m$ thuộc đoạn $[-2024; 2024]$ để cặp số $(x; y) = (1; 1)$ <strong>không là nghiệm</strong> của bất phương trình $(2m-1)x - 3y + 4 > 0$?</div>
+
+      
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>2026</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>2027</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>2022</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>2021</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_24">
+      <div class="question-header">
+        <span class="question-title">Câu 24.</span>
+      </div>
+
+      <div class="question-text">Rạp chiếu phim bán hai loại vé: Loại 1 (trẻ em 6-13 tuổi) giá $50.000$ đ/vé; Loại 2 (trên 13 tuổi) giá $100.000$ đ/vé. Để không phải bù lỗ thì doanh thu bán vé phải đạt tối thiểu $20.000.000$ đồng. Gọi $x, y$ lần lượt là số vé loại 1 và loại 2 bán được. Trong trường hợp rạp hòa vốn thì $x + 2y$ bằng bao nhiêu?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p9_0.jpeg" alt="Hình vẽ minh họa Câu 24">
+          </div>
+
+      <div class="options-grid">
+              <div class="option-cell">
+                <span class="option-label">A.</span>
+                <span>350</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">B.</span>
+                <span>500</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">C.</span>
+                <span>200</span>
+              </div>
+              <div class="option-cell">
+                <span class="option-label">D.</span>
+                <span>400</span>
+              </div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <i data-lucide="help-circle"></i> DẠNG 2: CÂU HỎI TRẮC NGHIỆM ĐÚNG / SAI (CÂU 25 - 28)
+    </div>
+    <div class="question-block" id="cau_25">
+      <div class="question-header">
+        <span class="question-title">Câu 25.</span>
+      </div>
+
+      <div class="question-text">Xét tính đúng, sai của các mệnh đề sau:</div>
+
+      
+
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"><div style="font-size:1.02rem;">a) $2x^2 + 3y > 0$ là bất phương trình bậc nhất hai ẩn.</div><div style="font-size:1.02rem;">b) $x^2 + y^2 < 2$ là bất phương trình bậc nhất hai ẩn.</div><div style="font-size:1.02rem;">c) $0x + 0y < 3$ là bất phương trình bậc nhất hai ẩn.</div><div style="font-size:1.02rem;">d) $3x + 0y < -4$ là bất phương trình bậc nhất hai ẩn.</div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_26">
+      <div class="question-header">
+        <span class="question-title">Câu 26.</span>
+      </div>
+
+      <div class="question-text">Một cửa hàng dành tối đa 10 triệu để nhập $x$ tạ gạo và $y$ tạ mì. Biết mỗi tạ gạo mua hết 1,5 triệu, mỗi tạ mì mua hết 1,2 triệu. Khi đó:</div>
+
+      
+
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"><div style="font-size:1.02rem;">a) Bất phương trình biểu thị mối liên hệ giữa $x$ và $y$ là: $1,5x + 1,2y \le 10$.</div><div style="font-size:1.02rem;">b) Bất phương trình biểu thị mối liên hệ giữa $x$ và $y$ là: $1,5x + 1,2y \ge 10$.</div><div style="font-size:1.02rem;">c) Miền nghiệm của bất phương trình $1,5x + 1,2y \le 10$ là nửa mặt phẳng bờ là đường thẳng $1,5x + 1,2y = 10$ chứa điểm $O(0; 0)$.</div><div style="font-size:1.02rem;">d) Miền nghiệm của bất phương trình $1,5x + 1,2y \le 10$ là nửa mặt phẳng bờ là đường thẳng $1,5x + 1,2y = 10$ không chứa điểm $O(0; 0)$.</div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_27">
+      <div class="question-header">
+        <span class="question-title">Câu 27.</span>
+      </div>
+
+      <div class="question-text">Bạn Khải làm một bài thi giữa học kỳ I môn Toán. Đề thi gồm 35 câu hỏi trắc nghiệm (mỗi câu 0,2 điểm) và 3 câu tự luận (mỗi câu 1 điểm). Giả sử Khải làm đúng $x$ câu trắc nghiệm và $y$ câu tự luận ($x, y \in \mathbb{N}, x \le 35, y \le 3$). Khi đó xét tính đúng, sai của các mệnh đề:</div>
+
+      
+
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"><div style="font-size:1.02rem;">a) Số điểm Khải đạt được trong bài thi là $0,2x + y$.</div><div style="font-size:1.02rem;">b) Bất phương trình biểu thị điều kiện Khải đạt điểm Giỏi (từ 8,0 điểm trở lên) là $0,2x + y \ge 8$.</div><div style="font-size:1.02rem;">c) Cặp $(x; y) = (30; 2)$ thỏa mãn điều kiện đạt điểm Giỏi.</div><div style="font-size:1.02rem;">d) Khải có thể đạt điểm Giỏi nếu chỉ làm đúng 25 câu trắc nghiệm.</div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_28">
+      <div class="question-header">
+        <span class="question-title">Câu 28.</span>
+      </div>
+
+      <div class="question-text">Ông An muốn thuê một chiếc ô tô (có lái xe) trong một tuần. Giá thuê xe được cho như sau: Từ thứ Hai đến thứ Bảy: phí cố định 800 nghìn đồng/ngày, phí di chuyển 10 nghìn đồng/km. Chủ nhật: phí cố định 1200 nghìn đồng/ngày, phí di chuyển 15 nghìn đồng/km. Gọi $x, y$ lần lượt là số km ông An đi từ thứ Hai đến thứ Bảy và trong Chủ nhật. Khi đó:</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p10_0.png" alt="Hình vẽ minh họa Câu 28">
+          </div>
+
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"><div style="font-size:1.02rem;">a) Số tiền ông An phải trả khi thuê xe từ thứ Hai đến thứ Bảy là $4800 + 10x$ (nghìn đồng).</div><div style="font-size:1.02rem;">b) Số tiền ông An phải trả khi thuê xe trong Chủ nhật là $1200 + 15y$ (nghìn đồng).</div><div style="font-size:1.02rem;">c) Bất phương trình biểu thị tổng số tiền An phải trả không quá 16 triệu đồng là $2x + 3y \le 2000$.</div><div style="font-size:1.02rem;">d) Miền nghiệm của bất phương trình biểu thị mối liên hệ giữa $x$ và $y$ là nửa mặt phẳng phần không bị tô đậm trong hình bên dưới có bờ $d: 2x + 3y = 2000$ (kể cả bờ $d$).</div></div>
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <i data-lucide="edit-3"></i> DẠNG 3: CÂU HỎI TRẮC NGHIỆM ĐIỀN ĐÁP ÁN NGẮN (CÂU 29 - 36)
+    </div>
+    <div class="question-block" id="cau_29">
+      <div class="question-header">
+        <span class="question-title">Câu 29.</span>
+      </div>
+
+      <div class="question-text">Bất phương trình bậc nhất hai ẩn có miền nghiệm (phần gạch sọc, kể cả bờ là đường thẳng) như hình dưới đây là bất phương trình có dạng $ax + by \ge c$ (với $a, b, c$ là các số nguyên có ước chung lớn nhất bằng 1). Ta có $a + b + c$ bằng bao nhiêu?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p10_1.png" alt="Hình vẽ minh họa Câu 29">
+          </div>
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_30">
+      <div class="question-header">
+        <span class="question-title">Câu 30.</span>
+      </div>
+
+      <div class="question-text">Có bao nhiêu giá trị nguyên của tham số $m$ trong đoạn $[-5; 5]$ sao cho $\begin{cases} x = 1 \\ y = -1 \end{cases}$ là nghiệm của bất phương trình $mx - (m+1)y + 1 \ge 0$?</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_31">
+      <div class="question-header">
+        <span class="question-title">Câu 31.</span>
+      </div>
+
+      <div class="question-text">Có bao nhiêu giá trị nguyên của tham số $m$ để bất phương trình $(m^2 + m)x^2 - x + y - 1 \le 0$ là bất phương trình bậc nhất hai ẩn?</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_32">
+      <div class="question-header">
+        <span class="question-title">Câu 32.</span>
+      </div>
+
+      <div class="question-text">Có bao nhiêu giá trị nguyên dương của $m$ để cặp số $(0; 1)$ là nghiệm của bất phương trình $-2x + my < 3$?</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_33">
+      <div class="question-header">
+        <span class="question-title">Câu 33.</span>
+      </div>
+
+      <div class="question-text">Có bao nhiêu giá trị nguyên của $m \in (0; 8]$ để bất phương trình sau là bất phương trình bậc nhất hai ẩn: $(m-1)x - 2(m-1)y \le 0$?</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_34">
+      <div class="question-header">
+        <span class="question-title">Câu 34.</span>
+      </div>
+
+      <div class="question-text">Bất phương trình $x + 2y \ge 2$ có bao nhiêu nghiệm $(x; y)$ thỏa mãn $x, y \in \mathbb{N}; x \le 3; y \le 2$?</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_35">
+      <div class="question-header">
+        <span class="question-title">Câu 35.</span>
+      </div>
+
+      <div class="question-text">Một cửa hàng bán hai loại gạo, loại I bán mỗi kg lãi $3000$ đồng, loại II bán mỗi kg lãi $2000$ đồng. Giả sử cửa hàng bán $x$ kg gạo loại I và $y$ kg gạo loại II. Bất phương trình biểu thị mối liên hệ giữa $x$ và $y$ để cửa hàng thu được số lãi lớn hơn $100.000$ đồng có dạng $ax + by > 10$. Khi đó $a + b$ bằng bao nhiêu?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p11_0.jpeg" alt="Hình vẽ minh họa Câu 35">
+          </div>
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_36">
+      <div class="question-header">
+        <span class="question-title">Câu 36.</span>
+      </div>
+
+      <div class="question-text">Bạn Lan có $15$ nghìn đồng để đi mua vở. Vở loại A có giá $3000$ đồng một cuốn, vở loại B có giá $4000$ đồng một cuốn. Hỏi bạn Lan có thể mua nhiều nhất bao nhiêu quyển vở sao cho bạn có cả hai loại vở?</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p11_1.jpeg" alt="Hình vẽ minh họa Câu 36">
+          </div>
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <i data-lucide="file-text"></i> DẠNG 4: BÀI TẬP TỰ LUẬN SGK & SBT (CÂU 37 - 41)
+    </div>
+    <div class="question-block" id="cau_37">
+      <div class="question-header">
+        <span class="question-title">Câu 37.</span>
+      </div>
+
+      <div class="question-text">Một gian hàng trưng bày bàn và ghế rộng $60\text{ m}^2$. Diện tích để kê một chiếc ghế là $0,5\text{ m}^2$, một chiếc bàn là $1,2\text{ m}^2$. Gọi $x$ là số chiếc ghế, $y$ là số chiếc bàn được kê.<br>a) Viết bất phương trình bậc nhất hai ẩn $x, y$ cho phần mặt sàn để kê bàn và ghế, biết diện tích mặt sàn dành cho lưu thông tối thiểu là $12\text{ m}^2$.<br>b) Chỉ ra ba nghiệm của bất phương trình trên.</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_38">
+      <div class="question-header">
+        <span class="question-title">Câu 38.</span>
+      </div>
+
+      <div class="question-text">Trong 1 lạng ($100\text{ g}$) thịt bò chứa khoảng $26\text{ g}$ protein, 1 lạng cá rô phi chứa khoảng $20\text{ g}$ protein. Trung bình trong một ngày, một người phụ nữ cần tối thiểu $46\text{ g}$ protein. Gọi $x, y$ lần lượt là số lạng thịt bò và cá rô phi mà một người phụ nữ nên ăn trong một ngày. Viết bất phương trình bậc nhất hai ẩn $x, y$ để biểu diễn lượng protein cần thiết trong một ngày và chỉ ra ba nghiệm của bất phương trình đó.</div>
+
+      
+          <div class="question-diagram-box">
+            <img src="images/img_p12_0.jpeg" alt="Hình vẽ minh họa Câu 38">
+          </div>
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_39">
+      <div class="question-header">
+        <span class="question-title">Câu 39.</span>
+      </div>
+
+      <div class="question-text">Hà, Châu, Liên và Ngân cùng đi mua trà sữa. Cả bốn bạn có tất cả $185$ nghìn đồng. Bốn bạn mua 4 cốc trà sữa với giá tiền $35$ nghìn đồng một cốc. Các bạn gọi thêm trân châu cho vào trà sữa. Một phần trân châu đen có giá $5$ nghìn đồng, một phần trân châu trắng có giá $10$ nghìn đồng. Gọi $x, y$ lần lượt là số phần trân châu đen và trắng các bạn định mua thêm.<br>a) Viết bất phương trình bậc nhất hai ẩn $x, y$ thể hiện số tiền các bạn có đủ khả năng chi trả cho phần trân châu.<br>b) Chỉ ra một nghiệm nguyên của bất phương trình đó.</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_40">
+      <div class="question-header">
+        <span class="question-title">Câu 40.</span>
+      </div>
+
+      <div class="question-text">Bạn Nga muốn pha hai loại nước rửa xe. Để pha một lít loại I cần $600\text{ ml}$ dung dịch chất tẩy rửa, còn loại II chỉ cần $400\text{ ml}$. Gọi $x$ và $y$ lần lượt là số lít nước rửa xe loại I và II pha chế được và biết rằng Nga chỉ còn $2400\text{ ml}$ chất tẩy rửa. Hãy lập bất phương trình mô tả số lít nước rửa xe loại I và II Nga có thể pha chế được và biểu diễn miền nghiệm của bất phương trình đó trên mặt phẳng toạ độ $Oxy$.</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+    <div class="question-block" id="cau_41">
+      <div class="question-header">
+        <span class="question-title">Câu 41.</span>
+      </div>
+
+      <div class="question-text">Một cửa hàng bán lẻ bán hai loại hạt cà phê. Loại thứ nhất giá $140$ nghìn đồng/kg và loại thứ hai giá $180$ nghìn đồng/kg. Cửa hàng trộn $x\text{ kg}$ loại thứ nhất và $y\text{ kg}$ loại thứ hai sao cho hạt cà phê đã trộn có giá không quá $170$ nghìn đồng/kg.<br>a) Viết bất phương trình bậc nhất hai ẩn $x, y$ thoả mãn điều kiện đề bài.<br>b) Biểu diễn miền nghiệm của bất phương trình tìm được ở câu a trên mặt phẳng toạ độ.</div>
+
+      
+
+      
+
+      <!-- 10 DÒNG KẺ BÀI LÀM TỰ LUẬN -->
+      <div class="handwriting-section">
+        <div class="handwriting-header">
+          <span>✍️ Bài làm tự luận / Trình bày lời giải (10 dòng):</span>
+        </div>
+        <div class="lines-container">
+          <div class="write-row">
+            <span class="line-num">01</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">02</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">03</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">04</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">05</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">06</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">07</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">08</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">09</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div>
+          <div class="write-row">
+            <span class="line-num">10</span>
+            <input type="text" class="write-row-input" placeholder="...">
+          </div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // Render math
+      if (window.renderMathInElement) {
+        window.renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Toggle grid
+      const gridBtn = document.getElementById("toggleGridBtn");
+      gridBtn?.addEventListener("click", () => {
+        document.body.classList.toggle("grid-bg");
+      });
+
+      // Toggle font scale
+      let fontScale = 1;
+      const fontBtn = document.getElementById("fontToggleBtn");
+      fontBtn?.addEventListener("click", () => {
+        fontScale = (fontScale === 1) ? 1.15 : (fontScale === 1.15 ? 1.28 : 1);
+        document.documentElement.style.setProperty("--font-scale", fontScale);
+      });
+
+      // Toggle theme
+      const themeBtn = document.getElementById("themeToggleBtn");
+      themeBtn?.addEventListener("click", () => {
+        const cur = document.documentElement.getAttribute("data-theme") || "light";
+        const next = (cur === "dark") ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        document.getElementById("themeIcon")?.setAttribute("data-lucide", next === "dark" ? "sun" : "moon");
+        if (window.lucide) window.lucide.createIcons();
+      });
+    });
+  </script>
+</body>
+</html>
