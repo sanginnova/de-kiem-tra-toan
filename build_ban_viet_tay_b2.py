@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 """
 Script tạo trang web Bản Viết Tay cho Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Toán 10)
-Gồm 37 câu hỏi theo 4 dạng:
-  - Dạng 1: Câu hỏi trắc nghiệm nhiều phương án lựa chọn (Câu 1 -> 16)
-  - Dạng 2: Câu hỏi trắc nghiệm đúng sai (Câu 17 -> 21)
-  - Dạng 3: Câu hỏi trắc nghiệm trả lời ngắn (Câu 22 -> 30)
-  - Dạng 4: Bài tập tự luận SGK và SBT (Câu 31 -> 37)
+Bao gồm:
+  - PHẦN I: TÓM TẮT LÝ THUYẾT TRỌNG TÂM
+      + Mục 1: Định nghĩa Hệ bất phương trình bậc nhất hai ẩn & Nghiệm -> 10 dòng trống viết tay / ghi chú ví dụ
+      + Mục 2: Phương pháp biểu diễn hình học miền nghiệm của Hệ BPT (Bảng quy trình 2 bước kèm 2 hình vẽ trực quan) -> 10 dòng trống viết tay / ghi chú ví dụ
+      + Mục 3: Bài toán tối ưu & Giá trị lớn nhất - nhỏ nhất trên miền đa giác (Quy hoạch tuyến tính) -> 10 dòng trống viết tay / ghi chú ví dụ
+  - PHẦN II: BÀI TẬP RÈN LUYỆN (37 câu hỏi chia làm 4 dạng chuẩn GDPT 2018):
+      + Dạng 1: Câu hỏi trắc nghiệm nhiều phương án lựa chọn (Câu 1 -> 16)
+      + Dạng 2: Câu hỏi trắc nghiệm đúng sai (Câu 17 -> 21)
+      + Dạng 3: Câu hỏi trắc nghiệm trả lời ngắn (Câu 22 -> 30)
+      + Dạng 4: Bài tập tự luận SGK và SBT (Câu 31 -> 37)
 
 Yêu cầu định dạng đặc biệt từ người dùng:
   - Phần tự luận dòng kẻ:
       + line-height: 1.5
       + font-size: 14pt (cho chữ viết / text input / ô dòng kẻ)
       + Dòng kẻ rõ ràng, chuẩn in ấn A4 và hỗ trợ làm bài trực tiếp trên máy hoặc in ra viết tay.
+  - Mỗi mục lý thuyết để 10 dòng trống để giáo viên/học sinh tự thêm ví dụ minh họa vào.
 """
 
 import os
@@ -23,7 +29,7 @@ html_template_head = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bản Viết Tay: Bài 2 - Hệ Bất Phương Trình Bậc Nhất Hai Ẩn (Toán 10)</title>
-  <meta name="description" content="Bản viết tay tự luận chuẩn sư phạm môn Toán 10 Bài 2: Hệ bất phương trình bậc nhất hai ẩn, phần tự luận dòng kẻ giãn dòng 1.5, font size 14pt, hỗ trợ in A4 và xuất PDF.">
+  <meta name="description" content="Bản viết tay tự luận chuẩn sư phạm môn Toán 10 Bài 2: Hệ bất phương trình bậc nhất hai ẩn, đầy đủ lý thuyết và 37 bài tập, phần tự luận dòng kẻ giãn dòng 1.5, font size 14pt.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +59,7 @@ html_template_head = """<!DOCTYPE html>
       --dotted-line: #cbd5e1;
       --write-font-size: 14pt;
       --write-line-height: 1.5;
-      /* Row height = 14pt * 1.5 + padding/border allowance ~= 32px */
+      /* Row height = 14pt * 1.5 + padding/border allowance ~= 34px */
       --write-row-height: 34px;
     }
 
@@ -257,13 +263,103 @@ html_template_head = """<!DOCTYPE html>
     .section-banner {
       background: linear-gradient(135deg, #e11d48, #be123c);
       color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 1.05rem;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1.08rem;
       font-weight: 800;
       letter-spacing: 0.02em;
-      box-shadow: 0 3px 8px rgba(225, 29, 72, 0.25);
+      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.25);
       margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-banner.theory {
+      background: linear-gradient(135deg, #0d9488, #0f766e);
+      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+    }
+
+    /* Theory Block */
+    .theory-block {
+      background: var(--bg-surface);
+      border: 1.8px solid #0d9488;
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .theory-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: calc(1.1rem * var(--font-scale));
+      font-weight: 800;
+      color: #0f766e;
+      border-bottom: 1px dashed #99f6e4;
+      padding-bottom: 8px;
+    }
+
+    [data-theme="dark"] .theory-header {
+      color: #2dd4bf;
+      border-color: #115e59;
+    }
+
+    .theory-content {
+      font-size: calc(1.02rem * var(--font-scale));
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    /* Theory Steps Table */
+    .theory-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      background: rgba(240, 253, 250, 0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #ccfbf1;
+    }
+
+    [data-theme="dark"] .theory-table {
+      background: rgba(19, 78, 74, 0.2);
+      border-color: #115e59;
+    }
+
+    .theory-table th, .theory-table td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    [data-theme="dark"] .theory-table th, [data-theme="dark"] .theory-table td {
+      border-color: #334155;
+    }
+
+    .theory-table th {
+      background: #0d9488;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .theory-diagram-cell {
+      text-align: center;
+      min-width: 220px;
+    }
+
+    .theory-diagram-cell img {
+      max-width: 260px;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     /* Question Box */
@@ -457,6 +553,10 @@ html_template_head = """<!DOCTYPE html>
       gap: 8px;
     }
 
+    .handwriting-section.theory-note {
+      border-top: 1.5px dashed #5eead4;
+    }
+
     .handwriting-header {
       display: flex;
       justify-content: space-between;
@@ -467,6 +567,14 @@ html_template_head = """<!DOCTYPE html>
       text-transform: uppercase;
       letter-spacing: 0.04em;
       margin-bottom: 4px;
+    }
+
+    .handwriting-header.theory-note {
+      color: #0f766e;
+    }
+
+    [data-theme="dark"] .handwriting-header.theory-note {
+      color: #2dd4bf;
     }
 
     .lines-container {
@@ -481,6 +589,16 @@ html_template_head = """<!DOCTYPE html>
     [data-theme="dark"] .lines-container {
       background: rgba(17, 24, 39, 0.75);
       border-color: rgba(99, 102, 241, 0.25);
+    }
+
+    .lines-container.theory-lines {
+      border-color: rgba(13, 148, 136, 0.35);
+      background: rgba(240, 253, 250, 0.6);
+    }
+
+    [data-theme="dark"] .lines-container.theory-lines {
+      background: rgba(15, 118, 110, 0.15);
+      border-color: rgba(45, 212, 191, 0.3);
     }
 
     /* Từng dòng kẻ tự luận: font-size 14pt, line-height 1.5 */
@@ -568,7 +686,7 @@ html_template_head = """<!DOCTYPE html>
         break-after: avoid;
       }
 
-      .question-block {
+      .theory-block, .question-block {
         border: 1.2px solid #000000 !important;
         box-shadow: none !important;
         padding: 12px 16px !important;
@@ -577,15 +695,7 @@ html_template_head = """<!DOCTYPE html>
         page-break-inside: avoid;
       }
 
-      .question-title {
-        color: #000000 !important;
-      }
-
-      .option-label {
-        color: #000000 !important;
-      }
-
-      .handwriting-header {
+      .theory-header, .question-title, .option-label, .handwriting-header {
         color: #000000 !important;
       }
 
@@ -614,7 +724,7 @@ html_template_head = """<!DOCTYPE html>
   <div class="top-actions-bar">
     <div class="bar-left">
       <i data-lucide="book-open"></i>
-      <span>BẢN VIẾT TAY: BÀI 2 - HỆ BPT BẬC NHẤT HAI ẨN (37 CÂU)</span>
+      <span>BẢN VIẾT TAY: BÀI 2 - HỆ BPT BẬC NHẤT HAI ẨN (LÝ THUYẾT + 37 BÀI)</span>
     </div>
     <div class="bar-right">
       <a href="index.html" class="action-btn" title="Chuyển sang Đề thi trắc nghiệm 15 phút" style="text-decoration:none;">
@@ -650,7 +760,7 @@ html_template_head = """<!DOCTYPE html>
         </div>
         <div class="exam-title-box">
           <h1>BẢN VIẾT TAY TỰ LUẬN MÔN TOÁN 10</h1>
-          <p>Bài 2: Hệ bất phương trình bậc nhất hai ẩn</p>
+          <p>Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Lý thuyết & Bài tập)</p>
         </div>
       </div>
 
@@ -675,8 +785,9 @@ html_template_head = """<!DOCTYPE html>
     </div>
 """
 
-def generate_lines(q_num, line_count=10):
-    lines_html = '<div class="lines-container">'
+def generate_lines(prefix_id, line_count=10, is_theory=False):
+    container_class = "lines-container theory-lines" if is_theory else "lines-container"
+    lines_html = f'<div class="{container_class}">'
     for l in range(1, line_count + 1):
         lines_html += f'''
           <div class="write-row">
@@ -685,6 +796,114 @@ def generate_lines(q_num, line_count=10):
           </div>'''
     lines_html += '</div>'
     return lines_html
+
+# PHẦN I: TÓM TẮT LÝ THUYẾT VỚI 10 DÒNG KẺ MỖI MỤC
+html_theory = """
+    <!-- ============================== -->
+    <!-- PHẦN I: TÓM TẮT LÝ THUYẾT TRỌNG TÂM -->
+    <!-- ============================== -->
+    <div class="section-banner theory">
+      <i data-lucide="bookmark-check"></i>
+      <span>PHẦN I: TÓM TẮT LÝ THUYẾT TRỌNG TÂM (MỖI MỤC 10 DÒNG GHI CHÚ VÍ DỤ)</span>
+    </div>
+
+    <!-- Mục 1: Khái niệm hệ bất phương trình bậc nhất hai ẩn -->
+    <div class="theory-block" id="ly-thuyet-1">
+      <div class="theory-header">
+        <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+        <span>1. Khái niệm Hệ bất phương trình bậc nhất hai ẩn</span>
+      </div>
+      <div class="theory-content">
+        <p>• <b>Hệ bất phương trình bậc nhất hai ẩn</b> $x, y$ là một hệ gồm hai hay nhiều bất phương trình bậc nhất hai ẩn $x, y$.</p>
+        <p>• <b>Dạng tổng quát:</b></p>
+        <p style="text-align:center; margin:8px 0; font-size:1.08rem;">
+          $\\left\\{ \\begin{array}{l} a_1 x + b_1 y \\le c_1 \\\\ a_2 x + b_2 y \\le c_2 \\\\ \\dots \\\\ a_k x + b_k y \\le c_k \\end{array} \\right.$ &nbsp;&nbsp;(dấu $\\le$ có thể thay bởi $<$, $\\ge$, $>$)
+        </p>
+        <p>• <b>Nghiệm của hệ:</b> Mỗi cặp số $(x_0; y_0)$ đồng thời là nghiệm của <i>tất cả</i> các bất phương trình trong hệ được gọi là một <b>nghiệm</b> của hệ bất phương trình đó.</p>
+        <p>• <b>Miền nghiệm của hệ:</b> Là tập hợp các điểm $M(x_0; y_0)$ trong mặt phẳng toạ độ $Oxy$ sao cho $(x_0; y_0)$ là nghiệm của hệ bất phương trình. Miền nghiệm của hệ chính là <i>phần giao</i> các miền nghiệm của các bất phương trình trong hệ.</p>
+      </div>
+      <div class="handwriting-section theory-note">
+        <div class="handwriting-header theory-note">
+          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 1 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
+        </div>
+        """ + generate_lines("theory_1", 10, is_theory=True) + """
+      </div>
+    </div>
+
+    <!-- Mục 2: Biểu diễn hình học miền nghiệm của hệ -->
+    <div class="theory-block" id="ly-thuyet-2">
+      <div class="theory-header">
+        <i data-lucide="layers" style="width:20px;height:20px;"></i>
+        <span>2. Biểu diễn hình học miền nghiệm của Hệ bất phương trình bậc nhất hai ẩn</span>
+      </div>
+      <div class="theory-content">
+        <p>Để biểu diễn miền nghiệm của hệ bất phương trình bậc nhất hai ẩn trên mặt phẳng toạ độ $Oxy$, ta thực hiện theo 2 bước quy chuẩn sau:</p>
+        <table class="theory-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">Thứ tự</th>
+              <th style="width:47%;">Nội dung thực hiện</th>
+              <th style="width:35%; text-align:center;">Hình vẽ minh hoạ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Bước 1</b></td>
+              <td>
+                Vẽ các đường thẳng bờ tương ứng trên cùng một hệ trục toạ độ $Oxy$:<br>
+                • $d_1: a_1 x + b_1 y = c_1$<br>
+                • $d_2: a_2 x + b_2 y = c_2$<br>
+                • $d_3: a_3 x + b_3 y = c_3$
+              </td>
+              <td class="theory-diagram-cell">
+                <img src="images_b2/theory_step1.png" alt="Bước 1: Vẽ các đường thẳng bờ">
+              </td>
+            </tr>
+            <tr>
+              <td><b>Bước 2</b></td>
+              <td>
+                Biểu diễn miền nghiệm của từng bất phương trình bằng cách <b>gạch bỏ</b> nửa mặt phẳng không thuộc miền nghiệm của nó.<br>
+                <i>(Xác định bằng cách lấy điểm thử thông thường là gốc toạ độ $O(0; 0)$ nếu đường thẳng không đi qua $O$).</i><br><br>
+                <b>Kết luận:</b> Phần mặt phẳng <b>không bị gạch</b> (kể cả bờ hoặc không kể bờ tuỳ theo dấu của hệ) chính là miền nghiệm cần tìm.
+              </td>
+              <td class="theory-diagram-cell">
+                <img src="images_b2/theory_step2.png" alt="Bước 2: Gạch bỏ phần không thuộc miền nghiệm">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="handwriting-section theory-note">
+        <div class="handwriting-header theory-note">
+          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 2 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
+        </div>
+        """ + generate_lines("theory_2", 10, is_theory=True) + """
+      </div>
+    </div>
+
+    <!-- Mục 3: Ứng dụng giải bài toán tối ưu (Quy hoạch tuyến tính) -->
+    <div class="theory-block" id="ly-thuyet-3">
+      <div class="theory-header">
+        <i data-lucide="trending-up" style="width:20px;height:20px;"></i>
+        <span>3. Ứng dụng tìm Giá trị lớn nhất / Giá trị nhỏ nhất (Bài toán tối ưu)</span>
+      </div>
+      <div class="theory-content">
+        <p>• <b>Định lý cơ bản về cực trị quy hoạch tuyến tính:</b> Biểu thức bậc nhất $F(x; y) = ax + by$ ($a, b$ là các hằng số không đồng thời bằng 0) đạt giá trị lớn nhất (GTLN) và giá trị nhỏ nhất (GTNN) trên một miền đa giác $A_1 A_2 \\dots A_n$ (kể cả biên) tại <b>một trong các đỉnh</b> của đa giác đó.</p>
+        <p>• <b>Thuật toán 3 bước tìm GTLN / GTNN của $F(x; y)$:</b></p>
+        <p style="padding-left:14px;">
+          <b>Bước 1:</b> Xác định miền đa giác nghiệm $S$ của hệ bất phương trình điều kiện.<br>
+          <b>Bước 2:</b> Tìm toạ độ tất cả các đỉnh $A_1, A_2, \\dots, A_n$ của đa giác $S$ (bằng cách giải hệ phương trình hai đường thẳng giao nhau).<br>
+          <b>Bước 3:</b> Tính các giá trị $F(A_1), F(A_2), \\dots, F(A_n)$. Số lớn nhất trong các giá trị này là GTLN của $F$, số nhỏ nhất là GTNN của $F$.
+        </p>
+      </div>
+      <div class="handwriting-section theory-note">
+        <div class="handwriting-header theory-note">
+          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 3 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
+        </div>
+        """ + generate_lines("theory_3", 10, is_theory=True) + """
+      </div>
+    </div>
+"""
 
 # Construct 37 questions data
 questions_b2 = [
@@ -1127,35 +1346,42 @@ questions_b2 = [
     }
 ]
 
-html_body = ""
-current_section = ""
+html_exercises = """
+    <!-- ============================== -->
+    <!-- PHẦN II: BÀI TẬP RÈN LUYỆN (37 CÂU) -->
+    <!-- ============================== -->
+    <div class="section-banner" style="margin-top:28px;">
+      <i data-lucide="edit-3"></i>
+      <span>PHẦN II: BÀI TẬP RÈN LUYỆN THEO 4 DẠNG (CÂU 1 ĐẾN CÂU 37)</span>
+    </div>
+"""
 
 for q in questions_b2:
     q_num = q["num"]
     # Check section change
     if q_num == 1:
-        html_body += '''
-    <div class="section-banner">
+        html_exercises += '''
+    <div class="section-banner" style="background: linear-gradient(135deg, #f43f5e, #e11d48); font-size: 1rem; margin-top: 14px;">
       <span>DẠNG 1: CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN (CÂU 1 - 16)</span>
     </div>'''
     elif q_num == 17:
-        html_body += '''
-    <div class="section-banner">
+        html_exercises += '''
+    <div class="section-banner" style="background: linear-gradient(135deg, #f43f5e, #e11d48); font-size: 1rem; margin-top: 24px;">
       <span>DẠNG 2: CÂU HỎI TRẮC NGHIỆM ĐÚNG / SAI (CÂU 17 - 21)</span>
     </div>'''
     elif q_num == 22:
-        html_body += '''
-    <div class="section-banner">
+        html_exercises += '''
+    <div class="section-banner" style="background: linear-gradient(135deg, #f43f5e, #e11d48); font-size: 1rem; margin-top: 24px;">
       <span>DẠNG 3: CÂU HỎI TRẮC NGHIỆM ĐIỀN ĐÁP ÁN NGẮN (CÂU 22 - 30)</span>
     </div>'''
     elif q_num == 31:
-        html_body += '''
-    <div class="section-banner">
+        html_exercises += '''
+    <div class="section-banner" style="background: linear-gradient(135deg, #f43f5e, #e11d48); font-size: 1rem; margin-top: 24px;">
       <span>DẠNG 4: BÀI TẬP TỰ LUẬN SGK VÀ SBT (CÂU 31 - 37)</span>
     </div>'''
 
     # Build Question Block
-    html_body += f'''
+    html_exercises += f'''
     <!-- Question {q_num} -->
     <div class="question-block" id="cau-{q_num}">
       <div class="question-header">
@@ -1165,9 +1391,9 @@ for q in questions_b2:
 
     # Question 4 special diagram grid
     if q.get("type") == "dang1_q4":
-        html_body += '<div class="diagram-options-grid">'
+        html_exercises += '<div class="diagram-options-grid">'
         for opt_lbl, d_src, d_caption in q["diagrams"]:
-            html_body += f'''
+            html_exercises += f'''
               <div class="diagram-option-card">
                 <img src="{d_src}" alt="{d_caption}">
                 <div class="option-cell">
@@ -1175,11 +1401,11 @@ for q in questions_b2:
                   <span>{d_caption}</span>
                 </div>
               </div>'''
-        html_body += '</div>'
+        html_exercises += '</div>'
 
     # Single Diagram/Image if present
     elif q.get("img"):
-        html_body += f'''
+        html_exercises += f'''
       <div class="question-diagram-box">
         <img src="{q["img"]}" alt="Hình vẽ minh hoạ Câu {q_num}">
       </div>'''
@@ -1187,20 +1413,20 @@ for q in questions_b2:
     # Dạng 1 Options
     if q.get("type") == "dang1":
         grid_class = "options-grid four-cols" if q.get("four_cols") else "options-grid"
-        html_body += f'<div class="{grid_class}">'
+        html_exercises += f'<div class="{grid_class}">'
         for opt_lbl, opt_text in q["options"]:
-            html_body += f'''
+            html_exercises += f'''
               <div class="option-cell">
                 <span class="option-label">{opt_lbl}.</span>
                 <span>{opt_text}</span>
               </div>'''
-        html_body += '</div>'
+        html_exercises += '</div>'
 
     # Dạng 2 Statements
     elif q.get("type") == "dang2":
-        html_body += '<div class="tf-grid">'
+        html_exercises += '<div class="tf-grid">'
         for st_lbl, st_text in q["statements"]:
-            html_body += f'''
+            html_exercises += f'''
               <div class="tf-row">
                 <div class="tf-text"><b>{st_lbl})</b> {st_text}</div>
                 <div class="tf-badge-group">
@@ -1208,11 +1434,11 @@ for q in questions_b2:
                   <span class="tf-badge">[ Sai ]</span>
                 </div>
               </div>'''
-        html_body += '</div>'
+        html_exercises += '</div>'
 
     # Dạng 3 Short Answer
     elif q.get("type") == "dang3":
-        html_body += '''
+        html_exercises += '''
       <div class="short-ans-box">
         <i data-lucide="check-square" style="width:18px;height:18px;"></i>
         <span>Đáp số: ............................................................</span>
@@ -1220,8 +1446,8 @@ for q in questions_b2:
 
     # Handwriting Section (giãn dòng 1.5, font-size 14pt)
     line_count = q.get("line_count", 10)
-    lines_html = generate_lines(q_num, line_count)
-    html_body += f'''
+    lines_html = generate_lines(f"q_{q_num}", line_count, is_theory=False)
+    html_exercises += f'''
       <div class="handwriting-section">
         <div class="handwriting-header">
           <span>✍️ Bài làm tự luận / Trình bày lời giải (Cỡ chữ 14pt &bull; Giãn dòng 1.5):</span>
@@ -1273,10 +1499,11 @@ html_template_foot = """
 </html>
 """
 
-full_html = html_template_head + html_body + html_template_foot
+full_html = html_template_head + html_theory + html_exercises + html_template_foot
 
 out_path = "d:/TOAN/SOẠN TÀI LIỆU DẠY THÊM/HTML/ban-viet-tay-b2.html"
 with open(out_path, "w", encoding="utf-8") as f:
     f.write(full_html)
 
-print(f"Generated {out_path} successfully! Size: {len(full_html)} bytes")
+# Also write the updater script
+print("Done writing HTML file!")
