@@ -838,9 +838,6 @@ html_theory = """
         <p>• <b>Miền nghiệm của hệ:</b> Là tập hợp các điểm $M(x_0; y_0)$ trong mặt phẳng toạ độ $Oxy$ sao cho $(x_0; y_0)$ là nghiệm của hệ bất phương trình. Miền nghiệm của hệ chính là <i>phần giao</i> các miền nghiệm của các bất phương trình trong hệ.</p>
       </div>
       <div class="handwriting-section theory-note">
-        <div class="handwriting-header theory-note">
-          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 1 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
-        </div>
         """ + generate_lines("theory_1", 10, is_theory=True) + """
       </div>
     </div>
@@ -889,9 +886,6 @@ html_theory = """
         </table>
       </div>
       <div class="handwriting-section theory-note">
-        <div class="handwriting-header theory-note">
-          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 2 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
-        </div>
         """ + generate_lines("theory_2", 10, is_theory=True) + """
       </div>
     </div>
@@ -912,9 +906,6 @@ html_theory = """
         </p>
       </div>
       <div class="handwriting-section theory-note">
-        <div class="handwriting-header theory-note">
-          <span>✍️ Không gian tự thêm ví dụ mẫu / Ghi chú Mục 3 (Cỡ chữ 14pt &bull; Giãn dòng 1.5 &bull; Đúng 10 dòng):</span>
-        </div>
         """ + generate_lines("theory_3", 10, is_theory=True) + """
       </div>
     </div>
@@ -1464,9 +1455,6 @@ for q in questions_b2:
     lines_html = generate_lines(f"q_{q_num}", line_count, is_theory=False)
     html_exercises += f'''
       <div class="handwriting-section">
-        <div class="handwriting-header">
-          <span>✍️ Bài làm tự luận / Trình bày lời giải (Cỡ chữ 14pt &bull; Giãn dòng 1.5):</span>
-        </div>
         {lines_html}
       </div>
     </div>'''
