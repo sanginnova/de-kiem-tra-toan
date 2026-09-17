@@ -1,21 +1,21 @@
 # ĐỀ KIỂM TRA TRẮC NGHIỆM 15 PHÚT: BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN (TOÁN 10)
 
-Ứng dụng web kiểm tra trắc nghiệm tương tác trực tuyến 15 phút, bám sát 100% nội dung tài liệu: **"Bài 1 - Bất phương trình bậc nhất hai ẩn"**.
+Ứng dụng web kiểm tra trắc nghiệm tương tác trực tuyến 15 phút, trích xuất 100% từ nguồn tài liệu: **Toán 10 - Từ Tâm (Chương 2: Bất phương trình và Hệ BPT bậc nhất hai ẩn)**.
 
 ---
 
-## 🌟 Cấu Trúc Đề Thi 15 Phút (Bám Sát Tài Liệu)
+## 🌟 Cấu Trúc Đề Thi 15 Phút (Chuẩn Nguồn Toán 10 Từ Tâm)
 
-1. **Câu 1 (Nhận biết - Trích Câu 3 Trang 27)**: Nhận biết dạng bất phương trình bậc nhất hai ẩn.
-2. **Câu 2 (Nhận biết - Trích Câu 2 Trang 27)**: Điểm thuộc tập nghiệm $x - 2y + 5 > 0$.
-3. **Câu 3 (Nhận biết - Trích Câu 4 Trang 27)**: Cặp số là nghiệm của $2x + 3y > 2$.
-4. **Câu 4 (Thông hiểu - Trích Câu 6 Trang 27)**: Cặp số không phải là nghiệm của $x + 2y \le 3$.
-5. **Câu 5 (Thông hiểu - Trích Câu 7 Trang 28 - Có hình vẽ đồ thị Oxy)**: Nhận diện bất phương trình có miền nghiệm tô màu cắt trục tại $(2; 0)$ và $(0; 2)$ ($x + y \ge 2$).
-6. **Câu 6 (Thông hiểu - Trích Câu 11 Trang 29)**: Vị trí của điểm $O(0; 0)$ đối với miền nghiệm $7x - 9y + 2 \ge 0$.
-7. **Câu 7 (Thông hiểu - Trích Câu 12 Trang 29 - Có hình vẽ đồ thị Oxy)**: Phần không tô màu chứa gốc $O(0; 0)$ qua $(2; 0)$ và $(0; -1)$ ($x - 2y < 2$).
-8. **Câu 8 (Thông hiểu - Trích Câu 14 Trang 30 - Có hình vẽ đồ thị Oxy)**: Miền tô màu chứa gốc $O(0; 0)$ qua $(-2; 0)$ và $(0; 3)$ ($3x - 2y \ge -6$).
-9. **Câu 9 (Vận dụng - Trích Câu 15 Trang 30 - Ứng dụng thực tế)**: Bài toán mua vở và bút với ngân sách $150.000$ đồng ($8x + 6y \le 150$).
-10. **Câu 10 (Vận dụng - Trích Câu 20 Trang 31 - Tham số $m$)**: Tìm số giá trị nguyên dương của tham số $m$ để cặp $(m; 2m - 1)$ là nghiệm của $x + 2y \le 20$.
+1. **Câu 1 (Nhận biết - Trích Câu 8 Trang 7 Từ Tâm)**: Nhận biết dạng bất phương trình bậc nhất hai ẩn ($2x + 3y < 5$).
+2. **Câu 2 (Nhận biết - Trích Câu 1 Trang 7 Từ Tâm)**: Khái niệm miền nghiệm của bất phương trình bậc nhất hai ẩn $ax + by \le c$.
+3. **Câu 3 (Nhận biết - Trích Câu 9 Trang 7 Từ Tâm)**: Điểm thuộc miền nghiệm của $2x + y - 3 > 0$ ($M(1; 1{,}5)$).
+4. **Câu 4 (Thông hiểu - Trích Câu 7 Trang 7 Từ Tâm)**: Cặp số không là nghiệm của $x - 4y + 5 \ge 0$ ($(-1; 3)$).
+5. **Câu 5 (Thông hiểu - Trích Câu 10 Trang 7-8 Từ Tâm)**: Điểm không thuộc miền nghiệm của $-3x + y + 2 \le 0$ ($A(1; 2)$).
+6. **Câu 6 (Thông hiểu - Trích Câu 21 Trang 9 Từ Tâm - Có đồ thị Oxy)**: Nhận diện miền nghiệm $3x + 2y > 6$ qua $(2; 0)$ và $(0; 3)$ không chứa gốc $O(0; 0)$.
+7. **Câu 7 (Thông hiểu - Trích Câu 20 Trang 8-9 Từ Tâm - Có đồ thị Oxy)**: Nhận diện miền nghiệm $3x - 2y > -6$ qua $(-2; 0)$ và $(0; 3)$ chứa gốc $O(0; 0)$.
+8. **Câu 8 (Thông hiểu - Trích Câu 24 Trang 10 Từ Tâm)**: Cặp số là nghiệm của $3x - 3y \ge 4$ ($(5; 1)$).
+9. **Câu 9 (Vận dụng - Trích Câu 33 Trang 12 Từ Tâm - Toán thực tế)**: Thời gian sản xuất 2 loại sản phẩm tối đa 18 giờ ($3x + 2y \le 18$).
+10. **Câu 10 (Vận dụng - Trích Câu 36 Trang 12 Từ Tâm - Tham số $m$)**: Tìm số giá trị nguyên của $m \in [-10; 10]$ để $(1; -1)$ là nghiệm của $2(m - 1)x + (m + 2)y \ge 0$.
 
 ---
 

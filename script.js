@@ -1,256 +1,228 @@
 /**
  * Đề Kiểm Tra Trắc Nghiệm 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10
- * Bám sát tài liệu: "Bài 1 - Bất phương trình bậc nhất hai ẩn.pdf"
+ * NGUỒN DỮ LIỆU: TOÁN 10 - TỪ TÂM (CHƯƠNG 2: BPT VÀ HỆ BPT BẬC NHẤT HAI ẨN)
  */
 
 // ==========================================
-// 1. DỮ LIỆU CÂU HỎI (BÁM SÁT 100% TÀI LIỆU BÀI 1)
+// 1. DỮ LIỆU CÂU HỎI (TRÍCH 100% TỪ NGUỒN TOÁN 10 - TỪ TÂM)
 // ==========================================
 const QUIZ_QUESTIONS = [
   {
     id: 1,
-    level: "Nhận biết (Trích Câu 3 - Trang 27)",
-    prompt: "Trong các bất phương trình sau, đâu là một <strong>bất phương trình bậc nhất hai ẩn</strong>?",
+    level: "Nhận biết (Trích Câu 8 - Trang 7 | Toán 10 Từ Tâm)",
+    prompt: "Trong các bất phương trình sau, bất phương trình nào là <strong>bất phương trình bậc nhất hai ẩn</strong>?",
     svgType: null,
     options: [
-      "$2x - y < 1$",
-      "$x^2 + 2y < 1$",
-      "$2x - y^2 \\ge 1$",
-      "$xy \\le 1$"
+      "$2x - 5y + 3z \\le 0$",
+      "$3x^2 + 2x - 4 > 0$",
+      "$2x^2 + 5y > 3$",
+      "$2x + 3y < 5$"
     ],
-    correctIndex: 0,
-    explanation: "<strong>Đáp án A đúng.</strong><br>Theo định nghĩa, bất phương trình bậc nhất hai ẩn $x, y$ có dạng tổng quát là $ax + by < c$ (hoặc $\\le, >, \\ge$), trong đó $a, b$ không đồng thời bằng 0 và bậc của mỗi ẩn đều là bậc nhất.<br>• Ở phương án B: chứa $x^2$ (bậc 2).<br>• Ở phương án C: chứa $y^2$ (bậc 2).<br>• Ở phương án D: chứa tích hai ẩn $xy$ (bậc 2)."
+    correctIndex: 3,
+    explanation: "<strong>Đáp án D đúng.</strong><br>Bất phương trình bậc nhất hai ẩn có dạng $ax + by < c$ (hoặc $\\le, >, \\ge$) với $a^2 + b^2 \\ne 0$. Ở phương án D, $2x + 3y < 5$ chứa đúng 2 ẩn $x, y$ và đều có bậc nhất.<br>• Phương án A: chứa 3 ẩn $x, y, z$.<br>• Phương án B & C: chứa ẩn bậc hai ($x^2$)."
   },
   {
     id: 2,
-    level: "Nhận biết (Trích Câu 2 - Trang 27)",
-    prompt: "Cho bất phương trình $x - 2y + 5 > 0$ có tập nghiệm là $S$. Mệnh đề nào sau đây là <strong>đúng</strong>?",
+    level: "Nhận biết (Trích Câu 1 - Trang 7 | Toán 10 Từ Tâm)",
+    prompt: "Trong mặt phẳng tọa độ $Oxy$, khẳng định nào sau đây là <strong>đúng</strong> về miền nghiệm của bất phương trình bậc nhất hai ẩn $ax + by \\le c$ ($a^2 + b^2 \\ne 0$)?",
     svgType: null,
     options: [
-      "$(-2; 2) \\in S$",
-      "$(2; 2) \\in S$",
-      "$(-2; 4) \\in S$",
-      "$(1; 3) \\in S$"
+      "Miền nghiệm là nửa mặt phẳng (kể cả bờ $d: ax + by = c$) gồm các điểm có tọa độ thỏa mãn bất phương trình.",
+      "Bất phương trình bậc nhất hai ẩn chỉ có duy nhất một nghiệm.",
+      "Miền nghiệm của bất phương trình luôn luôn chứa gốc tọa độ $O(0; 0)$.",
+      "Tập nghiệm của bất phương trình bậc nhất hai ẩn luôn là tập rỗng."
     ],
-    correctIndex: 1,
-    explanation: "<strong>Đáp án B đúng.</strong><br>Thay lần lượt tọa độ từng điểm vào vế trái $f(x, y) = x - 2y + 5$:<br>• Với $(2; 2)$: $f(2, 2) = 2 - 2(2) + 5 = 3 > 0$ (Đúng, do đó $(2; 2) \\in S$).<br>• Với $(-2; 2)$: $-2 - 2(2) + 5 = -1 < 0$ (Sai).<br>• Với $(-2; 4)$: $-2 - 2(4) + 5 = -5 < 0$ (Sai).<br>• Với $(1; 3)$: $1 - 2(3) + 5 = 0 \\ngtr 0$ (Sai)."
+    correctIndex: 0,
+    explanation: "<strong>Đáp án A đúng.</strong><br>Theo định nghĩa trong SGK và tài liệu Toán Từ Tâm:<br>Trong mặt phẳng toạ độ $Oxy$, tập hợp các điểm có toạ độ là nghiệm của bất phương trình $ax + by \\le c$ được gọi là miền nghiệm của nó. Miền nghiệm là nửa mặt phẳng có bờ là đường thẳng $d: ax + by = c$ (kể cả bờ)."
   },
   {
     id: 3,
-    level: "Nhận biết (Trích Câu 4 - Trang 27)",
-    prompt: "Cặp số nào sau đây là <strong>nghiệm</strong> của bất phương trình $2x + 3y > 2$?",
+    level: "Nhận biết (Trích Câu 9 - Trang 7 | Toán 10 Từ Tâm)",
+    prompt: "Điểm nào sau đây thuộc miền nghiệm của bất phương trình $2x + y - 3 > 0$?",
     svgType: null,
     options: [
-      "$(0; 0)$",
-      "$(2; -1)$",
-      "$(1; 0)$",
-      "$(1; 1)$"
+      "$Q(-1; -3)$",
+      "$M\\left(1; \\dfrac{3}{2}\\right)$",
+      "$N(1; 1)$",
+      "$P\\left(-1; \\dfrac{3}{2}\\right)$"
     ],
-    correctIndex: 3,
-    explanation: "<strong>Đáp án D đúng.</strong><br>Thay từng cặp số vào vế trái $f(x, y) = 2x + 3y$:<br>• Với $(1; 1)$: $2(1) + 3(1) = 5 > 2$ (Thỏa mãn).<br>• Với $(0; 0)$: $2(0) + 3(0) = 0 \\ngtr 2$ (Loại).<br>• Với $(2; -1)$: $2(2) + 3(-1) = 1 \\ngtr 2$ (Loại).<br>• Với $(1; 0)$: $2(1) + 3(0) = 2 \\ngtr 2$ (Loại)."
+    correctIndex: 1,
+    explanation: "<strong>Đáp án B đúng.</strong><br>Thay tọa độ các điểm vào vế trái $f(x, y) = 2x + y - 3$:<br>• Với $M\\left(1; \\dfrac{3}{2}\\right)$: $f = 2(1) + \\dfrac{3}{2} - 3 = \\dfrac{1}{2} > 0$ (Đúng, điểm $M$ thuộc miền nghiệm).<br>• Với $Q(-1; -3)$: $f = 2(-1) - 3 - 3 = -8 < 0$ (Loại).<br>• Với $N(1; 1)$: $f = 2(1) + 1 - 3 = 0 \\ngtr 0$ (Loại, vì dấu $>$ không lấy bờ).<br>• Với $P\\left(-1; \\dfrac{3}{2}\\right)$: $f = 2(-1) + \\dfrac{3}{2} - 3 = -3{,}5 < 0$ (Loại)."
   },
   {
     id: 4,
-    level: "Thông hiểu (Trích Câu 6 - Trang 27)",
-    prompt: "Cho bất phương trình bậc nhất hai ẩn $x + 2y \\le 3$. Cặp số nào sau đây <strong>KHÔNG PHẢI</strong> là một nghiệm của bất phương trình đã cho?",
+    level: "Thông hiểu (Trích Câu 7 - Trang 7 | Toán 10 Từ Tâm)",
+    prompt: "Trong các cặp số sau đây, cặp số nào <strong>KHÔNG</strong> là nghiệm của bất phương trình $x - 4y + 5 \\ge 0$?",
     svgType: null,
     options: [
+      "$(-5; 0)$",
       "$(-2; 1)$",
-      "$(-1; -2)$",
-      "$(1; 2)$",
-      "$(-2; -1)$"
+      "$(-1; 3)$",
+      "$(0; 0)$"
     ],
     correctIndex: 2,
-    explanation: "<strong>Đáp án C đúng.</strong><br>Thay lần lượt các cặp số vào vế trái $f(x, y) = x + 2y$:<br>• Với $(1; 2)$: $1 + 2(2) = 5 > 3$. Do $5 \\nle 3$ nên $(1; 2)$ không thỏa mãn bất phương trình đã cho.<br>• Các cặp $(-2; 1)$, $(-1; -2)$, $(-2; -1)$ đều cho kết quả $\\le 3$ nên đều là nghiệm."
+    explanation: "<strong>Đáp án C đúng.</strong><br>Thay lần lượt các cặp số vào vế trái $f(x, y) = x - 4y + 5$:<br>• Với $(-1; 3)$: $f(-1, 3) = -1 - 4(3) + 5 = -8 < 0$, do đó $(-1; 3)$ không thỏa mãn điều kiện $\\ge 0$.<br>• Các cặp $(-5; 0)$, $(-2; 1)$, $(0; 0)$ đều cho kết quả $\\ge 0$ nên đều là nghiệm."
   },
   {
     id: 5,
-    level: "Thông hiểu (Trích Câu 7 - Trang 28)",
-    prompt: "Trong các bất phương trình bên dưới, bất phương trình nào có <strong>miền nghiệm tô màu</strong> được biểu diễn trên hệ trục toạ độ $Oxy$ như hình vẽ bên dưới?",
-    svgType: "pdf_q7_diagram",
+    level: "Thông hiểu (Trích Câu 10 - Trang 7-8 | Toán 10 Từ Tâm)",
+    prompt: "Miền nghiệm của bất phương trình $-3x + y + 2 \\le 0$ <strong>không chứa</strong> điểm nào sau đây?",
+    svgType: null,
     options: [
-      "$2x + 2y \\le 0$",
-      "$x + y \\ge 2$",
-      "$x + y \\le 2$",
-      "$x - y \\le 2$"
+      "$A(1; 2)$",
+      "$B(2; 1)$",
+      "$C\\left(1; \\dfrac{1}{2}\\right)$",
+      "$D(3; 1)$"
     ],
-    correctIndex: 1,
-    explanation: "<strong>Đáp án B đúng.</strong><br>1. Đường thẳng bờ $d$ đi qua hai điểm $(2; 0)$ và $(0; 2)$ có phương trình đoạn chắn là: $\\dfrac{x}{2} + \\dfrac{y}{2} = 1 \\Leftrightarrow x + y = 2$.<br>2. Đường thẳng bờ được vẽ nét liền nên miền nghiệm kể cả bờ (có dấu $\\ge$ hoặc $\\le$).<br>3. Miền nghiệm tô màu không chứa gốc tọa độ $O(0; 0)$. Ta thử tọa độ $O(0; 0)$: $0 + 0 = 0 < 2$. Do đó miền tô màu biểu diễn bất phương trình $x + y \\ge 2$."
+    correctIndex: 0,
+    explanation: "<strong>Đáp án A đúng.</strong><br>Thay lần lượt tọa độ các điểm vào vế trái $f(x, y) = -3x + y + 2$:<br>• Với $A(1; 2)$: $f(1, 2) = -3(1) + 2 + 2 = 1 > 0$ (Không thỏa mãn điều kiện $\\le 0$). Do đó miền nghiệm không chứa điểm $A$.<br>• Với $B(2; 1)$: $-3(2) + 1 + 2 = -3 \\le 0$ (Thỏa mãn).<br>• Với $C\\left(1; \\dfrac{1}{2}\\right)$: $-3(1) + 0{,}5 + 2 = -0{,}5 \\le 0$ (Thỏa mãn).<br>• Với $D(3; 1)$: $-3(3) + 1 + 2 = -6 \\le 0$ (Thỏa mãn)."
   },
   {
     id: 6,
-    level: "Thông hiểu (Trích Câu 11 - Trang 29)",
-    prompt: "Cho đường thẳng $d: 7x - 9y + 2 = 0$ chia mặt phẳng tọa độ làm hai nửa mặt phẳng. Miền nghiệm của bất phương trình $7x - 9y + 2 \\ge 0$ là nửa mặt phẳng:",
-    svgType: null,
+    level: "Thông hiểu (Trích Câu 21 - Trang 9 | Toán 10 Từ Tâm)",
+    prompt: "Đường thẳng bờ $d$ đi qua hai điểm $(2; 0)$ và $(0; 3)$ có phương trình $3x + 2y = 6$. Miền nghiệm của bất phương trình $3x + 2y > 6$ (minh họa bởi phần tô màu trên hình vẽ bên dưới) là nửa mặt phẳng bờ $d$:",
+    svgType: "tutam_q21_diagram",
     options: [
-      "Có bờ là đường thẳng $d$ và không chứa điểm $O(0; 0)$.",
-      "Có bờ là đường thẳng $d$ và chứa điểm $O(0; 0)$.",
-      "Có bờ là đường thẳng $d$ và không chứa điểm $M(1; 0)$.",
-      "Có bờ là đường thẳng $d$ và chứa điểm $N(0; 1)$."
+      "Không chứa gốc tọa độ $O(0; 0)$ và không kể bờ $d$.",
+      "Chứa gốc tọa độ $O(0; 0)$ và không kể bờ $d$.",
+      "Chứa điểm $M(1; 1)$ và kể cả bờ $d$.",
+      "Chứa điểm $N(0; 2)$ và không kể bờ $d$."
     ],
-    correctIndex: 1,
-    explanation: "<strong>Đáp án B đúng.</strong><br>Thay tọa độ điểm $O(0; 0)$ vào vế trái $f(x, y) = 7x - 9y + 2$:<br>$$f(0, 0) = 7(0) - 9(0) + 2 = 2 \\ge 0$$<br>Vì $2 \\ge 0$ là mệnh đề đúng nên gốc tọa độ $O(0; 0)$ thuộc miền nghiệm của bất phương trình. Vậy miền nghiệm là nửa mặt phẳng có bờ là đường thẳng $d$ và chứa điểm $O(0; 0)$."
+    correctIndex: 0,
+    explanation: "<strong>Đáp án A đúng.</strong><br>1. Đường thẳng $d$ cắt $Ox$ tại $(2; 0)$ và $Oy$ tại $(0; 3)$ có phương trình $\\dfrac{x}{2} + \\dfrac{y}{3} = 1 \\Leftrightarrow 3x + 2y = 6$.<br>2. Bất phương trình $3x + 2y > 6$ mang dấu '$>$' (ngặt) nên <strong>không kể bờ</strong> $d$ (đường nét đứt).<br>3. Thay gốc tọa độ $O(0; 0)$ vào vế trái: $3(0) + 2(0) = 0 \\ngtr 6$ (Sai). Do đó miền nghiệm là nửa mặt phẳng không chứa gốc tọa độ $O(0; 0)$."
   },
   {
     id: 7,
-    level: "Thông hiểu (Trích Câu 12 - Trang 29)",
-    prompt: "Phần <strong>không tô màu</strong> trong hình vẽ dưới đây (không bao gồm đường thẳng $d$) là miền nghiệm của bất phương trình bậc nhất hai ẩn nào dưới đây?",
-    svgType: "pdf_q12_diagram",
+    level: "Thông hiểu (Trích Câu 20 - Trang 8-9 | Toán 10 Từ Tâm)",
+    prompt: "Miền nghiệm của bất phương trình $3x - 2y > -6$ (được minh họa bởi phần tô màu trên hình vẽ bên dưới) là nửa mặt phẳng có bờ là đường thẳng $d: 3x - 2y = -6$:",
+    svgType: "tutam_q20_diagram",
     options: [
-      "$x - 2y < 0$",
-      "$x - 2y < 2$",
-      "$x - 2y < -2$",
-      "$x - 2y > 1$"
+      "Chứa gốc tọa độ $O(0; 0)$ và không kể bờ $d$.",
+      "Không chứa gốc tọa độ $O(0; 0)$ và không kể bờ $d$.",
+      "Chứa gốc tọa độ $O(0; 0)$ và kể cả bờ $d$.",
+      "Không chứa gốc tọa độ $O(0; 0)$ và kể cả bờ $d$."
     ],
-    correctIndex: 1,
-    explanation: "<strong>Đáp án B đúng.</strong><br>1. Đường thẳng bờ $d$ đi qua hai điểm $(2; 0)$ và $(0; -1)$ có phương trình là $\\dfrac{x}{2} + \\dfrac{y}{-1} = 1 \\Leftrightarrow x - 2y = 2$.<br>2. Đường bờ không được lấy nên bất phương trình có dấu ngặt '$<$' hoặc '$>$'.<br>3. Quan sát hình vẽ, phần không tô màu chứa gốc tọa độ $O(0; 0)$. Thay $(0; 0)$ vào vế trái $x - 2y$ ta được $0 - 2(0) = 0 < 2$.<br>Vậy miền không tô màu biểu diễn bất phương trình $x - 2y < 2$."
+    correctIndex: 0,
+    explanation: "<strong>Đáp án A đúng.</strong><br>1. Đường thẳng $d: 3x - 2y = -6$ đi qua hai điểm $(-2; 0)$ và $(0; 3)$.<br>2. Thay tọa độ $O(0; 0)$ vào vế trái: $3(0) - 2(0) = 0 > -6$ (Mệnh đề đúng).<br>3. Vì dấu bất phương trình là '$>$' nên miền nghiệm không lấy bờ $d$ (vẽ nét đứt).<br>Vậy miền nghiệm là nửa mặt phẳng có bờ là đường thẳng $d$, chứa gốc tọa độ $O(0; 0)$ và không kể bờ $d$."
   },
   {
     id: 8,
-    level: "Thông hiểu (Trích Câu 14 - Trang 30)",
-    prompt: "Miền <strong>tô màu</strong> trong hình dưới đây (tính cả đường thẳng bờ) là miền nghiệm của bất phương trình nào?",
-    svgType: "pdf_q14_diagram",
+    level: "Thông hiểu (Trích Câu 24 - Trang 10 | Toán 10 Từ Tâm)",
+    prompt: "Cặp số $(x_0; y_0)$ nào sau đây là <strong>nghiệm</strong> của bất phương trình $3x - 3y \\ge 4$?",
+    svgType: null,
     options: [
-      "$3x - 2y \\le -6$",
-      "$3x - 2y \\ge -6$",
-      "$2x - 3y \\ge -6$",
-      "$3x - 2y > -6$"
+      "$(x_0; y_0) = (-2; 2)$",
+      "$(x_0; y_0) = (5; 1)$",
+      "$(x_0; y_0) = (-4; 0)$",
+      "$(x_0; y_0) = (2; 1)$"
     ],
     correctIndex: 1,
-    explanation: "<strong>Đáp án B đúng.</strong><br>1. Đường thẳng bờ $d$ cắt trục $Ox$ tại $(-2; 0)$ và cắt $Oy$ tại $(0; 3)$ có phương trình: $\\dfrac{x}{-2} + \\dfrac{y}{3} = 1 \\Leftrightarrow -3x + 2y = 6 \\Leftrightarrow 3x - 2y = -6$.<br>2. Miền tô màu chứa gốc tọa độ $O(0; 0)$. Thay $(0; 0)$ vào $3x - 2y$ ta được $3(0) - 2(0) = 0 \\ge -6$ (Đúng).<br>3. Vì tính cả bờ nên bất phương trình tương ứng là $3x - 2y \\ge -6$."
+    explanation: "<strong>Đáp án B đúng.</strong><br>Thay lần lượt các cặp số vào vế trái $f(x, y) = 3x - 3y$:<br>• Với $(5; 1)$: $f(5, 1) = 3(5) - 3(1) = 15 - 3 = 12 \\ge 4$ (Thỏa mãn).<br>• Với $(-2; 2)$: $3(-2) - 3(2) = -12 \\ngeq 4$ (Loại).<br>• Với $(-4; 0)$: $3(-4) - 3(0) = -12 \\ngeq 4$ (Loại).<br>• Với $(2; 1)$: $3(2) - 3(1) = 3 \\ngeq 4$ (Loại)."
   },
   {
     id: 9,
-    level: "Vận dụng (Trích Câu 15 - Trang 30)",
-    prompt: "Bạn Lan mang $150.000$ đồng đi nhà sách để mua một số quyển vở và bút cùng loại. Biết rằng mỗi quyển vở có giá $8.000$ đồng và mỗi chiếc bút có giá $6.000$ đồng. Gọi $x$ và $y$ lần lượt là số quyển vở và số chiếc bút Lan đã mua. Tìm bất phương trình biểu diễn điều kiện của $x$ và $y$.",
+    level: "Vận dụng (Trích Câu 33 - Trang 12 | Toán 10 Từ Tâm)",
+    prompt: "Một đội sản xuất cần $3$ giờ để làm xong một sản phẩm loại I và $2$ giờ để làm xong một sản phẩm loại II. Biết tổng thời gian tối đa cho việc sản xuất hai sản phẩm trên là $18$ giờ. Gọi $x, y$ lần lượt là số sản phẩm loại I và loại II mà đội làm được trong thời gian cho phép ($x, y \\in \\mathbb{N}$). Bất phương trình bậc nhất hai ẩn mô tả điều kiện thời gian của đội sản xuất là:",
     svgType: null,
     options: [
-      "$8x + 6y > 150$",
-      "$8x - 6y \\ge 150$",
-      "$8x + 6y \\le 15$",
-      "$8x + 6y \\le 150$"
+      "$2x + 3y \\le 18$",
+      "$3x + 2y < 18$",
+      "$3x + 2y \\le 18$",
+      "$3x + 2y \\ge 18$"
     ],
-    correctIndex: 3,
-    explanation: "<strong>Đáp án D đúng.</strong><br>• Số tiền mua $x$ quyển vở là: $8.000x$ (đồng).<br>• Số tiền mua $y$ chiếc bút là: $6.000y$ (đồng).<br>• Vì số tiền đem theo tối đa là $150.000$ đồng nên ta có bất phương trình:<br>$$8.000x + 6.000y \\le 150.000$$<br>Chia cả hai vế cho $1.000$, ta nhận được: $8x + 6y \\le 150$."
+    correctIndex: 2,
+    explanation: "<strong>Đáp án C đúng.</strong><br>• Thời gian làm $x$ sản phẩm loại I là: $3x$ (giờ).<br>• Thời gian làm $y$ sản phẩm loại II là: $2y$ (giờ).<br>• Tổng thời gian sản xuất là $3x + 2y$ (giờ).<br>• Vì tổng thời gian cho phép tối đa là $18$ giờ nên ta có bất phương trình: $3x + 2y \\le 18$ (có dấu $\\le$ vì tính cả trường hợp dùng hết đúng 18 giờ)."
   },
   {
     id: 10,
-    level: "Vận dụng (Trích Câu 20 - Trang 31)",
-    prompt: "Cho bất phương trình bậc nhất hai ẩn $x + 2y \\le 20$. Có bao nhiêu giá trị nguyên dương của tham số $m$ để cặp số $(m; 2m - 1)$ là một nghiệm của bất phương trình đã cho?",
+    level: "Vận dụng (Trích Câu 36 - Trang 12 | Toán 10 Từ Tâm)",
+    prompt: "Có bao nhiêu giá trị nguyên của tham số $m$ trong đoạn $[-10; 10]$ sao cho cặp số $(x; y) = (1; -1)$ là nghiệm của bất phương trình $2(m - 1)x + (m + 2)y \\ge 0$?",
     svgType: null,
     options: [
-      "4",
-      "5",
-      "3",
-      "Vô số"
+      "7",
+      "10",
+      "14",
+      "15"
     ],
     correctIndex: 0,
-    explanation: "<strong>Đáp án A đúng.</strong><br>Để cặp $(m; 2m - 1)$ là nghiệm của bất phương trình, ta thay $x = m$ và $y = 2m - 1$ vào bất phương trình:<br>$$m + 2(2m - 1) \\le 20 \\Leftrightarrow m + 4m - 2 \\le 20 \\Leftrightarrow 5m \\le 22 \\Leftrightarrow m \\le \\dfrac{22}{5} = 4,4$$<br>Do $m$ là số nguyên dương ($m \\in \\mathbb{Z}^+$) nên $m \\in \\{1; 2; 3; 4\\}$.<br>Vậy có đúng <strong>4</strong> giá trị nguyên dương của $m$ thỏa mãn yêu cầu."
+    explanation: "<strong>Đáp án A đúng.</strong><br>Thay $x = 1$ và $y = -1$ vào bất phương trình đã cho:<br>$$2(m - 1)\\cdot 1 + (m + 2)(-1) \\ge 0 \\Leftrightarrow 2m - 2 - m - 2 \\ge 0 \\Leftrightarrow m - 4 \\ge 0 \\Leftrightarrow m \\ge 4$$<br>Kết hợp với điều kiện $m \\in [-10; 10]$ và $m \\in \\mathbb{Z}$, ta được:<br>$$m \\in \\{4; 5; 6; 7; 8; 9; 10\\}$$<br>Vậy có đúng <strong>7</strong> giá trị nguyên của tham số $m$ thỏa mãn yêu cầu bài toán."
   }
 ];
 
 // ==========================================
-// 2. BỘ PHÁT SINH HÌNH VẼ SVG ĐỒ THỊ CHUẨN TÀI LIỆU
+// 2. BỘ PHÁT SINH HÌNH VẼ SVG ĐỒ THỊ CHUẨN TOÁN TỪ TÂM
 // ==========================================
 const SVG_DIAGRAMS = {
-  // Câu 5 (Trích Câu 7 tài liệu): x + y = 2, cắt (2,0) và (0,2), miền tô màu không chứa O(0,0)
-  pdf_q7_diagram: function() {
+  // Câu 6 (Trích Câu 21 Từ Tâm): 3x + 2y = 6, qua (2,0) và (0,3), miền tô màu không chứa O(0,0), nét đứt
+  tutam_q21_diagram: function() {
     return `
       <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:12px; border:1px solid #e2e8f0;">
         <defs>
-          <marker id="pdf_arrow1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 10 5 L 0 9 z" fill="#d946ef" />
+          <marker id="tutam_arr1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
           </marker>
         </defs>
 
-        <!-- Shaded region: x + y >= 2 (Upper right half-plane) -->
-        <polygon points="10,80 340,320 350,320 350,10 10,10" fill="#fbcfe8" opacity="0.8" />
+        <!-- Shaded region: 3x + 2y > 6 (Upper right half-plane, not containing O(0,0)) -->
+        <polygon points="20,20 345,20 345,300 240,300" fill="#bae6fd" opacity="0.65" />
 
         <!-- Axes: Ox at y=240, Oy at x=110 -->
-        <!-- Scale: 1 unit = 60px. (2,0) -> (110 + 120, 240) = (230, 240). (0,2) -> (110, 240 - 120) = (110, 120) -->
-        <line x1="20" y1="240" x2="345" y2="240" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow1)" />
-        <line x1="110" y1="305" x2="110" y2="25" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow1)" />
+        <!-- Scale: (2,0) -> (110 + 90, 240) = (200, 240). (0,3) -> (110, 240 - 135) = (110, 105) -->
+        <line x1="20" y1="240" x2="345" y2="240" stroke="#0284c7" stroke-width="2.2" marker-end="url(#tutam_arr1)" />
+        <line x1="110" y1="305" x2="110" y2="25" stroke="#0284c7" stroke-width="2.2" marker-end="url(#tutam_arr1)" />
 
         <!-- Axis Labels -->
-        <text x="325" y="228" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">x</text>
-        <text x="120" y="38" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">y</text>
-        <text x="75" y="268" font-size="22" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">O</text>
-        <circle cx="110" cy="240" r="3.5" fill="#f43f5e" stroke="#000" stroke-width="1" />
+        <text x="325" y="228" font-size="20" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">x</text>
+        <text x="120" y="38" font-size="20" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">y</text>
+        <text x="78" y="268" font-size="22" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">O</text>
+        <circle cx="110" cy="240" r="3.5" fill="#0284c7" stroke="#000" stroke-width="1" />
 
-        <!-- Intercept points: (2, 0) and (0, 2) -->
-        <text x="215" y="270" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">2</text>
-        <text x="75" y="130" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">2</text>
+        <!-- Intercept points: (2, 0) and (0, 3) -->
+        <text x="195" y="270" font-size="20" font-weight="bold" fill="#0284c7" font-family="Times New Roman, serif">2</text>
+        <circle cx="200" cy="240" r="3.5" fill="#0284c7" />
+        <text x="80" y="112" font-size="20" font-weight="bold" fill="#0284c7" font-family="Times New Roman, serif">3</text>
+        <circle cx="110" cy="105" r="3.5" fill="#0284c7" />
 
-        <!-- Boundary line: x + y = 2 (solid pink line) -->
-        <line x1="15" y1="45" x2="320" y2="300" stroke="#db2777" stroke-width="2.8" />
+        <!-- Boundary line: 3x + 2y = 6 (Dashed line because > 6 does not include boundary) -->
+        <line x1="40" y1="0" x2="260" y2="330" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="6,4" />
+        <text x="210" y="70" font-size="16" font-weight="bold" fill="#2563eb" font-family="Times New Roman, serif">d: 3x + 2y = 6</text>
       </svg>
     `;
   },
 
-  // Câu 7 (Trích Câu 12 tài liệu): x - 2y = 2, cắt (2,0) và (0,-1), phần KHÔNG TÔ MÀU chứa O(0,0)
-  pdf_q12_diagram: function() {
-    return `
-      <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:12px; border:1px solid #e2e8f0;">
-        <defs>
-          <marker id="pdf_arrow2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 10 5 L 0 9 z" fill="#d946ef" />
-          </marker>
-        </defs>
-
-        <!-- Shaded region: x - 2y > 2 (Lower half-plane) -->
-        <polygon points="10,210 350,60 350,250 10,250" fill="#fbcfe8" opacity="0.8" />
-
-        <!-- Axes: Ox at y=110, Oy at x=90 -->
-        <!-- Scale: 1 unit = 60px. (2,0) -> (90+120, 110) = (210, 110). (0,-1) -> (90, 110+60) = (90, 170) -->
-        <line x1="15" y1="110" x2="345" y2="110" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow2)" />
-        <line x1="90" y1="245" x2="90" y2="25" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow2)" />
-
-        <!-- Axis Labels -->
-        <text x="325" y="100" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">x</text>
-        <text x="65" y="45" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">y</text>
-        <text x="55" y="138" font-size="22" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">O</text>
-        <circle cx="90" cy="110" r="3.5" fill="#f43f5e" stroke="#000" stroke-width="1" />
-
-        <!-- Intercept points: (2, 0) and (0, -1) -->
-        <text x="202" y="95" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">2</text>
-        <text x="40" y="180" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">-1</text>
-
-        <!-- Boundary line d: x - 2y = 2 -->
-        <line x1="10" y1="205" x2="350" y2="55" stroke="#db2777" stroke-width="2.8" />
-      </svg>
-    `;
-  },
-
-  // Câu 8 (Trích Câu 14 tài liệu): 3x - 2y = -6, cắt (-2,0) và (0,3), miền TÔ MÀU chứa O(0,0)
-  pdf_q14_diagram: function() {
+  // Câu 7 (Trích Câu 20 Từ Tâm): 3x - 2y = -6, qua (-2,0) và (0,3), miền tô màu chứa O(0,0), nét đứt
+  tutam_q20_diagram: function() {
     return `
       <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:12px; border:1px solid #e2e8f0;">
         <defs>
-          <marker id="pdf_arrow3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 10 5 L 0 9 z" fill="#d946ef" />
+          <marker id="tutam_arr2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
           </marker>
         </defs>
 
-        <!-- Shaded region: 3x - 2y >= -6 (Lower right, contains O(0,0)) -->
-        <polygon points="50,310 300,10 350,10 350,310" fill="#fbcfe8" opacity="0.8" />
+        <!-- Shaded region: 3x - 2y > -6 (Lower right half-plane, contains O(0,0)) -->
+        <polygon points="50,310 260,10 345,10 345,310" fill="#bae6fd" opacity="0.65" />
 
         <!-- Axes: Ox at y=230, Oy at x=200 -->
-        <!-- Scale: 1 unit = 50px. (-2,0) -> (200 - 100, 230) = (100, 230). (0,3) -> (200, 230 - 150) = (200, 80) -->
-        <line x1="20" y1="230" x2="345" y2="230" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow3)" />
-        <line x1="200" y1="305" x2="200" y2="25" stroke="#db2777" stroke-width="2.2" marker-end="url(#pdf_arrow3)" />
+        <!-- Scale: (-2,0) -> (200 - 90, 230) = (110, 230). (0,3) -> (200, 230 - 135) = (200, 95) -->
+        <line x1="20" y1="230" x2="345" y2="230" stroke="#0284c7" stroke-width="2.2" marker-end="url(#tutam_arr2)" />
+        <line x1="200" y1="305" x2="200" y2="25" stroke="#0284c7" stroke-width="2.2" marker-end="url(#tutam_arr2)" />
 
         <!-- Axis Labels -->
-        <text x="325" y="220" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">x</text>
-        <text x="175" y="45" font-size="20" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">y</text>
-        <text x="165" y="260" font-size="22" font-weight="bold" font-style="italic" fill="#db2777" font-family="Times New Roman, serif">O</text>
-        <circle cx="200" cy="230" r="3.5" fill="#f43f5e" stroke="#000" stroke-width="1" />
+        <text x="325" y="220" font-size="20" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">x</text>
+        <text x="175" y="45" font-size="20" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">y</text>
+        <text x="165" y="260" font-size="22" font-weight="bold" font-style="italic" fill="#0284c7" font-family="Times New Roman, serif">O</text>
+        <circle cx="200" cy="230" r="3.5" fill="#0284c7" stroke="#000" stroke-width="1" />
 
         <!-- Intercept points: (-2, 0) and (0, 3) -->
-        <text x="75" y="215" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">-2</text>
-        <text x="170" y="90" font-size="20" font-weight="bold" fill="#db2777" font-family="Times New Roman, serif">3</text>
+        <text x="90" y="260" font-size="20" font-weight="bold" fill="#0284c7" font-family="Times New Roman, serif">-2</text>
+        <circle cx="110" cy="230" r="3.5" fill="#0284c7" />
+        <text x="170" y="102" font-size="20" font-weight="bold" fill="#0284c7" font-family="Times New Roman, serif">3</text>
+        <circle cx="200" cy="95" r="3.5" fill="#0284c7" />
 
-        <!-- Boundary line d: 3x - 2y = -6 -->
-        <line x1="45" y1="315" x2="305" y2="5" stroke="#db2777" stroke-width="2.8" />
+        <!-- Boundary line: 3x - 2y = -6 (Dashed line because > -6 does not include boundary) -->
+        <line x1="40" y1="330" x2="260" y2="0" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="6,4" />
+        <text x="40" y="60" font-size="16" font-weight="bold" fill="#2563eb" font-family="Times New Roman, serif">d: 3x - 2y = -6</text>
       </svg>
     `;
   }
