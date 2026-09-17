@@ -686,11 +686,26 @@ html_template_head = """<!DOCTYPE html>
         break-after: avoid;
       }
 
+      .theory-table th, .theory-table td {
+        border: 1px solid #000000 !important;
+        padding: 6px 10px !important;
+        font-size: 10pt !important;
+      }
+
+      .theory-table th {
+        background: #f1f5f9 !important;
+        color: #000000 !important;
+      }
+
+      .theory-diagram-cell img {
+        max-width: 180px !important;
+      }
+
       .theory-block, .question-block {
         border: 1.2px solid #000000 !important;
         box-shadow: none !important;
-        padding: 12px 16px !important;
-        margin-bottom: 14px !important;
+        padding: 10px 14px !important;
+        margin-bottom: 12px !important;
         break-inside: avoid;
         page-break-inside: avoid;
       }
@@ -706,14 +721,14 @@ html_template_head = """<!DOCTYPE html>
 
       .write-row {
         border-bottom: 1px dotted #888888 !important;
-        height: 32px !important;
+        height: 30px !important;
         font-size: 14pt !important;
         line-height: 1.5 !important;
       }
 
       .write-row .line-num {
         color: #666666 !important;
-        font-size: 9pt !important;
+        font-size: 8.5pt !important;
       }
     }
   </style>
