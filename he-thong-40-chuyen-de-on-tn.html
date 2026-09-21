@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ Thống Vở Bài Tập Dạng Viết Tay: 40 Chuyên Đề Ôn Thi Tốt Nghiệp THPT 2026 (Tập 1: 1-21)</title>
+  <meta name="description" content="Hệ thống bài tập toán dạng viết tay 21 chuyên đề ôn thi tốt nghiệp THPT 2026 (Tập 1), tích hợp lý thuyết trọng tâm, bài tập chuẩn cấu trúc mới, khung dòng kẻ viết tay 14pt giãn dòng 1.5.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for crisp Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --border-color: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --accent-rose: #e11d48;
+      --accent-emerald: #059669;
+      --accent-cyan: #0284c7;
+      --grid-line: rgba(59, 130, 246, 0.12);
+      
+      /* Handwriting specific variables */
+      --write-font-size: 14pt;
+      --write-line-height: 1.5;
+      --write-row-height: 34px;
+      --write-color: #1e3a8a;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-surface: #111827;
+      --border-color: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: rgba(99, 102, 241, 0.18);
+      --grid-line: rgba(59, 130, 246, 0.08);
+      --write-color: #93c5fd;
+    }
+
+    [data-font-size="large"] {
+      --write-font-size: 16pt;
+      --write-row-height: 38px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Math Grid Paper Background */
+    .grid-bg {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    }
+
+    .katex { font-size: 1.12em !important; }
+
+    /* Top Sticky Control Bar */
+    .top-header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="dark"] .top-header-bar {
+      background: rgba(17, 24, 39, 0.94);
+      border-color: #1f2937;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid #c7d2fe;
+    }
+
+    .brand-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .header-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      color: #ffffff;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* Sub Navigation / Category Tabs */
+    .category-filter-bar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cat-pills-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cat-filter-btn {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-filter-btn:hover, .cat-filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 4px 10px;
+      width: 260px;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.85rem;
+      width: 100%;
+      color: var(--text-primary);
+    }
+
+    /* Main Content Layout */
+    .app-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      max-width: 1440px;
+      margin: 0 auto;
+      gap: 24px;
+      padding: 20px 24px 60px;
+    }
+
+    /* Left Sidebar: Topic Selector */
+    .sidebar-drawer {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      height: calc(100vh - 140px);
+      position: sticky;
+      top: 130px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-drawer-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topic-nav-cards-list {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    .topic-nav-item {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .topic-nav-item:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(2px);
+    }
+
+    .topic-nav-item.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);
+    }
+
+    .topic-nav-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 6px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .topic-nav-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .topic-nav-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+
+    .topic-nav-cat {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Right Main Workbook Sheet */
+    .workbook-sheet {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sheet-header-card {
+      background: var(--bg-surface);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .sheet-top-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .header-school-tag {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .topic-title-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .sheet-main-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .sheet-student-meta {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-page);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 0.88rem;
+    }
+
+    .student-input-field {
+      border: none;
+      background: transparent;
+      border-bottom: 1px dashed var(--text-muted);
+      outline: none;
+      font-weight: 700;
+      color: var(--primary);
+      width: 180px;
+    }
+
+    /* Section Cards (Theory & Exercises) */
+    .content-section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    /* Theory Styles */
+    .theory-block h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 14px 0 6px;
+    }
+
+    .theory-bullets {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .theory-bullets li {
+      margin-bottom: 6px;
+    }
+
+    /* Handwriting Lines Area (14pt, 1.5 line height, 34px row) */
+    .handwriting-workspace {
+      margin-top: 14px;
+    }
+
+    .handwriting-title-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-rose);
+      margin-bottom: 6px;
+    }
+
+    .hw-box-wrapper {
+      position: relative;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .hw-lines-background {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+    }
+
+    .hw-dotted-line {
+      height: var(--write-row-height);
+      border-bottom: 1px dashed rgba(100, 116, 139, 0.35);
+    }
+
+    .hw-interactive-textarea {
+      width: 100%;
+      font-size: var(--write-font-size) !important;
+      line-height: var(--write-row-height) !important;
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--write-color);
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: vertical;
+      padding: 0 12px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Exercise Cards */
+    .exercise-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .ex-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .ex-num-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .toggle-hint-btn {
+      background: transparent;
+      border: 1px dashed var(--border-color);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .toggle-hint-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .ex-prompt {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .ex-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .ex-opt-item {
+      padding: 8px 12px;
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ex-hint-box {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #065f46;
+    }
+
+    [data-theme="dark"] .ex-hint-box {
+      background: rgba(6, 95, 70, 0.2);
+      border-color: #065f46;
+      color: #a7f3d0;
+    }
+
+    .hint-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* Print Styles for Clean A4 */
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .top-header-bar, .category-filter-bar, .sidebar-drawer, .toggle-hint-btn, .sheet-nav-controls {
+        display: none !important;
+      }
+      .app-layout {
+        display: block !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .sheet-header-card, .content-section-card, .exercise-card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        margin-bottom: 16px !important;
+        page-break-inside: avoid;
+      }
+      .hw-box-wrapper {
+        border: 1px solid #999 !important;
+      }
+      .hw-dotted-line {
+        border-bottom: 1px dashed #666 !important;
+      }
+      .hw-interactive-textarea {
+        color: #000 !important;
+      }
+      .ex-hint-box {
+        display: none !important;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar-drawer {
+        position: static;
+        height: auto;
+      }
+      .sheet-student-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="top-header-bar">
+    <div class="header-left">
+      <div class="brand-pill">
+        <i data-lucide="book-marked" style="width:14px;height:14px;"></i>
+        <span>KHOA CƠ BẢN - CĐN01</span>
+      </div>
+      <h1 class="brand-title">40 Chuyên Đề Ôn TN 2026 (Tập 1: 1 - 21)</h1>
+    </div>
+
+    <div class="header-nav-links">
+      <!-- Font size -->
+      <button id="fontDecreaseBtn" class="btn" title="Cỡ chữ nhỏ">A-</button>
+      <button id="fontResetBtn" class="btn active" title="Cỡ chữ chuẩn">A</button>
+      <button id="fontIncreaseBtn" class="btn" title="Cỡ chữ to">A+</button>
+
+      <!-- Theme -->
+      <button id="themeToggleBtn" class="icon-btn" title="Giao diện Sáng/Tối">
+        <i data-lucide="moon" id="themeIcon"></i>
+      </button>
+
+      <!-- Links to Quizzes -->
+      <a href="index.html" class="btn" title="Đề kiểm tra Bài 1">
+        <i data-lucide="file-check"></i>
+        <span>Đề KT B1</span>
+      </a>
+      <a href="de-kiem-tra-b2.html" class="btn" title="Đề kiểm tra Bài 2">
+        <i data-lucide="award"></i>
+        <span>Đề KT B2</span>
+      </a>
+
+      <!-- Print Button -->
+      <button id="headerPrintBtn" class="btn btn-primary" title="In chuyên đề này (Khổ A4)">
+        <i data-lucide="printer"></i>
+        <span>In Khổ A4</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Category Filter & Search Bar -->
+  <nav class="category-filter-bar">
+    <div class="cat-pills-group">
+      <button class="cat-filter-btn active" data-category="all">✨ Tất cả (21 CĐ)</button>
+      <button class="cat-filter-btn" data-category="calculus_12">📈 Hàm số & Giải tích 12 (8 CĐ)</button>
+      <button class="cat-filter-btn" data-category="geometry_space">📐 Hình học không gian & Oxyz (7 CĐ)</button>
+      <button class="cat-filter-btn" data-category="algebra_11">🔢 Đại số & Giải tích 11 (5 CĐ)</button>
+      <button class="cat-filter-btn" data-category="statistics_12">📊 Thống kê 12 (1 CĐ)</button>
+    </div>
+
+    <div class="search-box">
+      <i data-lucide="search" style="width:16px;height:16px;color:var(--text-muted);"></i>
+      <input type="text" id="searchTopicInput" placeholder="Tìm kiếm chuyên đề...">
+    </div>
+  </nav>
+
+  <!-- Main App Layout -->
+  <main class="app-layout">
+    
+    <!-- Left Drawer: 21 Topics Navigator -->
+    <aside class="sidebar-drawer">
+      <div class="sidebar-drawer-header">
+        <h3><i data-lucide="list" style="width:18px;height:18px;"></i> Danh mục 21 CĐ</h3>
+        <span id="totalTopicsCount" style="font-size:0.8rem;font-weight:700;color:var(--primary);">21 CĐ</span>
+      </div>
+
+      <div class="topic-nav-cards-list" id="topicNavCards">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+
+    <!-- Right Content: Active Topic Workbook -->
+    <section class="workbook-sheet" id="topicContentContainer">
+      
+      <!-- Sheet Header Card -->
+      <div class="sheet-header-card">
+        <div class="sheet-top-title">
+          <div>
+            <div class="header-school-tag">TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP • KHOA CƠ BẢN</div>
+            <div class="topic-title-badge-wrap">
+              <span class="topic-nav-badge" id="sheetTopicCode" style="background:#4f46e520; color:#4f46e5; border:1px solid #4f46e540; font-size:0.9rem;">CĐ-01</span>
+              <h2 class="sheet-main-title" id="sheetTopicTitle">Chuyên đề 01: PHƯƠNG TRÌNH LƯỢNG GIÁC</h2>
+            </div>
+          </div>
+
+          <div class="sheet-nav-controls" style="display:flex; gap:8px; align-items:center;">
+            <select id="topicSelectDropdown" style="padding:6px 10px; border-radius:6px; border:1px solid var(--border-color); font-weight:600; font-size:0.85rem; background:var(--bg-surface); color:var(--text-primary); outline:none;">
+              <!-- Options injected -->
+            </select>
+            <button id="prevTopicBtn" class="btn" title="Chuyên đề trước"><i data-lucide="chevron-left"></i></button>
+            <button id="nextTopicBtn" class="btn" title="Chuyên đề kế tiếp"><i data-lucide="chevron-right"></i></button>
+            <button id="printTopicBtn" class="btn" title="In ra giấy A4"><i data-lucide="printer"></i> In CĐ</button>
+          </div>
+        </div>
+
+        <!-- Student Meta -->
+        <div class="sheet-student-meta">
+          <div>
+            <span>Họ và tên học sinh: </span>
+            <input type="text" id="studentNameInput" class="student-input-field" value="Học sinh Ôn thi TN 2026">
+          </div>
+          <div>Lớp: ........................</div>
+          <div>Phân môn: <strong id="sheetCategoryName">Đại số 11</strong></div>
+        </div>
+      </div>
+
+      <!-- Section I: Core Theory & Handwriting Notes -->
+      <div class="content-section-card">
+        <div class="section-title-wrap">
+          <i data-lucide="book-open" style="width:20px;height:20px;color:var(--primary);"></i>
+          <h3 class="section-title">PHẦN I: TÓM TẮT LÝ THUYẾT & CÔNG THỨC TRỌNG TÂM</h3>
+        </div>
+
+        <!-- Dynamic Theory HTML -->
+        <div id="theoryContentArea">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Handwriting Lines for Theory Notes (14pt, Line-height 1.5) -->
+        <div class="handwriting-workspace">
+          <div class="handwriting-title-bar">
+            <i data-lucide="pen-tool" style="width:16px;height:16px;"></i>
+            <span>Ghi chú công thức mở rộng & Ví dụ của Thầy/Cô (Font 14pt • Giãn dòng 1.5):</span>
+          </div>
+          <div id="theoryHandwritingLines">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Section II: Exercise Practice with Handwriting Spaces -->
+      <div class="content-section-card">
+        <div class="section-title-wrap">
+          <i data-lucide="award" style="width:20px;height:20px;color:var(--accent-rose);"></i>
+          <h3 class="section-title">PHẦN II: HỆ THỐNG BÀI TẬP RÈN LUYỆN DẠNG VIẾT TAY</h3>
+        </div>
+
+        <!-- Dynamic Exercises List -->
+        <div id="exercisesListArea">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Load Data & Scripts -->
+  <script src="data-40-chuyen-de-tap-1.js"></script>
+  <script src="script-40-chuyen-de.js"></script>
+</body>
+</html>
