@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đề Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10</title>
-  <meta name="description" content="Đề kiểm tra trắc nghiệm 15 phút môn Toán 10 bám sát tài liệu Bài 1: Bất phương trình bậc nhất hai ẩn, có hình vẽ đồ thị trực quan, chấm điểm tự động và lời giải chi tiết.">
+  <title>Đề Kiểm Tra 15 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10</title>
+  <meta name="description" content="Đề kiểm tra trắc nghiệm 15 phút môn Toán 10 Bài 2: Hệ bất phương trình bậc nhất hai ẩn, chuẩn GDPT 2018 và Khoa Cơ bản CĐN01. Tự động chấm điểm, đồ thị SVG trực quan và lời giải chi tiết.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,11 +28,11 @@
     <!-- Top Header -->
     <header class="quiz-header">
       <div class="header-left">
-        <div class="brand-badge">
-          <i data-lucide="book-marked" class="brand-icon"></i>
-          <span>TOÁN 10 - TỪ TÂM • CHƯƠNG 2: BPT BẬC NHẤT HAI ẨN</span>
+        <div class="brand-badge" style="background:#e0e7ff; color:#3730a3; border:1px solid #c7d2fe;">
+          <i data-lucide="award" class="brand-icon"></i>
+          <span>KHOA CƠ BẢN - CĐN01 & THPT • BÀI 2: HỆ BẤT PHƯƠNG TRÌNH</span>
         </div>
-        <h1 class="quiz-title">Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn</h1>
+        <h1 class="quiz-title">Kiểm Tra 15 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn</h1>
       </div>
 
       <div class="header-right">
@@ -49,10 +49,10 @@
         </div>
 
         <!-- Font Size Controls -->
-        <div class="font-zoom-group" title="Tăng giảm cỡ chữ cho dễ nhìn">
+        <div class="font-zoom-group" title="Tăng giảm cỡ chữ">
           <button id="fontDecreaseBtn" class="font-zoom-btn" title="Cỡ chữ nhỏ hơn">A-</button>
           <button id="fontResetBtn" class="font-zoom-btn active" title="Cỡ chữ mặc định">A</button>
-          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to rõ hơn">A+</button>
+          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to hơn">A+</button>
         </div>
 
         <!-- Theme Toggle -->
@@ -60,18 +60,22 @@
           <i data-lucide="moon" id="themeIcon"></i>
         </button>
 
-        <!-- Link to Quizzes & Workbooks -->
-        <a href="de-kiem-tra-b2.html" class="btn btn-secondary" title="Mở Đề kiểm tra 15 phút Bài 2: Hệ bất phương trình bậc nhất hai ẩn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#e0e7ff; border-color:#818cf8; color:#3730a3; font-weight:700;">
-          <i data-lucide="award" class="btn-icon"></i>
+        <!-- Topic Navigation Links -->
+        <a href="index.html" class="btn btn-secondary" title="Mở Đề kiểm tra Bài 1: Bất phương trình bậc nhất hai ẩn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="book-marked" class="btn-icon"></i>
+          <span>Đề KT Bài 1</span>
+        </a>
+        <a href="de-kiem-tra-b2.html" class="btn btn-primary" title="Đề kiểm tra Bài 2: Hệ bất phương trình bậc nhất hai ẩn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#4f46e5; color:#ffffff; font-weight:700;">
+          <i data-lucide="check-circle" class="btn-icon"></i>
           <span>Đề KT Bài 2</span>
         </a>
         <a href="ban-viet-tay.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 1 (41 câu)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
           <i data-lucide="book-open" class="btn-icon"></i>
           <span>Bản VT B1</span>
         </a>
-        <a href="ban-viet-tay-b2.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 2: Hệ BPT (37 câu, dòng kẻ 1.5, 14pt)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
+        <a href="ban-viet-tay-b2.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 2: Hệ BPT (37 câu, 14pt)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
           <i data-lucide="pen-tool" class="btn-icon"></i>
-          <span>Bản VT B2 (14pt)</span>
+          <span>Bản VT B2</span>
         </a>
 
         <!-- Print / Export PDF Button -->
@@ -184,7 +188,7 @@
 
           <!-- Question Grid Numbers (1 -> 10) -->
           <div class="nav-grid" id="navGrid">
-            <!-- 1 to 10 rendered in JS -->
+            <!-- Rendered via JS -->
           </div>
 
           <!-- Status Legend -->
@@ -207,15 +211,17 @@
         <!-- Document Reference Guide -->
         <div class="sidebar-card formula-mini-card">
           <div class="sidebar-card-header">
-            <h3><i data-lucide="book-open" class="sidebar-icon"></i> Nhắc nhớ trọng tâm</h3>
+            <h3><i data-lucide="book-open" class="sidebar-icon"></i> Trọng tâm Bài 2</h3>
           </div>
           <ul class="mini-notes-list">
-            <li>Dạng tổng quát: $ax + by \le c$ ($a^2 + b^2 \neq 0$).</li>
-            <li>Đường bờ $d: ax + by = c$:
-              <br>&bull; Có dấu $\le, \ge$: vẽ <strong>nét liền</strong> (lấy cả bờ).
-              <br>&bull; Có dấu $<, >$: vẽ <strong>nét đứt</strong> (không lấy bờ).
+            <li><strong>Định nghĩa:</strong> Hệ gồm từ 2 BPT bậc nhất hai ẩn trở lên.</li>
+            <li><strong>Miền nghiệm của hệ:</strong> Là <em>giao</em> các miền nghiệm của từng bất phương trình thành phần.</li>
+            <li><strong>Quy tắc tìm miền nghiệm:</strong>
+              <br>&bull; Bước 1: Vẽ các đường thẳng bờ $d_1, d_2, \dots$
+              <br>&bull; Bước 2: Gạch bỏ phần không thuộc miền nghiệm của từng BPT.
+              <br>&bull; Bước 3: Phần còn lại (đa giác) là miền nghiệm của hệ.
             </li>
-            <li>Phương pháp: Thử điểm $O(0;0)$ khi đường bờ không đi qua gốc tọa độ.</li>
+            <li><strong>Bài toán tối ưu:</strong> Giá trị lớn nhất / nhỏ nhất của $F(x, y) = ax + by$ luôn đạt tại một trong các <strong>đỉnh</strong> của miền đa giác nghiệm.</li>
           </ul>
         </div>
       </aside>
@@ -277,7 +283,7 @@
       <!-- Solutions and Detailed Breakdown -->
       <div class="solutions-container" id="solutionsContainer">
         <div class="solutions-header">
-          <h2><i data-lucide="check-square" class="section-icon"></i> Bảng Đáp Án & Lời Giải Chi Tiết (Tài liệu Bài 1)</h2>
+          <h2><i data-lucide="check-square" class="section-icon"></i> Bảng Đáp Án & Hướng Dẫn Giải Chi Tiết (Bài 2: Hệ BPT)</h2>
           
           <!-- Filter options -->
           <div class="solution-filter">
@@ -304,7 +310,7 @@
           <h3>Xác nhận nộp bài kiểm tra</h3>
         </div>
         <div class="modal-body">
-          <p id="confirmModalText">Bạn có chắc chắn muốn hoàn thành và nộp bài kiểm tra 15 phút?</p>
+          <p id="confirmModalText">Bạn có chắc chắn muốn hoàn thành và nộp bài kiểm tra 15 phút (Bài 2: Hệ bất phương trình)?</p>
           <div class="unanswered-warning" id="unansweredWarning" style="display: none;">
             <i data-lucide="alert-triangle" class="warning-icon"></i>
             <span>Cảnh báo: Bạn còn <strong id="unansweredModalCount">0</strong> câu chưa chọn đáp án!</span>
@@ -324,7 +330,7 @@
           <div class="modal-icon-wrap">
             <i data-lucide="printer" class="modal-icon"></i>
           </div>
-          <h3>Tùy chọn In / Xuất file PDF</h3>
+          <h3>Tùy chọn In / Xuất file PDF (A4)</h3>
         </div>
         <div class="modal-body">
           <p>Thầy/Cô vui lòng chọn định dạng muốn in hoặc lưu thành file PDF:</p>
@@ -332,15 +338,15 @@
             <button id="printExamOnlyBtn" class="print-choice-card">
               <div class="choice-icon"><i data-lucide="file-text"></i></div>
               <div class="choice-info">
-                <strong>1. In Đề thi giấy (Dành cho học sinh)</strong>
-                <span>Trang in A4 gồm 10 câu trắc nghiệm, hình vẽ đồ thị và bảng điền đáp án, không có lời giải.</span>
+                <strong>1. In Đề thi giấy (Dành cho học sinh làm bài)</strong>
+                <span>Trang in A4 gồm 10 câu trắc nghiệm Bài 2, hình vẽ đồ thị và bảng điền đáp án 10 ô, không có lời giải.</span>
               </div>
             </button>
             <button id="printFullSolutionBtn" class="print-choice-card">
               <div class="choice-icon"><i data-lucide="check-circle-2"></i></div>
               <div class="choice-info">
                 <strong>2. In Đề thi kèm Đáp án & Lời giải chi tiết</strong>
-                <span>Đầy đủ 10 câu hỏi, hình vẽ kèm lời giải chi tiết từng bước cho giáo viên và học sinh ôn tập.</span>
+                <span>Đầy đủ 10 câu hỏi, hình vẽ vector kèm hướng dẫn giải chi tiết từng bước cho giáo viên và học sinh ôn tập.</span>
               </div>
             </button>
           </div>
@@ -351,20 +357,20 @@
       </div>
     </div>
 
-    <!-- Container In Ấn Chuyên Dụng Khổ A4 (Chỉ xuất hiện khi in / xuất PDF) -->
+    <!-- Container In Ấn Chuyên Dụng Khổ A4 -->
     <div id="printableExamSheet" class="printable-exam-sheet" style="display: none;">
-      <!-- Nội dung 10 câu in giấy được render tự động -->
+      <!-- Rendered via JS -->
     </div>
 
     <!-- Footer -->
     <footer class="quiz-footer">
-      <p>Đề kiểm tra trắc nghiệm 15 phút bám sát tài liệu <strong>Bài 1: Bất phương trình bậc nhất hai ẩn (Toán 10)</strong>.</p>
-      <p class="footer-sub">Hệ thống hỗ trợ tự động chấm điểm, hiển thị đồ thị vector SVG sắc nét, tương thích trên mọi thiết bị máy tính và điện thoại di động.</p>
+      <p>Đề kiểm tra trắc nghiệm 15 phút <strong>Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Toán 10)</strong>.</p>
+      <p class="footer-sub">Biên soạn: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP. Hỗ trợ tự động chấm điểm và hiển thị đồ thị vector SVG sắc nét.</p>
     </footer>
 
   </div>
 
   <!-- App Script -->
-  <script src="script.js"></script>
+  <script src="script-b2.js"></script>
 </body>
 </html>

@@ -1,55 +1,44 @@
-# ĐỀ KIỂM TRA TRẮC NGHIỆM 15 PHÚT: BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN (TOÁN 10)
+# HỆ THỐNG ĐỀ KIỂM TRA TRẮC NGHIỆM 15 PHÚT MÔN TOÁN 10 (GDPT 2018)
+> **Biên soạn & Giảng dạy**: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP.
 
-Ứng dụng web kiểm tra trắc nghiệm tương tác trực tuyến 15 phút, trích xuất 100% từ nguồn tài liệu: **Toán 10 - Từ Tâm (Chương 2: Bất phương trình và Hệ BPT bậc nhất hai ẩn)**.
-
----
-
-## 🌟 Cấu Trúc Đề Thi 15 Phút (Chuẩn Nguồn Toán 10 Từ Tâm)
-
-1. **Câu 1 (Nhận biết - Trích Câu 8 Trang 7 Từ Tâm)**: Nhận biết dạng bất phương trình bậc nhất hai ẩn ($2x + 3y < 5$).
-2. **Câu 2 (Nhận biết - Trích Câu 1 Trang 7 Từ Tâm)**: Khái niệm miền nghiệm của bất phương trình bậc nhất hai ẩn $ax + by \le c$.
-3. **Câu 3 (Nhận biết - Trích Câu 9 Trang 7 Từ Tâm)**: Điểm thuộc miền nghiệm của $2x + y - 3 > 0$ ($M(1; 1{,}5)$).
-4. **Câu 4 (Thông hiểu - Trích Câu 7 Trang 7 Từ Tâm)**: Cặp số không là nghiệm của $x - 4y + 5 \ge 0$ ($(-1; 3)$).
-5. **Câu 5 (Thông hiểu - Trích Câu 10 Trang 7-8 Từ Tâm)**: Điểm không thuộc miền nghiệm của $-3x + y + 2 \le 0$ ($A(1; 2)$).
-6. **Câu 6 (Thông hiểu - Trích Câu 21 Trang 9 Từ Tâm - Có đồ thị Oxy)**: Nhận diện miền nghiệm $3x + 2y > 6$ qua $(2; 0)$ và $(0; 3)$ không chứa gốc $O(0; 0)$.
-7. **Câu 7 (Thông hiểu - Trích Câu 20 Trang 8-9 Từ Tâm - Có đồ thị Oxy)**: Nhận diện miền nghiệm $3x - 2y > -6$ qua $(-2; 0)$ và $(0; 3)$ chứa gốc $O(0; 0)$.
-8. **Câu 8 (Thông hiểu - Trích Câu 24 Trang 10 Từ Tâm)**: Cặp số là nghiệm của $3x - 3y \ge 4$ ($(5; 1)$).
-9. **Câu 9 (Vận dụng - Trích Câu 33 Trang 12 Từ Tâm - Toán thực tế)**: Thời gian sản xuất 2 loại sản phẩm tối đa 18 giờ ($3x + 2y \le 18$).
-10. **Câu 10 (Vận dụng - Trích Câu 36 Trang 12 Từ Tâm - Tham số $m$)**: Tìm số giá trị nguyên của $m \in [-10; 10]$ để $(1; -1)$ là nghiệm của $2(m - 1)x + (m + 2)y \ge 0$.
+Hệ thống web app kiểm tra trắc nghiệm tương tác trực tuyến 15 phút, tự động chấm điểm, hiển thị công thức KaTeX sắc nét, đồ thị vector SVG và xuất bản in PDF chuẩn Sư phạm.
 
 ---
 
-## 🚀 HƯỚNG DẪN DEPLOY MIỄN PHÍ LÊN GITHUB PAGES TRONG 2 PHÚT
+## 🌐 LINK TRUY CẬP TRỰC TUYẾN (GITHUB PAGES)
 
-Thầy/Cô có thể đưa đề kiểm tra này lên mạng Internet hoàn toàn miễn phí bằng tính năng **GitHub Pages** để gửi link cho học sinh làm bài:
-
-### Cách thực hiện trên web GitHub:
-
-1. **Tạo repository mới**:
-   - Truy cập [https://github.com](https://github.com) -> bấm nút **"New"**.
-   - Đặt tên repository: `kiem-tra-15-phut-toan-10` (chọn chế độ **Public**).
-   - Bấm **"Create repository"**.
-
-2. **Tải các tệp lên**:
-   - Bấm chọn **"uploading an existing file"**.
-   - Kéo thả các tệp trong thư mục này vào:
-     - `index.html`
-     - `style.css`
-     - `script.js`
-     - `.nojekyll`
-     - `README.md`
-   - Bấm nút xanh **"Commit changes"**.
-
-3. **Bật GitHub Pages**:
-   - Bấm vào tab **"Settings"** -> chọn mục **"Pages"** ở menu bên trái.
-   - Tại **"Build and deployment"** -> **"Branch"**:
-     - Chọn nhánh: **`main`** (hoặc `master`).
-     - Chọn thư mục: **`/ (root)`**.
-     - Bấm **"Save"**.
-   - Sau 1 - 2 phút, GitHub sẽ cung cấp link trực tuyến dạng:
-     `https://<ten-tai-khoan>.github.io/kiem-tra-15-phut-toan-10/`
+- 📝 **Đề kiểm tra 15 phút - Bài 1: Bất phương trình bậc nhất hai ẩn**:  
+  👉 [https://sanginnova.github.io/de-kiem-tra-toan/](https://sanginnova.github.io/de-kiem-tra-toan/)
+- 🎯 **Đề kiểm tra 15 phút - Bài 2: Hệ bất phương trình bậc nhất hai ẩn**:  
+  👉 [https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-b2.html](https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-b2.html)
+- 📖 **Vở bài tập Bản viết tay Bài 1 (41 câu trắc nghiệm & tự luận)**:  
+  👉 [https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay.html](https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay.html)
+- ✍️ **Vở bài tập Bản viết tay Bài 2: Hệ BPT (37 câu, dòng kẻ 1.5, font 14pt)**:  
+  👉 [https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay-b2.html](https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay-b2.html)
 
 ---
 
-## 💻 CHẠY TRỰC TIẾP TRÊN MÁY TÍNH
-Thầy/Cô chỉ cần click đúp vào file [index.html](file:///d:/TOAN/SOẠN%20TÀI%20LIỆU%20DẠY%20THÊM/HTML/index.html) để mở và làm bài ngay trên trình duyệt mà không cần kết nối mạng.
+## 🌟 Cấu Trúc Đề Thi 15 Phút - Bài 2 (Hệ bất phương trình bậc nhất hai ẩn)
+
+1. **Câu 1 (Nhận biết)**: Nhận biết dạng hệ bất phương trình bậc nhất hai ẩn.
+2. **Câu 2 (Nhận biết)**: Khái niệm miền nghiệm của hệ bất phương trình (giao các miền nghiệm).
+3. **Câu 3 (Nhận biết)**: Điểm thuộc miền nghiệm của hệ bất phương trình ($M(0; 0)$).
+4. **Câu 4 (Nhận biết)**: Cặp số không là nghiệm của hệ bất phương trình ($(3; 1)$).
+5. **Câu 5 (Thông hiểu - Đồ thị SVG)**: Nhận diện miền tam giác $OAB$ qua hình vẽ ($2x + 3y \le 6, x \ge 0, y \ge 0$).
+6. **Câu 6 (Thông hiểu - Đồ thị SVG)**: Xác định hệ bất phương trình từ miền nghiệm hình vẽ tam giác ($x - y \ge 0, x + y \le 2, y \ge 0$).
+7. **Câu 7 (Thông hiểu)**: Tìm số giá trị nguyên của tham số $m$ để cặp số $(m; 1)$ thuộc miền nghiệm (4 giá trị).
+8. **Câu 8 (Thông hiểu - Toán thực tế)**: Lập hệ bất phương trình mô hình hóa diện tích canh tác và ngày công.
+9. **Câu 9 (Vận dụng)**: Tìm giá trị lớn nhất của biểu thức $F(x; y) = 3x + 2y$ trên miền nghiệm tứ giác ($F_{max} = 10$).
+10. **Câu 10 (Vận dụng cao - Tối ưu kinh tế)**: Bài toán tối ưu hóa lợi nhuận xưởng sản xuất bàn ghế gỗ ($4$ ghế loại A và $2$ ghế loại B).
+
+---
+
+## 🚀 LỆNH DEPLOY LÊN GITHUB
+
+Để cập nhật và deploy toàn bộ hệ thống lên GitHub Pages:
+```bash
+git add .
+git commit -m "feat: Add 15-min online quiz for Lesson 2 (He bat phuong trinh bac nhat hai an)"
+git push origin main
+```
+Sau 1-2 phút, GitHub Pages sẽ tự động cập nhật phiên bản mới nhất.
