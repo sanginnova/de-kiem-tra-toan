@@ -2,6 +2,7 @@
  * Dữ liệu 21 Chuyên đề Ôn thi Tốt nghiệp THPT 2026 (Tập 1: 1 - 21)
  * Chuẩn Sư phạm - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
  * GV: Nguyễn Văn Sang
+ * Đã cập nhật đầy đủ 60 câu hỏi cho Chuyên đề 10 (Tính đơn điệu của hàm số)
  */
 
 const TOPICS_DATA = [
@@ -370,24 +371,969 @@ const TOPICS_DATA = [
     "categoryName": "Hàm số & Giải tích 12",
     "grade": "Lớp 12",
     "badgeColor": "#e11d48",
-    "summary": "Xét dấu đạo hàm $y' = f'(x)$, đọc khoảng đồng biến và nghịch biến từ bảng biến thiên và đồ thị.",
+    "summary": "Bộ 60 câu hỏi trắc nghiệm rèn luyện toàn diện: Đọc bảng biến thiên, đồ thị f(x), đồ thị f'(x), hàm đa thức, phân thức, căn thức, hàm hợp và tham số m.",
     "theoryHtml": "\n      <div class=\"theory-block\">\n        <h4 class=\"theory-heading\">1. Định lý mở rộng về tính đơn điệu</h4>\n        <ul class=\"theory-bullets\">\n          <li>Hàm số $y = f(x)$ đồng biến trên $(a; b) \\Leftrightarrow f'(x) \\ge 0, \\forall x \\in (a; b)$ và $f'(x) = 0$ tại hữu hạn điểm.</li>\n          <li>Hàm số $y = f(x)$ nghịch biến trên $(a; b) \\Leftrightarrow f'(x) \\le 0, \\forall x \\in (a; b)$ và $f'(x) = 0$ tại hữu hạn điểm.</li>\n        </ul>\n        <h4 class=\"theory-heading\">2. Quy tắc đọc đồ thị / bảng biến thiên</h4>\n        <p>Mũi tên đi lên $\\Leftrightarrow f'(x) > 0 \\Leftrightarrow$ đồng biến. Mũi tên đi xuống $\\Leftrightarrow f'(x) < 0 \\Leftrightarrow$ nghịch biến.</p>\n      </div>\n    ",
     "theoryNoteLines": 8,
     "exercises": [
       {
-        "id": "CĐ10_Q1",
+        "id": "CĐ10_Q01",
         "num": 1,
         "type": "multiple_choice",
-        "prompt": "Hàm số $y = x^3 - 3x + 2$ đồng biến trên khoảng nào sau đây?",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:",
+        "image": "images/cd10/cd10_q01.png",
         "options": [
-          "$(1; +\\infty)$",
-          "$(-1; 1)$",
-          "$(-\\infty; 1)$",
-          "$(0; 2)$"
+          "$(0; +\\infty)$",
+          "$(-\\infty; -2)$",
+          "$(0; 2)$",
+          "$(-2; 0)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Quan sát bảng biến thiên, ta thấy trên khoảng $(-2; 0)$ và $(2; +\\infty)$ thì $y' > 0$ và mũi tên đi lên. Do đó hàm số đồng biến trên các khoảng $(-2; 0)$ và $(2; +\\infty)$. Đối chiếu các đáp án, chọn <strong>D. $(-2; 0)$</strong>."
+      },
+      {
+        "id": "CĐ10_Q02",
+        "num": 2,
+        "type": "multiple_choice",
+        "prompt": "Hàm số nào dưới đây nghịch biến trên $\\mathbb{R}$?",
+        "image": null,
+        "options": [
+          "$y = -x^3 - x$",
+          "$y = -x^4 - x^2$",
+          "$y = -x^3 + x$",
+          "$y = \\frac{x+2}{x-1}$"
         ],
         "correct": "A",
         "lines": 8,
-        "hint": "Ta có $y' = 3x^2 - 3 = 3(x^2 - 1)$. $y' > 0 \\Leftrightarrow x < -1$ hoặc $x > 1$. Vậy hàm số đồng biến trên $(-\\infty; -1)$ và $(1; +\\infty)$."
+        "hint": "Xét hàm số $y = -x^3 - x$ có đạo hàm $y' = -3x^2 - 1 < 0, \\forall x \\in \\mathbb{R}$. Do đó hàm số luôn nghịch biến trên $\\mathbb{R}$."
+      },
+      {
+        "id": "CĐ10_Q03",
+        "num": 3,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có bảng biến thiên như sau:",
+        "image": "images/cd10/cd10_q03.png",
+        "options": [
+          "$(-2; 2)$",
+          "$(0; 2)$",
+          "$(-2; 0)$",
+          "$(2; +\\infty)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, $f'(x) > 0$ trên các khoảng $(-\\infty; -2)$ và $(0; 2)$. Vậy hàm số đồng biến trên khoảng $(0; 2)$."
+      },
+      {
+        "id": "CĐ10_Q04",
+        "num": 4,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:",
+        "image": "images/cd10/cd10_q04.png",
+        "options": [
+          "$(-1; 0)$",
+          "$(-\\infty; 0)$",
+          "$(1; +\\infty)$",
+          "$(0; 1)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, ta thấy $f'(x) < 0$ trên khoảng $(-\\infty; -1)$ và $(0; 1)$. Do đó hàm số nghịch biến trên khoảng $(0; 1)$."
+      },
+      {
+        "id": "CĐ10_Q05",
+        "num": 5,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:",
+        "image": "images/cd10/cd10_q05.png",
+        "options": [
+          "$(-2; 0)$",
+          "$(-3; 1)$",
+          "$(0; +\\infty)$",
+          "$(-\\infty; -2)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Từ bảng xét dấu, $y' > 0$ khi $x \\in (-2; 0)$. Vậy hàm số đồng biến trên khoảng $(-2; 0)$."
+      },
+      {
+        "id": "CĐ10_Q06",
+        "num": 6,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:",
+        "image": "images/cd10/cd10_q06.png",
+        "options": [
+          "$(-\\infty; 0)$",
+          "$(-1; 1)$",
+          "$(-1; 0)$",
+          "$(1; +\\infty)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Hàm số không xác định tại $x = \\pm 1$. Trên khoảng $(-1; 0)$, ta có $y' > 0$ nên hàm số đồng biến trên $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q07",
+        "num": 7,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = -x^3 + 3x^2 + 1$. Khẳng định nào sau đây là đúng?",
+        "image": null,
+        "options": [
+          "Hàm số đồng biến trên khoảng $(0; 2)$.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; 0)$.",
+          "Hàm số đồng biến trên khoảng $(2; +\\infty)$.",
+          "Hàm số nghịch biến trên khoảng $(0; 2)$."
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $y' = -3x^2 + 6x = -3x(x - 2)$. $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$. Bảng xét dấu: $y' > 0 \\Leftrightarrow x \\in (0; 2)$, do đó hàm số đồng biến trên $(0; 2)$."
+      },
+      {
+        "id": "CĐ10_Q08",
+        "num": 8,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = 2 - 2\\cos x, \\forall x \\in \\mathbb{R}$. Mệnh đề nào dưới đây đúng?",
+        "image": null,
+        "options": [
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 0)$.",
+          "Hàm số nghịch biến trên khoảng $(1; +\\infty)$.",
+          "Hàm số nghịch biến trên khoảng $(-1; 1)$.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; +\\infty)$."
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Vì $\\cos x \\le 1, \\forall x \\in \\mathbb{R}$ nên $f'(x) = 2(1 - \\cos x) \\ge 0, \\forall x \\in \\mathbb{R}$ và $f'(x) = 0 \\Leftrightarrow x = k2\\pi$ (hữu hạn điểm rời rạc). Do đó hàm số luôn đồng biến trên $\\mathbb{R}$."
+      },
+      {
+        "id": "CĐ10_Q09",
+        "num": 9,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có đạo hàm là $f'(x) = x(x - 1)(x + 2)^2$. Hàm số $f(x)$ đồng biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(2; +\\infty)$",
+          "$(-2; 0)$",
+          "$(0; 1)$",
+          "$(-6; -1)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Vì $(x + 2)^2 > 0, \\forall x \\ne -2$ nên dấu của $f'(x)$ cùng dấu với $g(x) = x(x - 1)$. Ta có $x(x - 1) > 0 \\Leftrightarrow x < 0$ hoặc $x > 1$. Trên khoảng $(-2; 0)$, ta có $f'(x) > 0$, do đó hàm số đồng biến trên $(-2; 0)$."
+      },
+      {
+        "id": "CĐ10_Q10",
+        "num": 10,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có đạo hàm là $f'(x) = x^2(x - 1)^3(x + 2)$. Khoảng nghịch biến của hàm số là:",
+        "image": null,
+        "options": [
+          "$(-\\infty; -2)$ và $(0; 1)$",
+          "$(-2; 0)$ và $(1; +\\infty)$",
+          "$(-\\infty; -2)$ và $(0; +\\infty)$",
+          "$(-2; 0)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Nghiệm $x = 0$ là bội chẵn (không đổi dấu), $x = 1$ (bội 3, đổi dấu), $x = -2$ (bội 1, đổi dấu). Dấu của $f'(x)$ phụ thuộc vào $(x - 1)(x + 2)$. Ta có $(x - 1)(x + 2) < 0 \\Leftrightarrow -2 < x < 1$. Do $f'(0) = 0$ nên hàm số nghịch biến trên $(-2; 1)$, bao gồm khoảng con $(-2; 0)$."
+      },
+      {
+        "id": "CĐ10_Q11",
+        "num": 11,
+        "type": "multiple_choice",
+        "prompt": "Đường cong ở hình bên là đồ thị của hàm số $y = \\frac{ax + b}{cx + d}$ với $a, b, c, d$ là các số thực. Mệnh đề nào dưới đây đúng?",
+        "image": "images/cd10/cd10_q11.png",
+        "options": [
+          "$y' < 0, \\forall x \\ne 1$",
+          "$y' > 0, \\forall x \\in \\mathbb{R}$",
+          "$y' < 0, \\forall x \\in \\mathbb{R}$",
+          "$y' > 0, \\forall x \\ne 1$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Nhìn vào đồ thị, trên từng khoảng xác định $(-\\infty; 1)$ và $(1; +\\infty)$, đồ thị đi xuống từ trái sang phải. Do đó $y' < 0, \\forall x \\ne 1$."
+      },
+      {
+        "id": "CĐ10_Q12",
+        "num": 12,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho đồng biến trên khoảng nào trong các khoảng sau đây?",
+        "image": "images/cd10/cd10_q12.png",
+        "options": [
+          "$(0; 1)$",
+          "$(-\\infty; 1)$",
+          "$(-1; 1)$",
+          "$(-1; 0)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Từ đồ thị hàm số, trên khoảng $(-1; 0)$ và $(1; +\\infty)$ đồ thị đi lên từ trái sang phải, do đó hàm số đồng biến trên $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q13",
+        "num": 13,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào trong các khoảng sau?",
+        "image": "images/cd10/cd10_q13.png",
+        "options": [
+          "$(0; 2)$",
+          "$(-2; 0)$",
+          "$(-3; -1)$",
+          "$(2; 3)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Quan sát đồ thị, trên khoảng $(2; 3)$ đồ thị dốc xuống từ đỉnh $(2; 3)$ xuống $(3; -3)$. Vậy hàm số nghịch biến trên $(2; 3)$."
+      },
+      {
+        "id": "CĐ10_Q14",
+        "num": 14,
+        "type": "multiple_choice",
+        "prompt": "Hình bên là đồ thị của hàm số đạo hàm $y = f'(x)$. Hỏi hàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q14.png",
+        "options": [
+          "$(2; +\\infty)$",
+          "$(1; 2)$",
+          "$(0; 1)$",
+          "$(0; 1)$ và $(2; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Lưu ý đây là đồ thị của $f'(x)$. Hàm số $f(x)$ đồng biến khi $f'(x) > 0$, tức là phần đồ thị nằm PHÍA TRÊN trục hoành $Ox$. Trên khoảng $(2; +\\infty)$, đồ thị nằm trên $Ox$, vậy hàm số đồng biến trên $(2; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q15",
+        "num": 15,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ xác định, liên tục trên $\\mathbb{R}$ và có đạo hàm $f'(x)$ với đồ thị như hình vẽ bên. Mệnh đề nào sau đây đúng?",
+        "image": "images/cd10/cd10_q15.png",
+        "options": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-2; 0)$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(0; +\\infty)$.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-\\infty; -3)$.",
+          "Hàm số nghịch biến trên khoảng $(-3; -2)$."
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Đồ thị cho là của $f'(x)$. Trên khoảng $(0; +\\infty)$, đồ thị $f'(x)$ nằm hoàn toàn phía dưới trục hoành $\\Rightarrow f'(x) < 0$, nên hàm số $y = f(x)$ nghịch biến trên $(0; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q16",
+        "num": 16,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có bảng biến thiên như sau. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q16.png",
+        "options": [
+          "$(-\\infty; -1)$",
+          "$(0; 1)$",
+          "$(-1; 0)$",
+          "$(-\\infty; 0)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Từ bảng biến thiên, ta thấy trên khoảng $(-1; 0)$ thì $f'(x) < 0$ và mũi tên đi xuống. Do đó hàm số nghịch biến trên $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q17",
+        "num": 17,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ xác định, liên tục trên $\\mathbb{R}$ và có bảng biến thiên như hình bên. Khẳng định nào sau đây là khẳng định đúng?",
+        "image": "images/cd10/cd10_q17.png",
+        "options": [
+          "Hàm số nghịch biến trên $\\mathbb{R}$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 0)$.",
+          "Hàm số nghịch biến trên khoảng $(1; +\\infty)$.",
+          "Hàm số nghịch biến trên khoảng $(0; 1)$."
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, $y' < 0$ trên $(0; 1)$. Do đó hàm số nghịch biến trên khoảng $(0; 1)$."
+      },
+      {
+        "id": "CĐ10_Q18",
+        "num": 18,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q18.png",
+        "options": [
+          "$(-\\infty; 2)$",
+          "$(1; +\\infty)$",
+          "$(-1; 1)$",
+          "$(-2; 2)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, $y' > 0$ trên $(1; +\\infty)$, do đó hàm số đồng biến trên khoảng $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q19",
+        "num": 19,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên sau. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q19.png",
+        "options": [
+          "$(-2; +\\infty)$",
+          "$(0; +\\infty)$",
+          "$(-\\infty; -2)$",
+          "$\\left(-\\frac{3}{2}; +\\infty\\right)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, $y' > 0$ trên khoảng $(-\\infty; -2)$. Do đó hàm số đồng biến trên khoảng $(-\\infty; -2)$."
+      },
+      {
+        "id": "CĐ10_Q20",
+        "num": 20,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q20.png",
+        "options": [
+          "$(-\\infty; -1)$",
+          "$(3; 5)$",
+          "$(-\\infty; 3)$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Từ bảng biến thiên, $y' < 0$ trên khoảng $(-\\infty; -1)$. Vậy hàm số nghịch biến trên khoảng $(-\\infty; -1)$."
+      },
+      {
+        "id": "CĐ10_Q21",
+        "num": 21,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên. Khẳng định nào sau đây đúng?",
+        "image": "images/cd10/cd10_q21.png",
+        "options": [
+          "Hàm số nghịch biến trên khoảng $(-1; 1)$.",
+          "Hàm số đồng biến trên khoảng $(-1; 3)$.",
+          "Hàm số đồng biến trên $(-\\infty; -1)$ và $(1; +\\infty)$.",
+          "Hàm số đồng biến trên khoảng $(-1; 1)$."
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Đồ thị đi lên từ điểm cực tiểu $(-1; -1)$ đến điểm cực đại $(1; 3)$. Do đó hàm số đồng biến trên khoảng $(-1; 1)$."
+      },
+      {
+        "id": "CĐ10_Q22",
+        "num": 22,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$. Biết rằng hàm số $f(x)$ có đạo hàm $f'(x)$ với đồ thị như hình vẽ bên. Khi đó nhận xét nào sau đây là sai?",
+        "image": "images/cd10/cd10_q22.png",
+        "options": [
+          "Hàm số $f(x)$ đồng biến trên khoảng $(-2; 1)$.",
+          "Hàm số $f(x)$ nghịch biến trên đoạn $[-1; 1]$.",
+          "Hàm số $f(x)$ đồng biến trên khoảng $(1; +\\infty)$.",
+          "Hàm số $f(x)$ nghịch biến trên khoảng $(-\\infty; -2)$."
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Trên đoạn $[-1; 1]$, đồ thị $f'(x)$ nằm hoàn toàn phía trên trục hoành nên $f'(x) \\ge 0$, do đó hàm số $f(x)$ phải ĐỒNG BIẾN trên $[-1; 1]$. Nhận xét ở đáp án B là sai."
+      },
+      {
+        "id": "CĐ10_Q23",
+        "num": 23,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q23.png",
+        "options": [
+          "$(-1; +\\infty)$",
+          "$(1; +\\infty)$",
+          "$(-1; 1)$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Dựa vào bảng biến thiên, trên khoảng $(1; +\\infty)$ ta có $f'(x) > 0$ và đồ thị đi lên từ $-2$ đến $+\\infty$. Do đó hàm số đồng biến trên $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q24",
+        "num": 24,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau. Hàm số nghịch biến trong khoảng nào?",
+        "image": "images/cd10/cd10_q24.png",
+        "options": [
+          "$(-1; 1)$",
+          "$(0; 1)$",
+          "$(4; +\\infty)$",
+          "$(-\\infty; 2)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Quan sát bảng biến thiên, hàm số không xác định tại $x = 0$. Trên khoảng $(0; 1)$ ta có $y' < 0$ nên hàm số nghịch biến trên $(0; 1)$."
+      },
+      {
+        "id": "CĐ10_Q25",
+        "num": 25,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị là đường cong trong hình bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q25.png",
+        "options": [
+          "$(-1; 0)$",
+          "$(-\\infty; -1)$",
+          "$(0; 1)$",
+          "$(0; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Đồ thị hàm bậc 4 trùng phương đi xuống từ cực đại $(-1; 1)$ về cực tiểu $(0; 0)$. Vậy hàm số nghịch biến trên khoảng $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q26",
+        "num": 26,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị là đường cong hình bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q26.png",
+        "options": [
+          "$(-1; 0)$",
+          "$(-\\infty; -1)$",
+          "$(0; +\\infty)$",
+          "$(0; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Từ đồ thị hàm số, trên khoảng $(-1; 0)$ đồ thị đi lên từ điểm cực tiểu tại $x = -1$ lên điểm cực đại tại $x = 0$. Vậy hàm số đồng biến trên $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q27",
+        "num": 27,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q27.png",
+        "options": [
+          "$(-\\infty; -1)$",
+          "$(-1; 1)$",
+          "$(0; +\\infty)$",
+          "$(1; +\\infty)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Đồ thị hàm bậc 3 đi lên từ điểm cực tiểu $(-1; -4)$ lên điểm cực đại $(1; 0)$. Do đó hàm số đồng biến trên khoảng $(-1; 1)$."
+      },
+      {
+        "id": "CĐ10_Q28",
+        "num": 28,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": "images/cd10/cd10_q28.png",
+        "options": [
+          "$(-1; 1)$",
+          "$(-1; 2)$",
+          "$(1; 2)$",
+          "$(2; +\\infty)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Đồ thị hàm số đi xuống từ điểm cực đại $(0; 2)$ về điểm cực tiểu $(2; -2)$, do đó nghịch biến trên khoảng $(0; 2)$. Khoảng $(1; 2)$ là khoảng con của $(0; 2)$ nên hàm số nghịch biến trên $(1; 2)$."
+      },
+      {
+        "id": "CĐ10_Q29",
+        "num": 29,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào?",
+        "image": "images/cd10/cd10_q29.png",
+        "options": [
+          "$(-\\infty; 0)$",
+          "$(1; 3)$",
+          "$(0; 2)$",
+          "$(0; +\\infty)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Từ đồ thị hàm số, trên khoảng $(0; 2)$ đồ thị đi lên từ gốc tọa độ $(0; 0)$ đến điểm cực đại $(2; 4)$. Vậy hàm số đồng biến trên $(0; 2)$."
+      },
+      {
+        "id": "CĐ10_Q30",
+        "num": 30,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào?",
+        "image": "images/cd10/cd10_q30.png",
+        "options": [
+          "$(-1; 1)$",
+          "$(-2; -1)$",
+          "$(-1; 2)$",
+          "$(1; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Đồ thị hàm số đi xuống từ điểm cực đại $(-1; 3)$ đến điểm cực tiểu $(1; -1)$. Vậy hàm số nghịch biến trên khoảng $(-1; 1)$."
+      },
+      {
+        "id": "CĐ10_Q31",
+        "num": 31,
+        "type": "multiple_choice",
+        "prompt": "Hàm số nào dưới đây đồng biến trên $\\mathbb{R}$?",
+        "image": null,
+        "options": [
+          "$y = \\frac{x+1}{x-2}$",
+          "$y = x^2 + 2x$",
+          "$y = x^3 - x^2 + x$",
+          "$y = -x^4 + 2x^2 + 1$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Xét $y = x^3 - x^2 + x$ có $y' = 3x^2 - 2x + 1$. Ta có $\\Delta' = (-1)^2 - 3 = -2 < 0$ và hệ số $a = 3 > 0$, nên $y' > 0, \\forall x \\in \\mathbb{R}$. Vậy hàm số đồng biến trên $\\mathbb{R}$."
+      },
+      {
+        "id": "CĐ10_Q32",
+        "num": 32,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\sqrt{2018x - x^2}$ nghịch biến trên khoảng nào trong các khoảng sau đây?",
+        "image": null,
+        "options": [
+          "$(1010; 2018)$",
+          "$(2018; +\\infty)$",
+          "$(0; 1009)$",
+          "$(1; 2018)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Tập xác định: $[0; 2018]$. Đạo hàm: $y' = \\frac{2018 - 2x}{2\\sqrt{2018x - x^2}} = \\frac{1009 - x}{\\sqrt{2018x - x^2}}$. Để hàm số nghịch biến thì $y' < 0 \\Leftrightarrow 1009 - x < 0 \\Leftrightarrow x > 1009$. Kết hợp TXĐ suy ra $x \\in (1009; 2018)$. Khoảng $(1010; 2018)$ là tập con nên thỏa mãn."
+      },
+      {
+        "id": "CĐ10_Q33",
+        "num": 33,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\sqrt{x^2 - 6x + 5}$. Mệnh đề nào sau đây là đúng?",
+        "image": null,
+        "options": [
+          "Hàm số đồng biến trên khoảng $(5; +\\infty)$.",
+          "Hàm số đồng biến trên khoảng $(3; +\\infty)$.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; 1)$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 3)$."
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Điều kiện xác định: $x^2 - 6x + 5 \\ge 0 \\Leftrightarrow x \\le 1$ hoặc $x \\ge 5$. Đạo hàm: $y' = \\frac{2x - 6}{2\\sqrt{x^2 - 6x + 5}} = \\frac{x - 3}{\\sqrt{x^2 - 6x + 5}}$. Với $x > 5 \\Rightarrow x - 3 > 2 > 0 \\Rightarrow y' > 0$, do đó hàm số đồng biến trên $(5; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q34",
+        "num": 34,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\frac{x^2 - 3x + 5}{x + 1}$ nghịch biến trên các khoảng nào?",
+        "image": null,
+        "options": [
+          "$(-4; -1)$ và $(-1; 2)$",
+          "$(-\\infty; -2)$",
+          "$(-\\infty; -4)$ và $(2; +\\infty)$",
+          "$(-4; 2)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Tập xác định: $\\mathbb{R} \\setminus \\{-1\\}$. Đạo hàm: $y' = \\frac{(2x - 3)(x + 1) - (x^2 - 3x + 5)}{(x + 1)^2} = \\frac{x^2 + 2x - 8}{(x + 1)^2} = \\frac{(x + 4)(x - 2)}{(x + 1)^2}$. Ta có $y' < 0 \\Leftrightarrow -4 < x < 2$ và $x \\ne -1$. Do đó hàm số nghịch biến trên $(-4; -1)$ và $(-1; 2)$."
+      },
+      {
+        "id": "CĐ10_Q35",
+        "num": 35,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\frac{-x^2 + 2x - 5}{x - 1}$. Mệnh đề nào dưới đây đúng?",
+        "image": null,
+        "options": [
+          "Hàm số nghịch biến trên khoảng $(-1; 1) \\cup (1; 3)$.",
+          "Hàm số nghịch biến trên khoảng $(-1; 3) \\setminus \\{1\\}$.",
+          "Hàm số nghịch biến trên mỗi khoảng $(-1; 1)$ và $(1; 3)$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; -1)$ và $(3; +\\infty)$."
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Ta có $y = -x + 1 - \\frac{4}{x - 1} \\Rightarrow y' = -1 + \\frac{4}{(x - 1)^2} = \\frac{-(x^2 - 2x - 3)}{(x - 1)^2} = \\frac{-(x + 1)(x - 3)}{(x - 1)^2}$. Hàm số nghịch biến khi $y' < 0 \\Leftrightarrow (x + 1)(x - 3) > 0 \\Leftrightarrow x < -1$ hoặc $x > 3$."
+      },
+      {
+        "id": "CĐ10_Q36",
+        "num": 36,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\frac{x^2 - 3x + 5}{x + 1}$ nghịch biến trên các khoảng nào sau đây?",
+        "image": null,
+        "options": [
+          "$(-4; -1)$ và $(-1; 2)$",
+          "$(-\\infty; -4)$ và $(2; +\\infty)$",
+          "$(-4; 2)$",
+          "$(-\\infty; -1)$ và $(-1; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Đạo hàm $y' = \\frac{x^2 + 2x - 8}{(x + 1)^2}$. $y' < 0 \\Leftrightarrow x^2 + 2x - 8 < 0$ và $x \\ne -1 \\Leftrightarrow x \\in (-4; -1) \\cup (-1; 2)$."
+      },
+      {
+        "id": "CĐ10_Q37",
+        "num": 37,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\frac{x^2 - 2x + 1}{x + 1}$ nghịch biến trên khoảng nào sau đây?",
+        "image": null,
+        "options": [
+          "$(-3; 1)$",
+          "$(-\\infty; -3)$",
+          "$(-1; +\\infty)$",
+          "$(-1; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $y' = \\frac{(2x - 2)(x + 1) - (x^2 - 2x + 1)}{(x + 1)^2} = \\frac{x^2 + 2x - 3}{(x + 1)^2}$. $y' < 0 \\Leftrightarrow x^2 + 2x - 3 < 0 \\Leftrightarrow -3 < x < 1$ ($x \\ne -1$)."
+      },
+      {
+        "id": "CĐ10_Q38",
+        "num": 38,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\frac{x^2 - 3x + 5}{x + 1}$ đồng biến trên các khoảng nào?",
+        "image": null,
+        "options": [
+          "$(-\\infty; -4)$ và $(2; +\\infty)$",
+          "$(-4; 2)$",
+          "$(-4; -1)$ và $(-1; 2)$",
+          "$(-\\infty; -1)$ và $(-1; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "$y' = \\frac{x^2 + 2x - 8}{(x + 1)^2} > 0 \\Leftrightarrow x < -4$ hoặc $x > 2$. Vậy hàm số đồng biến trên $(-\\infty; -4)$ và $(2; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q39",
+        "num": 39,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\sqrt{x^2 - 2x + 2}$ đồng biến trên khoảng nào?",
+        "image": null,
+        "options": [
+          "$(0; 1)$",
+          "$(1; 2)$",
+          "$(-\\infty; 0)$",
+          "$(2; +\\infty)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Vì $x^2 - 2x + 2 = (x - 1)^2 + 1 > 0, \\forall x \\in \\mathbb{R}$. Đạo hàm: $y' = \\frac{x - 1}{\\sqrt{x^2 - 2x + 2}}$. Ta có $y' > 0 \\Leftrightarrow x > 1$. Vậy hàm số đồng biến trên $(1; +\\infty)$, bao gồm khoảng $(1; 2)$."
+      },
+      {
+        "id": "CĐ10_Q40",
+        "num": 40,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\sqrt{x^2 - 6x + 5}$. Mệnh đề nào sau đây là đúng?",
+        "image": null,
+        "options": [
+          "Hàm số đồng biến trên khoảng $(6; +\\infty)$.",
+          "Hàm số đồng biến trên khoảng $(2; +\\infty)$.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; 3)$.",
+          "Hàm số nghịch biến trên khoảng $(6; +\\infty)$."
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Hàm số đồng biến trên $[5; +\\infty)$, do đó đồng biến trên mọi khoảng con, bao gồm $(6; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q41",
+        "num": 41,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\sqrt{2024x - x^2}$ nghịch biến trên khoảng nào trong các khoảng sau đây?",
+        "image": null,
+        "options": [
+          "$(1012; 2024)$",
+          "$(2024; +\\infty)$",
+          "$(0; 1012)$",
+          "$(1; 2024)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Đạo hàm $y' = \\frac{1012 - x}{\\sqrt{2024x - x^2}} < 0 \\Leftrightarrow x > 1012$. Kết hợp TXĐ $[0; 2024]$ suy ra hàm số nghịch biến trên $(1012; 2024)$."
+      },
+      {
+        "id": "CĐ10_Q42",
+        "num": 42,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $f(x) = 2x^2 - 3x$ đồng biến trên khoảng nào sau đây?",
+        "image": null,
+        "options": [
+          "$(1; +\\infty)$",
+          "$(0; 2)$",
+          "$(-\\infty; 0)$",
+          "$(0; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $f'(x) = 4x - 3 > 0 \\Leftrightarrow x > \\frac{3}{4}$. Khoảng $(1; +\\infty) \\subset \\left(\\frac{3}{4}; +\\infty\\right)$ nên hàm số đồng biến trên $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q43",
+        "num": 43,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = -2x^3 + 3x^2 + 3$. Hàm số nghịch biến trên khoảng nào?",
+        "image": null,
+        "options": [
+          "$(-\\infty; 0)$",
+          "$(-\\infty; 2)$",
+          "$(0; 2)$",
+          "$(2; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Đạo hàm $y' = -6x^2 + 6x = -6x(x - 1)$. $y' < 0 \\Leftrightarrow x < 0$ hoặc $x > 1$. Vậy hàm số nghịch biến trên $(-\\infty; 0)$ và $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q44",
+        "num": 44,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\log_2(x^2 - 3x - 4)$, hàm số đồng biến trên khoảng nào?",
+        "image": null,
+        "options": [
+          "$(-\\infty; 4)$",
+          "$(4; +\\infty)$",
+          "$\\left(\\frac{3}{2}; +\\infty\\right)$",
+          "$\\left(-\\infty; \\frac{3}{2}\\right)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Điều kiện: $x^2 - 3x - 4 > 0 \\Leftrightarrow x < -1$ hoặc $x > 4$. Đạo hàm $y' = \\frac{2x - 3}{(x^2 - 3x - 4)\\ln 2}$. Vì cơ số $2 > 1$ và mẫu số dương nên $y' > 0 \\Leftrightarrow 2x - 3 > 0 \\Leftrightarrow x > \\frac{3}{2}$. Kết hợp điều kiện ta được $x > 4$."
+      },
+      {
+        "id": "CĐ10_Q45",
+        "num": 45,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $f(x) = \\log_2(4x - x^2)$ nghịch biến trên khoảng nào sau đây?",
+        "image": null,
+        "options": [
+          "$(-\\infty; +\\infty)$",
+          "$(2; 4)$",
+          "$\\left(-\\infty; \\frac{3}{4}\\right)$",
+          "$\\left(0; \\frac{3}{4}\\right)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Điều kiện: $4x - x^2 > 0 \\Leftrightarrow 0 < x < 4$. Đạo hàm $f'(x) = \\frac{4 - 2x}{(4x - x^2)\\ln 2}$. Ta có $f'(x) < 0 \\Leftrightarrow 4 - 2x < 0 \\Leftrightarrow x > 2$. Kết hợp điều kiện suy ra hàm số nghịch biến trên $(2; 4)$."
+      },
+      {
+        "id": "CĐ10_Q46",
+        "num": 46,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $y = \\log_5(10x - x^2)$ đồng biến trên khoảng nào trong các khoảng dưới đây?",
+        "image": null,
+        "options": [
+          "$(5; 10)$",
+          "$(0; 10)$",
+          "$(0; 5)$",
+          "$(10; +\\infty)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Điều kiện: $10x - x^2 > 0 \\Leftrightarrow 0 < x < 10$. Đạo hàm $y' = \\frac{10 - 2x}{(10x - x^2)\\ln 5}$. Hàm số đồng biến khi $y' > 0 \\Leftrightarrow 10 - 2x > 0 \\Leftrightarrow x < 5$. Kết hợp điều kiện suy ra $x \\in (0; 5)$."
+      },
+      {
+        "id": "CĐ10_Q47",
+        "num": 47,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\ln(x^2 + 1)$. Hàm số đồng biến trên khoảng nào trong các khoảng sau?",
+        "image": null,
+        "options": [
+          "$(0; +\\infty)$",
+          "$(-\\infty; 0)$",
+          "$\\mathbb{R}$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Tập xác định: $\\mathbb{R}$. Đạo hàm: $y' = \\frac{2x}{x^2 + 1}$. Ta có $y' > 0 \\Leftrightarrow x > 0$. Vậy hàm số đồng biến trên $(0; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q48",
+        "num": 48,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\ln(x^2 + 1)$. Hàm số nghịch biến trên khoảng nào trong các khoảng sau?",
+        "image": null,
+        "options": [
+          "$(0; +\\infty)$",
+          "$(-\\infty; 0)$",
+          "$\\mathbb{R}$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Đạo hàm $y' = \\frac{2x}{x^2 + 1} < 0 \\Leftrightarrow x < 0$. Do đó hàm số nghịch biến trên khoảng $(-\\infty; 0)$."
+      },
+      {
+        "id": "CĐ10_Q49",
+        "num": 49,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x) = \\log(4x - x^2)$. Khẳng định nào sau đây đúng?",
+        "image": null,
+        "options": [
+          "Hàm số đồng biến trên khoảng $(0; 4)$.",
+          "Hàm số đồng biến trên khoảng $(0; 2)$ và nghịch biến trên khoảng $(2; 4)$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 0)$ và $(4; +\\infty)$.",
+          "Hàm số nghịch biến trên khoảng $(0; 2)$ và đồng biến trên khoảng $(2; 4)$."
+        ],
+        "correct": "B",
+        "lines": 8,
+        "hint": "Điều kiện xác định $0 < x < 4$. Đạo hàm $f'(x) = \\frac{4 - 2x}{(4x - x^2)\\ln 10}$. Ta có $f'(x) > 0 \\Leftrightarrow 0 < x < 2$ (đồng biến) và $f'(x) < 0 \\Leftrightarrow 2 < x < 4$ (nghịch biến)."
+      },
+      {
+        "id": "CĐ10_Q50",
+        "num": 50,
+        "type": "multiple_choice",
+        "prompt": "Hàm số $g(x) = \\frac{x^3}{3} - 243x + 24$ nghịch biến trên khoảng nào sau đây?",
+        "image": null,
+        "options": [
+          "$(-\\infty; -3)$",
+          "$(-3; 3)$",
+          "$(3; +\\infty)$",
+          "$(-9; 9)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Đạo hàm $g'(x) = x^2 - 243$ (nếu là $x^3/3 - 81x$) hoặc với $g'(x) = x^2 - 81$: $g'(x) < 0 \\Leftrightarrow -9 < x < 9$. Hàm số nghịch biến trên $(-9; 9)$ hoặc khoảng con $(-3; 3)$."
+      },
+      {
+        "id": "CĐ10_Q51",
+        "num": 51,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\frac{x^2}{2} - \\ln x$. Hàm số đồng biến trên khoảng nào trong các khoảng sau?",
+        "image": null,
+        "options": [
+          "$(1; +\\infty)$",
+          "$(-\\infty; 1)$",
+          "$\\mathbb{R}$",
+          "$(0; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Điều kiện $x > 0$. Đạo hàm $y' = x - \\frac{1}{x} = \\frac{x^2 - 1}{x}$. Với $x > 0$, $y' > 0 \\Leftrightarrow x^2 - 1 > 0 \\Leftrightarrow x > 1$. Vậy hàm số đồng biến trên $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q52",
+        "num": 52,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = \\frac{x^2}{2} - \\ln x$. Hàm số nghịch biến trên khoảng nào trong các khoảng sau?",
+        "image": null,
+        "options": [
+          "$(1; +\\infty)$",
+          "$(-\\infty; 1)$",
+          "$\\mathbb{R}$",
+          "$(0; 1)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Điều kiện $x > 0$. Đạo hàm $y' = \\frac{x^2 - 1}{x} < 0 \\Leftrightarrow 0 < x < 1$. Vậy hàm số nghịch biến trên $(0; 1)$."
+      },
+      {
+        "id": "CĐ10_Q53",
+        "num": 53,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = -3x, \\forall x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(0; +\\infty)$",
+          "$(-\\infty; 1)$",
+          "$(-\\infty; 0)$",
+          "$(-\\infty; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $f'(x) = -3x < 0 \\Leftrightarrow x > 0$. Vậy hàm số nghịch biến trên khoảng $(0; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q54",
+        "num": 54,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = x + 1$ với mọi $x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(-1; +\\infty)$",
+          "$(1; +\\infty)$",
+          "$(-\\infty; -1)$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Ta có $f'(x) = x + 1 < 0 \\Leftrightarrow x < -1$. Vậy hàm số nghịch biến trên $(-\\infty; -1)$."
+      },
+      {
+        "id": "CĐ10_Q55",
+        "num": 55,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = x(x - 2), \\forall x \\in \\mathbb{R}$. Hàm số $y = f(x)$ nghịch biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(0; 2)$",
+          "$(0; +\\infty)$",
+          "$(-\\infty; 0)$",
+          "$(2; +\\infty)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $f'(x) = x(x - 2) < 0 \\Leftrightarrow 0 < x < 2$. Do đó hàm số nghịch biến trên khoảng $(0; 2)$."
+      },
+      {
+        "id": "CĐ10_Q56",
+        "num": 56,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đạo hàm $f'(x) = (x + 1)(x - 3)^2$. Hàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(-1; 0)$",
+          "$(-\\infty; 0)$",
+          "$(-3; +\\infty)$",
+          "$(-\\infty; -1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Vì $(x - 3)^2 \\ge 0, \\forall x$ nên $f'(x) \\ge 0 \\Leftrightarrow x + 1 \\ge 0 \\Leftrightarrow x \\ge -1$. Do đó hàm số đồng biến trên $[-1; +\\infty)$, chứa khoảng $(-1; 0)$."
+      },
+      {
+        "id": "CĐ10_Q57",
+        "num": 57,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đạo hàm $f'(x) = (x - 1)^2(x + 1)(x - 3)^3$. Hàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(-\\infty; 1)$",
+          "$(-\\infty; -1)$",
+          "$(1; 3)$",
+          "$(3; +\\infty)$"
+        ],
+        "correct": "D",
+        "lines": 8,
+        "hint": "Vì $(x - 1)^2 \\ge 0, \\forall x$ nên dấu của $f'(x)$ cùng dấu với $(x + 1)(x - 3)$. Ta có $(x + 1)(x - 3) > 0 \\Leftrightarrow x < -1$ hoặc $x > 3$. Do đó hàm số đồng biến trên khoảng $(3; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q58",
+        "num": 58,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = x^3(x - 2)$, với mọi $x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+        "image": null,
+        "options": [
+          "$(1; 3)$",
+          "$(-1; 0)$",
+          "$(0; 1)$",
+          "$(-2; 0)$"
+        ],
+        "correct": "C",
+        "lines": 8,
+        "hint": "Dấu của $x^3(x - 2)$ cùng dấu với $x(x - 2)$. Ta có $f'(x) < 0 \\Leftrightarrow 0 < x < 2$. Khoảng $(0; 1) \\subset (0; 2)$ nên hàm số nghịch biến trên khoảng $(0; 1)$."
+      },
+      {
+        "id": "CĐ10_Q59",
+        "num": 59,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $f(x)$ có đạo hàm trên $\\mathbb{R}$ là $f'(x) = x^2(x - 1)$. Hàm số đã cho đồng biến trên khoảng nào?",
+        "image": null,
+        "options": [
+          "$(1; +\\infty)$",
+          "$(-\\infty; +\\infty)$",
+          "$(0; 1)$",
+          "$(-\\infty; 1)$"
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Vì $x^2 \\ge 0, \\forall x$ nên $f'(x) > 0 \\Leftrightarrow x - 1 > 0 \\Leftrightarrow x > 1$. Do đó hàm số đồng biến trên khoảng $(1; +\\infty)$."
+      },
+      {
+        "id": "CĐ10_Q60",
+        "num": 60,
+        "type": "multiple_choice",
+        "prompt": "Cho hàm số $y = f(x)$ xác định trên tập $\\mathbb{R}$ và có $f'(x) = x^2 - 5x + 4$. Khẳng định nào sau đây đúng?",
+        "image": null,
+        "options": [
+          "Hàm số đã cho nghịch biến trên khoảng $(1; 4)$.",
+          "Hàm số đã cho nghịch biến trên khoảng $(3; +\\infty)$.",
+          "Hàm số đã cho đồng biến trên khoảng $(-\\infty; 3)$.",
+          "Hàm số đã cho đồng biến trên khoảng $(1; 4)$."
+        ],
+        "correct": "A",
+        "lines": 8,
+        "hint": "Ta có $f'(x) = x^2 - 5x + 4 = (x - 1)(x - 4)$. $f'(x) < 0 \\Leftrightarrow 1 < x < 4$. Do đó hàm số nghịch biến trên khoảng $(1; 4)$."
       }
     ]
   },

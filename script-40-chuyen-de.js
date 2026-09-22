@@ -221,6 +221,15 @@ function renderCurrentTopic() {
       `;
     }
 
+    let imageHtml = "";
+    if (ex.image) {
+      imageHtml = `
+        <div class="ex-figure-container" style="text-align:center; margin:14px 0;">
+          <img src="${ex.image}" alt="Hình vẽ Bài ${exIdx + 1}" style="max-width:100%; max-height:320px; object-fit:contain; border-radius:6px; box-shadow:0 1px 4px rgba(0,0,0,0.12); background:#ffffff; padding:6px; border:1px solid #e2e8f0;" />
+        </div>
+      `;
+    }
+
     const storageKey = `topic_${topic.id}_q_${ex.id}`;
 
     exCard.innerHTML = `
@@ -238,6 +247,8 @@ function renderCurrentTopic() {
       <div class="ex-prompt">
         ${ex.prompt}
       </div>
+
+      ${imageHtml}
 
       ${optionsHtml}
 

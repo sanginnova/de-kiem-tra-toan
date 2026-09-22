@@ -38,7 +38,7 @@ Phát triển dựa trên bộ tài liệu gốc 181 trang `40 Chuyên đề ôn
   - CĐ 20: Hệ trục tọa độ trong không gian $Oxyz$ (Toán 12)
   - CĐ 21: Phương trình mặt cầu trong không gian $Oxyz$ (Toán 12)
 - **Hàm số & Ứng dụng đạo hàm 12**:
-  - CĐ 10: Tính đơn điệu của hàm số
+  - CĐ 10: Tính đơn điệu của hàm số (**Trọn bộ 60 câu hỏi** trắc nghiệm & 25 hình vẽ BBT, bảng xét dấu, đồ thị trích xuất 300 DPI)
   - CĐ 11: Cực trị của hàm số
   - CĐ 12: Giá trị lớn nhất & nhỏ nhất của hàm số
   - CĐ 13: Đường tiệm cận của đồ thị hàm số
