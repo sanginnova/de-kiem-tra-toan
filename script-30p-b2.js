@@ -1281,6 +1281,7 @@ function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.add("show");
+    modal.style.setProperty("display", "flex", "important");
   }
 }
 
@@ -1288,8 +1289,22 @@ function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.remove("show");
+    modal.style.setProperty("display", "none", "important");
   }
 }
+
+// Đóng modal khi click ra ngoài hoặc bấm Escape
+document.addEventListener("click", (e) => {
+  if (e.target && e.target.classList && e.target.classList.contains("modal-overlay")) {
+    closeModal(e.target.id);
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal-overlay.show").forEach((m) => closeModal(m.id));
+  }
+});
 
 function openPrintMenu() {
   openModal("printModal");
