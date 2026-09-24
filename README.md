@@ -13,6 +13,8 @@ Hệ thống web app kiểm tra trắc nghiệm tương tác trực tuyến 15 p
   👉 [https://sanginnova.github.io/de-kiem-tra-toan/](https://sanginnova.github.io/de-kiem-tra-toan/)
 - 🎯 **Đề kiểm tra 15 phút - Bài 2: Hệ bất phương trình bậc nhất hai ẩn**:  
   👉 [https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-b2.html](https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-b2.html)
+- ⏱️ **Đề kiểm tra 30 phút - Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Đúng / Sai - Câu 17 đến 21)**:  
+  👉 [https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-30p-b2.html](https://sanginnova.github.io/de-kiem-tra-toan/de-kiem-tra-30p-b2.html)
 - 📖 **Vở bài tập Bản viết tay Bài 1 (41 câu trắc nghiệm & tự luận)**:  
   👉 [https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay.html](https://sanginnova.github.io/de-kiem-tra-toan/ban-viet-tay.html)
 - ✍️ **Vở bài tập Bản viết tay Bài 2: Hệ BPT (37 câu, dòng kẻ 1.5, font 14pt)**:  

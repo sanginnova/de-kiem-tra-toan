@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Kiểm Tra 30 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10 (Đúng / Sai)</title>
+  <meta name="description" content="Đề kiểm tra trắc nghiệm Đúng / Sai 30 phút môn Toán 10 Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Câu 17-21). Chuẩn cấu trúc GDPT 2018, chấm điểm tự động theo thang điểm Bộ GD&ĐT, đồ thị SVG trực quan và lời giải chi tiết.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for crisp Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Base Theme Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Specialized Stylesheet for True/False Quiz -->
+  <style>
+    /* Styling for True/False rows */
+    .tf-statements-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .tf-statement-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .tf-statement-row:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+    }
+
+    .tf-statement-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex: 1;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .statement-label {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.15rem;
+      min-width: 26px;
+    }
+
+    .statement-math-text {
+      flex: 1;
+      font-weight: 500;
+    }
+
+    /* True / False Button Group */
+    .tf-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .tf-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 96px;
+      padding: 9px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+
+    .tf-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .tf-btn-true:hover {
+      border-color: #059669;
+      color: #059669;
+      background: #ecfdf5;
+    }
+
+    .tf-btn-false:hover {
+      border-color: #e11d48;
+      color: #e11d48;
+      background: #fff1f2;
+    }
+
+    /* Active State for True */
+    .tf-btn-true.active {
+      background: #059669;
+      color: #ffffff;
+      border-color: #059669;
+      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+      font-weight: 800;
+    }
+
+    /* Active State for False */
+    .tf-btn-false.active {
+      background: #e11d48;
+      color: #ffffff;
+      border-color: #e11d48;
+      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.3);
+      font-weight: 800;
+    }
+
+    .tf-icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* Navigation Grid for True/False */
+    .nav-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 4px;
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-cell .cell-num {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .nav-cell .cell-parts {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-family: var(--font-mono);
+    }
+
+    .nav-cell.current {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-glow);
+      background: var(--primary-light);
+    }
+
+    .nav-cell.current .cell-num {
+      color: var(--primary);
+    }
+
+    .nav-cell.fully-answered {
+      background: #ecfdf5;
+      border-color: #10b981;
+    }
+
+    .nav-cell.fully-answered .cell-num {
+      color: #047857;
+    }
+
+    .nav-cell.fully-answered .cell-parts {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    .nav-cell.partially-answered {
+      background: #fffbeb;
+      border-color: #f59e0b;
+    }
+
+    .nav-cell.partially-answered .cell-num {
+      color: #b45309;
+    }
+
+    .nav-cell.flagged {
+      border-color: #f97316;
+    }
+
+    .cell-flag-icon {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 12px;
+      height: 12px;
+      color: #ea580c;
+    }
+
+    /* Question Card Header */
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      color: #be123c;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+    }
+
+    /* Math Canvas Container */
+    .svg-canvas-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .svg-math-canvas {
+      max-width: 100%;
+      height: auto;
+      max-height: 320px;
+    }
+
+    /* Review Statements Table */
+    .statements-comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .statements-comparison-table th {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-weight: 700;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .statements-comparison-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .st-reason-box {
+      margin-top: 6px;
+      padding: 8px 12px;
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .user-choice-pill, .correct-choice-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .pill-true {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .pill-false {
+      background: #fff1f2;
+      color: #9f1239;
+      border: 1px solid #fecdd3;
+    }
+
+    .pill-empty {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+    }
+
+    .status-icon.icon-pass {
+      color: #059669;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .status-icon.icon-fail {
+      color: #e11d48;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Summary Detail Table */
+    .detail-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.92rem;
+    }
+
+    .detail-summary-table th, .detail-summary-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .detail-summary-table th {
+      background: var(--bg-subtle);
+      font-weight: 700;
+    }
+
+    .detail-summary-table tr.highlight-row {
+      background: #f0fdf4;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .pill-success {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .pill-primary {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    .review-diagram-box {
+      margin: 16px 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .review-diagram-box .diagram-caption {
+      padding: 8px 14px;
+      background: var(--bg-subtle);
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Print styles */
+    @media print {
+      body.print-exam-only .results-section,
+      body.print-exam-only .sidebar-pane,
+      body.print-exam-only .quiz-header,
+      body.print-exam-only .info-bar .quiz-status-indicators,
+      body.print-exam-only .question-card-footer,
+      body.print-exam-only .card-tools {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="quiz-header">
+      <div class="header-left">
+        <div class="brand-badge" style="background:#e0e7ff; color:#3730a3; border:1px solid #c7d2fe;">
+          <i data-lucide="award" class="brand-icon"></i>
+          <span>KHOA CƠ BẢN - CĐN01 & THPT • BÀI 2: HỆ BẤT PHƯƠNG TRÌNH</span>
+        </div>
+        <h1 class="quiz-title">Kiểm Tra 30 Phút: Hệ BPT Bậc Nhất Hai Ẩn (Đúng / Sai)</h1>
+      </div>
+
+      <div class="header-right">
+        <!-- Timer Display (30 phút) -->
+        <div class="timer-box" id="timerContainer" title="Thời gian làm bài còn lại">
+          <i data-lucide="clock" class="timer-icon"></i>
+          <span class="timer-text" id="timer">30:00</span>
+          <div class="timer-progress-ring">
+            <svg viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="timerRing" class="ring-fill" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Font Size Controls -->
+        <div class="font-zoom-group" title="Tăng giảm cỡ chữ">
+          <button id="fontDecreaseBtn" class="font-zoom-btn" title="Cỡ chữ nhỏ hơn">A-</button>
+          <button id="fontResetBtn" class="font-zoom-btn active" title="Cỡ chữ mặc định">A</button>
+          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to hơn">A+</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="icon-btn" title="Chuyển đổi giao diện Sáng / Tối">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Topic Navigation Links -->
+        <a href="he-thong-40-chuyen-de-on-tn.html" class="btn btn-secondary" title="Hệ thống Vở bài tập viết tay 21 Chuyên đề ôn TN 2026" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fef3c7; border-color:#f59e0b; color:#92400e; font-weight:700;">
+          <i data-lucide="sparkles" class="btn-icon"></i>
+          <span>40 CĐ Ôn TN</span>
+        </a>
+        <a href="index.html" class="btn btn-secondary" title="Mở Đề kiểm tra Bài 1: Bất phương trình bậc nhất hai ẩn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="book-marked" class="btn-icon"></i>
+          <span>Đề KT Bài 1</span>
+        </a>
+        <a href="de-kiem-tra-b2.html" class="btn btn-secondary" title="Đề kiểm tra 15 phút Bài 2 (Nhiều phương án lựa chọn)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="check-circle" class="btn-icon"></i>
+          <span>Đề KT 15p B2</span>
+        </a>
+        <a href="de-kiem-tra-30p-b2.html" class="btn btn-primary" title="Đề kiểm tra 30 phút Bài 2: Đúng / Sai (Câu 17-21)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#e11d48; border-color:#e11d48; color:#ffffff; font-weight:700;">
+          <i data-lucide="help-circle" class="btn-icon"></i>
+          <span>Đề KT 30p B2</span>
+        </a>
+        <a href="ban-viet-tay-b2.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 2: Hệ BPT (37 câu, 14pt)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
+          <i data-lucide="pen-tool" class="btn-icon"></i>
+          <span>Bản VT B2</span>
+        </a>
+
+        <!-- Print / Export PDF Button -->
+        <button id="headerPrintBtn" class="btn btn-secondary print-action-btn" title="In hoặc Xuất đề thi ra PDF (Khổ A4)">
+          <i data-lucide="printer" class="btn-icon"></i>
+          <span>In / Xuất PDF</span>
+        </button>
+
+        <!-- Submit Button in Header -->
+        <button id="headerSubmitBtn" class="btn btn-primary submit-action-btn" style="background:#059669; border-color:#059669;">
+          <i data-lucide="send" class="btn-icon"></i>
+          <span>Nộp bài</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Quiz Sub-bar (Student Info & Quick Stats) -->
+    <section class="info-bar">
+      <div class="student-meta">
+        <div class="meta-item">
+          <i data-lucide="user" class="meta-icon"></i>
+          <span>Thí sinh: </span>
+          <input type="text" id="studentNameInput" placeholder="Nhập họ và tên..." class="student-name-input" value="Học sinh Toán 10">
+        </div>
+        <div class="meta-item">
+          <i data-lucide="bookmark" class="meta-icon"></i>
+          <span>Lớp: </span>
+          <input type="text" id="studentClassInput" placeholder="Lớp..." class="student-name-input" value="10A8" style="width: 80px;">
+        </div>
+        <div class="meta-item">
+          <i data-lucide="layers" class="meta-icon"></i>
+          <span>Cấu trúc: <strong>5 câu Đúng/Sai (20 ý)</strong></span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="timer" class="meta-icon"></i>
+          <span>Thời gian: <strong>30 phút</strong></span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="target" class="meta-icon"></i>
+          <span>Thang điểm: <strong>10.0 (Bộ GD&ĐT)</strong></span>
+        </div>
+      </div>
+
+      <div class="quiz-status-indicators">
+        <span class="status-tag answered"><span class="dot"></span> Hoàn thành: <b id="answeredCount">0/5</b></span>
+        <span class="status-tag flagged"><span class="dot"></span> Đặt cờ: <b id="flaggedCount">0</b></span>
+      </div>
+    </section>
+
+    <!-- Main Quiz Layout -->
+    <main class="quiz-body" id="quizBody">
+      
+      <!-- Left Column: Current Question Card -->
+      <section class="question-pane">
+        <div class="question-card" id="questionCard">
+          <div class="question-card-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="format-badge"><i data-lucide="check-square" style="width:14px;height:14px;"></i> Trắc nghiệm Đúng / Sai</span>
+              <div class="question-level-badge" id="questionLevel">
+                <i data-lucide="award" class="level-icon"></i>
+                <span id="questionLevelText">Đang tải câu hỏi...</span>
+              </div>
+            </div>
+            
+            <div class="card-tools">
+              <button id="flagBtn" class="tool-btn" title="Đánh dấu xem lại">
+                <i data-lucide="flag" class="tool-icon"></i>
+                <span id="flagText">Đặt cờ</span>
+              </button>
+              <button id="clearAnswerBtn" class="tool-btn" title="Hủy chọn câu trả lời của câu này">
+                <i data-lucide="rotate-ccw" class="tool-icon"></i>
+                <span>Xóa lựa chọn</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Content -->
+          <div class="question-content">
+            <h2 class="question-prompt" id="questionPrompt">Đang tải đề bài câu hỏi...</h2>
+
+            <!-- Question Image (if any) -->
+            <div class="diagram-wrapper" id="questionImageWrapper" style="display: none; text-align: center; margin: 14px 0;">
+              <div class="diagram-caption">
+                <i data-lucide="image" class="caption-icon"></i>
+                <span>Hình ảnh thực tế minh họa bài toán</span>
+              </div>
+              <img id="questionImg" src="" alt="Hình minh họa" style="max-height: 240px; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); margin-top: 10px;">
+            </div>
+            
+            <!-- Dynamic Diagram Area (SVG) -->
+            <div class="diagram-wrapper" id="diagramWrapper" style="display: none; margin: 16px 0;">
+              <div class="diagram-caption">
+                <i data-lucide="compass" class="caption-icon"></i>
+                <span id="diagramCaptionText">Hình vẽ minh họa miền nghiệm trên mặt phẳng tọa độ Oxy</span>
+              </div>
+              <div class="svg-canvas-container" id="svgContainer">
+                <!-- Injected SVG Diagram -->
+              </div>
+            </div>
+
+            <!-- Statements List (a, b, c, d) with True/False buttons -->
+            <div class="tf-statements-container" id="tfStatementsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Card Navigation Footer -->
+          <div class="question-card-footer">
+            <button id="prevQuestionBtn" class="btn btn-secondary">
+              <i data-lucide="chevron-left" class="btn-icon"></i>
+              <span>Câu trước</span>
+            </button>
+
+            <span class="question-indicator" id="questionIndexIndicator">Câu 1 / 5</span>
+
+            <button id="nextQuestionBtn" class="btn btn-secondary">
+              <span>Câu tiếp theo</span>
+              <i data-lucide="chevron-right" class="btn-icon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Question Navigator & Summary -->
+      <aside class="sidebar-pane">
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">
+            <h3><i data-lucide="grid" class="sidebar-icon"></i> Bảng 5 câu hỏi</h3>
+            <span class="legend-hint">Nhấp vào ô để chuyển nhanh</span>
+          </div>
+
+          <!-- Question Grid Numbers (1 -> 5) -->
+          <div class="nav-grid" id="navGrid" style="grid-template-columns: repeat(5, 1fr);">
+            <!-- Rendered via JS -->
+          </div>
+
+          <!-- Status Legend -->
+          <div class="nav-legend">
+            <div class="legend-item"><span class="badge-sample active"></span> Đang làm</div>
+            <div class="legend-item"><span class="badge-sample" style="background:#ecfdf5; border-color:#10b981;"></span> Đủ 4 ý</div>
+            <div class="legend-item"><span class="badge-sample" style="background:#fffbeb; border-color:#f59e0b;"></span> Làm 1 phần</div>
+            <div class="legend-item"><span class="badge-sample flagged"></span> Đặt cờ</div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="sidebar-actions">
+            <button id="submitQuizBtn" class="btn btn-primary btn-block submit-action-btn" style="background:#059669; border-color:#059669; padding: 12px;">
+              <i data-lucide="check-circle-2" class="btn-icon"></i>
+              <span>NỘP BÀI THI 30 PHÚT</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Scoring Rules Card -->
+        <div class="sidebar-card formula-mini-card">
+          <div class="sidebar-card-header">
+            <h3><i data-lucide="award" class="sidebar-icon"></i> Quy chế chấm điểm GDPT 2018</h3>
+          </div>
+          <ul class="mini-notes-list" style="line-height: 1.6;">
+            <li><strong>Mỗi câu gồm 4 ý:</strong> Học sinh lựa chọn Đúng hoặc Sai cho từng ý.</li>
+            <li><strong>Thang điểm 10 chuẩn Bộ GD&ĐT:</strong>
+              <br>&bull; Đúng <strong>1 ý</strong>: được <strong>0,2 điểm</strong>
+              <br>&bull; Đúng <strong>2 ý</strong>: được <strong>0,5 điểm</strong>
+              <br>&bull; Đúng <strong>3 ý</strong>: được <strong>1,0 điểm</strong>
+              <br>&bull; Đúng cả <strong>4 ý</strong>: được <strong>2,0 điểm</strong> trọn vẹn
+            </li>
+            <li><strong>Tổng điểm tối đa:</strong> 5 câu &times; 2,0 = <strong>10,0 điểm</strong>.</li>
+            <li><strong>Lưu ý:</strong> Nên làm đủ tất cả các ý a, b, c, d trước khi nộp bài để tối đa hóa cơ hội đạt điểm cao.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Results & Review Section (Hidden during exam) -->
+    <section class="results-section" id="resultsSection" style="display: none; margin-top: 30px;">
+      <!-- Score summary card -->
+      <div class="score-card">
+        <div class="score-header">
+          <div class="score-badge-icon" id="scoreBadgeIcon">
+            <i data-lucide="trophy" class="trophy-icon"></i>
+          </div>
+          <div class="score-info">
+            <h2 class="score-congrats" id="scoreCongrats">Kết Quả Kiểm Tra 30 Phút (Dạng Đúng / Sai)</h2>
+            <p class="score-subtext" id="scoreSubtext">Bài 2: Hệ bất phương trình bậc nhất hai ẩn (Câu 17 - 21)</p>
+          </div>
+        </div>
+
+        <div class="score-metrics-grid">
+          <div class="metric-card main-score">
+            <span class="metric-label">ĐIỂM SỐ CHUẨN</span>
+            <span class="metric-val" id="modalScoreValue" style="color:#059669;">--</span>
+            <span class="metric-sub">Thang điểm 10.0</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">SỐ Ý TRẢ LỜI ĐÚNG</span>
+            <span class="metric-val" id="modalCorrectParts">--/20</span>
+            <span class="metric-sub">Tỉ lệ chính xác</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">CÂU ĐẠT ĐIỂM TỐI ĐA (4/4)</span>
+            <span class="metric-val" id="modalPerfectQuestions">--/5</span>
+            <span class="metric-sub">Số câu toàn vẹn</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">THỜI GIAN LÀM BÀI</span>
+            <span class="metric-val" id="modalTimeUsed" style="font-size:1.4rem;">--</span>
+            <span class="metric-sub">Trên tổng 30 phút</span>
+          </div>
+        </div>
+
+        <div class="rank-feedback-box" style="margin-top: 20px;">
+          <div id="modalRankBadge" class="rank-badge rank-good">Xếp loại</div>
+          <p id="modalRankComment" class="rank-comment">Đang phân tích kết quả bài làm...</p>
+        </div>
+      </div>
+
+      <!-- Detailed Review per Question -->
+      <div class="detailed-review-wrapper">
+        <div class="section-title-bar" style="margin: 24px 0 16px 0; display:flex; align-items:center; justify-content:space-between;">
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="check-square" style="color: var(--primary);"></i>
+            Bảng Đối Chiếu Kết Quả & Lời Giải Chi Tiết Từng Câu (Câu 17 - 21)
+          </h2>
+          <button onclick="window.print()" class="btn btn-secondary" style="font-weight: 700;">
+            <i data-lucide="printer"></i> In Lời Giải Chi Tiết
+          </button>
+        </div>
+
+        <div id="detailedReviewContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal: Confirm Submit -->
+    <div class="modal-overlay" id="submitConfirmModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <i data-lucide="alert-circle" class="modal-icon text-amber"></i>
+          <h3>Xác nhận nộp bài kiểm tra</h3>
+        </div>
+        <div class="modal-body">
+          <p id="submitConfirmText">Bạn có chắc chắn muốn nộp bài thi ngay bây giờ?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelSubmitBtn" class="btn btn-secondary">Quay lại làm tiếp</button>
+          <button id="confirmSubmitBtn" class="btn btn-primary" style="background:#059669; border-color:#059669;">Nộp bài ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Result Summary Dialog -->
+    <div class="modal-overlay" id="resultModal">
+      <div class="modal-box modal-lg">
+        <div class="modal-header" style="justify-content: center; text-align: center; flex-direction: column;">
+          <div class="modal-icon-circle" style="background:#ecfdf5; color:#059669; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+            <i data-lucide="award" style="width:36px; height:36px;"></i>
+          </div>
+          <h2 style="font-size: 1.5rem; font-weight: 800;">Hoàn Thành Bài Kiểm Tra 30 Phút!</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Hệ bất phương trình bậc nhất hai ẩn (Đúng / Sai - GDPT 2018)</p>
+        </div>
+
+        <div class="modal-body" style="text-align: center;">
+          <div style="background: var(--bg-subtle); padding: 18px; border-radius: var(--radius-md); margin-bottom: 20px;">
+            <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;">Điểm bài thi của bạn</div>
+            <div style="font-size: 3.2rem; font-weight: 900; color: #059669; font-family: var(--font-mono); margin: 6px 0;" id="modalScoreDisplay"></div>
+            <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-secondary);">Thang điểm 10.0 (Bộ Giáo dục và Đào tạo)</div>
+          </div>
+          <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.5;">Hãy xem bảng đối chiếu chi tiết để biết các ý đã chọn đúng và phương pháp tư duy bài toán thực tế nhé.</p>
+        </div>
+
+        <div class="modal-footer" style="justify-content: center; gap: 12px;">
+          <button id="closeResultModalBtn" class="btn btn-secondary">Đóng hộp thoại</button>
+          <button id="viewExplanationBtn" class="btn btn-primary" style="background:#4f46e5; border-color:#4f46e5;">
+            <i data-lucide="book-open"></i> Xem Lời Giải Chi Tiết
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Print Options -->
+    <div class="modal-overlay" id="printModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <i data-lucide="printer" class="modal-icon text-primary"></i>
+          <h3>Tùy chọn In & Xuất PDF</h3>
+        </div>
+        <div class="modal-body">
+          <p style="margin-bottom: 16px; color: var(--text-secondary);">Vui lòng chọn chế độ in phù hợp với nhu cầu của bạn:</p>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <button id="printExamOnlyBtn" class="btn btn-secondary" style="justify-content:flex-start; padding: 14px; text-align:left;">
+              <i data-lucide="file-text" style="width:20px;height:20px; color:#4f46e5;"></i>
+              <div>
+                <strong style="display:block; font-size:1rem;">1. In Đề kiểm tra 30 phút (Cho học sinh làm bài)</strong>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Khổ A4 gồm 5 câu Đúng/Sai, hình vẽ đồ thị và bảng điền đáp án, không kèm lời giải.</span>
+              </div>
+            </button>
+            <button id="printWithSolutionBtn" class="btn btn-secondary" style="justify-content:flex-start; padding: 14px; text-align:left;">
+              <i data-lucide="check-circle-2" style="width:20px;height:20px; color:#059669;"></i>
+              <div>
+                <strong style="display:block; font-size:1rem;">2. In Đề thi kèm Lời giải chi tiết (Dành cho giáo viên/ôn tập)</strong>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Đầy đủ 5 câu hỏi, đồ thị miền nghiệm và giải thích chi tiết từng mệnh đề a, b, c, d.</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="closeModal('printModal')" class="btn btn-secondary">Hủy bỏ</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Script for 30-minute True/False Quiz -->
+  <script src="script-30p-b2.js"></script>
+</body>
+</html>
