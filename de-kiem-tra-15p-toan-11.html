@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -20,8 +20,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="toan-11/style-toan11.css">
   <style>
     .brand-badge.badge-toan11 {
       background: #eff6ff;
@@ -92,11 +92,11 @@
         </button>
 
         <!-- Topic Navigation Links -->
-        <a href="he-thong-40-chuyen-de-on-tn.html" class="btn btn-secondary" title="Hệ thống Vở bài tập viết tay 21 Chuyên đề ôn TN 2026" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fef3c7; border-color:#f59e0b; color:#92400e; font-weight:700;">
+        <a href="../he-thong-40-chuyen-de-on-tn.html" class="btn btn-secondary" title="Hệ thống Vở bài tập viết tay 21 Chuyên đề ôn TN 2026" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fef3c7; border-color:#f59e0b; color:#92400e; font-weight:700;">
           <i data-lucide="sparkles" class="btn-icon"></i>
           <span>40 CĐ Ôn TN</span>
         </a>
-        <a href="index.html" class="btn btn-secondary" title="Mở Đề kiểm tra Bài 1: BPT Bậc nhất hai ẩn (Toán 10)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+        <a href="../index.html" class="btn btn-secondary" title="Mở Đề kiểm tra Bài 1: BPT Bậc nhất hai ẩn (Toán 10)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
           <i data-lucide="book-marked" class="btn-icon"></i>
           <span>KT 15p T10 B1</span>
         </a>
@@ -122,37 +122,77 @@
         <span>Chọn bài tự luyện:</span>
       </div>
       <div class="lesson-pills-list">
-        <button class="lesson-pill-btn active" data-lesson="all" title="Làm đề tổng ôn Chương 1 gồm 12 câu bao quát toàn bộ 5 bài học">
+        <button class="lesson-pill-btn active" data-lesson="exam" title="Làm đề tổng ôn gồm 20 câu chuẩn cấu trúc GDPT 2018 bao quát cả 5 bài học">
           <i data-lucide="target"></i>
-          <span>🎯 Tổng Ôn Chương 1</span>
-          <span class="lesson-pill-badge">12 câu</span>
+          <span>🎯 Đề Thi Tổng Ôn</span>
+          <span class="lesson-pill-badge">20 câu</span>
         </button>
         <button class="lesson-pill-btn" data-lesson="b1" title="Tự luyện chuyên sâu Bài 1: Góc lượng giác, đổi đơn vị, độ dài cung, ĐTLG">
           <i data-lucide="compass"></i>
           <span>📗 Bài 1: Góc Lượng Giác</span>
-          <span class="lesson-pill-badge">6 câu</span>
+          <span class="lesson-pill-badge">35 câu</span>
         </button>
         <button class="lesson-pill-btn" data-lesson="b2" title="Tự luyện chuyên sâu Bài 2: Giá trị lượng giác, dấu góc phần tư, công thức cơ bản">
           <i data-lucide="activity"></i>
           <span>📘 Bài 2: Giá Trị Lượng Giác</span>
-          <span class="lesson-pill-badge">6 câu</span>
+          <span class="lesson-pill-badge">54 câu</span>
         </button>
         <button class="lesson-pill-btn" data-lesson="b3" title="Tự luyện chuyên sâu Bài 3: Công thức lượng giác (Cộng, Nhân đôi, Biến đổi)">
           <i data-lucide="cpu"></i>
           <span>📙 Bài 3: Công Thức Lượng Giác</span>
-          <span class="lesson-pill-badge">6 câu</span>
+          <span class="lesson-pill-badge">29 câu</span>
         </button>
         <button class="lesson-pill-btn" data-lesson="b4" title="Tự luyện chuyên sâu Bài 4: Hàm số lượng giác (TXĐ, tính chẵn lẻ, chu kỳ, GTLN-GTNN)">
           <i data-lucide="trending-up"></i>
           <span>📕 Bài 4: Hàm Số Lượng Giác</span>
-          <span class="lesson-pill-badge">6 câu</span>
+          <span class="lesson-pill-badge">50 câu</span>
         </button>
         <button class="lesson-pill-btn" data-lesson="b5" title="Tự luyện chuyên sâu Bài 5: Phương trình lượng giác cơ bản & quy về bậc hai">
           <i data-lucide="hash"></i>
           <span>📓 Bài 5: Phương Trình Lượng Giác</span>
-          <span class="lesson-pill-badge">6 câu</span>
+          <span class="lesson-pill-badge">60 câu</span>
+        </button>
+        <button class="lesson-pill-btn" data-lesson="all" title="Luyện tập toàn bộ 228 câu hỏi trọn bộ 5 bài học Chương 1">
+          <i data-lucide="layers"></i>
+          <span>🌟 Toàn Bộ Chương 1</span>
+          <span class="lesson-pill-badge">228 câu</span>
         </button>
       </div>
+    </section>
+
+    <!-- Mode Switch & Section Filter Bar -->
+    <section class="section-filter-bar">
+      <div class="mode-switch-container">
+        <button id="modeExamBtn" class="mode-btn active" title="Làm bài thi tính giờ">
+          <i data-lucide="timer"></i> <span>Chế độ Kiểm tra</span>
+        </button>
+        <button id="modePracticeBtn" class="mode-btn" title="Luyện tập tự do, xem lời giải tức thì">
+          <i data-lucide="book-open"></i> <span>Chế độ Tự Luyện</span>
+        </button>
+      </div>
+
+      <div style="height:20px; width:1px; background:var(--border-color); margin:0 4px;"></div>
+
+      <div class="section-filter-label">
+        <i data-lucide="filter"></i>
+        <span>Lọc dạng:</span>
+      </div>
+      <button class="section-pill-btn active" data-sec="ALL">
+        <span>Tất cả</span>
+        <span class="section-pill-badge" id="badgeSecAll">0</span>
+      </button>
+      <button class="section-pill-btn" data-sec="A">
+        <span>Phần I: Trắc nghiệm</span>
+        <span class="section-pill-badge" id="badgeSecA">0</span>
+      </button>
+      <button class="section-pill-btn" data-sec="B">
+        <span>Phần II: Đúng / Sai</span>
+        <span class="section-pill-badge" id="badgeSecB">0</span>
+      </button>
+      <button class="section-pill-btn" data-sec="C">
+        <span>Phần III: Trả lời ngắn</span>
+        <span class="section-pill-badge" id="badgeSecC">0</span>
+      </button>
     </section>
 
     <!-- Quiz Sub-bar (Student Info & Quick Stats) -->
@@ -383,75 +423,87 @@
               <span>TOÁN 11 - CHƯƠNG 1: HÀM SỐ & PHƯƠNG TRÌNH LƯỢNG GIÁC</span>
             </div>
             <div class="hub-cards-grid">
-              <div class="hub-lesson-card is-current" onclick="loadLesson('all'); closeLessonHubModal();">
+              <div class="hub-lesson-card is-current" onclick="loadLesson('exam'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon"><i data-lucide="target"></i></div>
-                  <div class="hub-lesson-title">Đề Tổng Ôn Toàn Bộ Chương 1</div>
+                  <div class="hub-lesson-title">Đề Kiểm Tra Tổng Ôn Chuẩn 2026</div>
                 </div>
-                <div class="hub-lesson-desc">Bao quát toàn diện từ Bài 1 đến Bài 5 chuẩn ma trận đánh giá năng lực GDPT 2018.</div>
+                <div class="hub-lesson-desc">Ma trận chuẩn Bộ GD&ĐT: 12 câu TN 4 lựa chọn, 4 câu Đúng/Sai, 4 câu Trả lời ngắn.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 20 phút &bull; 12 câu</span>
+                  <span>⏱️ 20 phút &bull; 20 câu</span>
                   <span class="hub-active-tag">Đang chọn</span>
                 </div>
               </div>
 
-              <div class="hub-lesson-card" onclick="loadLesson('b1'); closeLessonHubModal();">
+              <div class="hub-lesson-card" onclick="loadLesson('b1'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#ecfdf5; color:#059669;"><i data-lucide="compass"></i></div>
                   <div class="hub-lesson-title">Bài 1: Góc Lượng Giác</div>
                 </div>
-                <div class="hub-lesson-desc">Rèn luyện đổi độ - rad, độ dài cung tròn $l = R\alpha$, bánh xe quay và đường tròn lượng giác.</div>
+                <div class="hub-lesson-desc">Đổi độ - radian, độ dài cung tròn $l = R\alpha$, bánh xe quay và điểm biểu diễn trên đường tròn lượng giác.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 15 phút &bull; 6 câu</span>
-                  <span style="color:var(--primary-color);">Bắt đầu &rarr;</span>
+                  <span>35 câu (21 TN, 8 Đ/S, 6 TLN)</span>
+                  <span style="color:var(--primary-color);">Luyện tập &rarr;</span>
                 </div>
               </div>
 
-              <div class="hub-lesson-card" onclick="loadLesson('b2'); closeLessonHubModal();">
+              <div class="hub-lesson-card" onclick="loadLesson('b2'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#fef3c7; color:#d97706;"><i data-lucide="activity"></i></div>
                   <div class="hub-lesson-title">Bài 2: Giá Trị Lượng Giác</div>
                 </div>
-                <div class="hub-lesson-desc">Xác định dấu $\sin, \cos, \tan$, hệ thức $\sin^2 + \cos^2 = 1$ và góc liên kết bù, phụ, hơn kém $\pi$.</div>
+                <div class="hub-lesson-desc">Dấu $\sin, \cos, \tan$, công thức cơ bản $\sin^2 + \cos^2 = 1$ và góc lượng giác liên kết bù, phụ, hơn kém.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 15 phút &bull; 6 câu</span>
-                  <span style="color:var(--primary-color);">Bắt đầu &rarr;</span>
+                  <span>54 câu (22 TN, 12 Đ/S, 20 TLN)</span>
+                  <span style="color:var(--primary-color);">Luyện tập &rarr;</span>
                 </div>
               </div>
 
-              <div class="hub-lesson-card" onclick="loadLesson('b3'); closeLessonHubModal();">
+              <div class="hub-lesson-card" onclick="loadLesson('b3'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#fdf2f8; color:#db2777;"><i data-lucide="cpu"></i></div>
                   <div class="hub-lesson-title">Bài 3: Công Thức Lượng Giác</div>
                 </div>
-                <div class="hub-lesson-desc">Luyện thành thạo công thức cộng, công thức nhân đôi, hạ bậc và biến đổi tích thành tổng.</div>
+                <div class="hub-lesson-desc">Công thức cộng, công thức nhân đôi, hạ bậc, biến đổi tích thành tổng và tổng thành tích.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 15 phút &bull; 6 câu</span>
-                  <span style="color:var(--primary-color);">Bắt đầu &rarr;</span>
+                  <span>29 câu (12 TN, 7 Đ/S, 10 TLN)</span>
+                  <span style="color:var(--primary-color);">Luyện tập &rarr;</span>
                 </div>
               </div>
 
-              <div class="hub-lesson-card" onclick="loadLesson('b4'); closeLessonHubModal();">
+              <div class="hub-lesson-card" onclick="loadLesson('b4'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#e0f2fe; color:#0284c7;"><i data-lucide="trending-up"></i></div>
                   <div class="hub-lesson-title">Bài 4: Hàm Số Lượng Giác</div>
                 </div>
-                <div class="hub-lesson-desc">Tập xác định, tính chẵn lẻ, chu kỳ tuần hoàn, tính đơn điệu và GTLN-GTNN.</div>
+                <div class="hub-lesson-desc">Tập xác định, tính chẵn lẻ, chu kỳ tuần hoàn $T$, tính đơn điệu, đồ thị và giá trị lớn nhất - nhỏ nhất.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 15 phút &bull; 6 câu</span>
-                  <span style="color:var(--primary-color);">Bắt đầu &rarr;</span>
+                  <span>50 câu (24 TN, 11 Đ/S, 15 TLN)</span>
+                  <span style="color:var(--primary-color);">Luyện tập &rarr;</span>
                 </div>
               </div>
 
-              <div class="hub-lesson-card" onclick="loadLesson('b5'); closeLessonHubModal();">
+              <div class="hub-lesson-card" onclick="loadLesson('b5'); document.getElementById('lessonHubModal').style.display='none';">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#f3e8ff; color:#7e22ce;"><i data-lucide="hash"></i></div>
                   <div class="hub-lesson-title">Bài 5: Phương Trình Lượng Giác</div>
                 </div>
-                <div class="hub-lesson-desc">Phương trình cơ bản $\sin x = m, \cos x = m, \tan x = m$, quy về bậc hai, số nghiệm trên đoạn.</div>
+                <div class="hub-lesson-desc">Phương trình cơ bản $\sin x = m, \cos x = m, \tan x = m$, quy về bậc hai và đếm số nghiệm trên đoạn.</div>
                 <div class="hub-lesson-meta">
-                  <span>⏱️ 15 phút &bull; 6 câu</span>
-                  <span style="color:var(--primary-color);">Bắt đầu &rarr;</span>
+                  <span>60 câu (37 TN, 10 Đ/S, 13 TLN)</span>
+                  <span style="color:var(--primary-color);">Luyện tập &rarr;</span>
+                </div>
+              </div>
+
+              <div class="hub-lesson-card" onclick="loadLesson('all'); document.getElementById('lessonHubModal').style.display='none';" style="border-color:#6366f1; background:#f5f3ff;">
+                <div class="hub-lesson-header">
+                  <div class="hub-lesson-icon" style="background:#6366f1; color:#ffffff;"><i data-lucide="layers"></i></div>
+                  <div class="hub-lesson-title">🌟 Toàn Bộ Chương 1: 228 Câu Hỏi</div>
+                </div>
+                <div class="hub-lesson-desc">Kho ngân hàng câu hỏi đầy đủ nhất trọn bộ 5 bài học, kèm chức năng lọc dạng câu hỏi thông minh.</div>
+                <div class="hub-lesson-meta">
+                  <span>Tất cả 228 câu (I, II, III)</span>
+                  <span style="color:#4338ca; font-weight:800;">Luyện tất cả &rarr;</span>
                 </div>
               </div>
             </div>
@@ -464,7 +516,7 @@
               <span>TOÁN 10 - CHƯƠNG 2: BẤT PHƯƠNG TRÌNH & HỆ BPT BẬC NHẤT HAI ẨN</span>
             </div>
             <div class="hub-cards-grid">
-              <a href="index.html" class="hub-lesson-card">
+              <a href="../index.html" class="hub-lesson-card">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#ecfdf5; color:#059669;"><i data-lucide="book-marked"></i></div>
                   <div class="hub-lesson-title">Đề KT 15p - Bài 1: BPT Bậc Nhất Hai Ẩn</div>
@@ -476,7 +528,7 @@
                 </div>
               </a>
 
-              <a href="de-kiem-tra-b2.html" class="hub-lesson-card">
+              <a href="../de-kiem-tra-b2.html" class="hub-lesson-card">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#e0e7ff; color:#4338ca;"><i data-lucide="award"></i></div>
                   <div class="hub-lesson-title">Đề KT 15p - Bài 2: Hệ BPT Bậc Nhất Hai Ẩn</div>
@@ -488,7 +540,7 @@
                 </div>
               </a>
 
-              <a href="de-kiem-tra-30p-b2.html" class="hub-lesson-card">
+              <a href="../de-kiem-tra-30p-b2.html" class="hub-lesson-card">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#fdf2f8; color:#be123c;"><i data-lucide="help-circle"></i></div>
                   <div class="hub-lesson-title">Đề KT 30p - Trắc Nghiệm Đúng / Sai</div>
@@ -500,7 +552,7 @@
                 </div>
               </a>
 
-              <a href="ban-viet-tay-b2.html" class="hub-lesson-card">
+              <a href="../ban-viet-tay-b2.html" class="hub-lesson-card">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#fef3c7; color:#b45309;"><i data-lucide="pen-tool"></i></div>
                   <div class="hub-lesson-title">Vở Bài Tập Viết Tay (Bản Đẹp 14pt)</div>
@@ -521,7 +573,7 @@
               <span>LUYỆN THI TỐT NGHIỆP THPT 2026 (40 CHUYÊN ĐỀ TẬP 1)</span>
             </div>
             <div class="hub-cards-grid">
-              <a href="he-thong-40-chuyen-de-on-tn.html" class="hub-lesson-card" style="grid-column: 1 / -1;">
+              <a href="../he-thong-40-chuyen-de-on-tn.html" class="hub-lesson-card" style="grid-column: 1 / -1;">
                 <div class="hub-lesson-header">
                   <div class="hub-lesson-icon" style="background:#fef3c7; color:#d97706;"><i data-lucide="sparkles"></i></div>
                   <div>
@@ -614,7 +666,8 @@
 
   </div>
 
-  <!-- App Script -->
-  <script src="script-toan11.js"></script>
+  <!-- App Script & Data -->
+  <script src="toan-11/data-chuong1.js"></script>
+  <script src="toan-11/script-toan11.js"></script>
 </body>
 </html>
