@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initModalListeners();
   
   // Load initial bank ('exam' or URL hash / query)
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlSearch = (typeof window !== 'undefined' && window.location) ? window.location.search : "";
+  const urlParams = new URLSearchParams(urlSearch);
   const paramLesson = urlParams.get("lesson") || "exam";
   const paramMode = urlParams.get("mode") || "exam";
   
@@ -181,9 +182,31 @@ function setMode(mode) {
   renderCurrentQuestion();
 }
 
+function getFullData() {
+  if (typeof window !== 'undefined' && window.CHUONG1_FULL_DATA) {
+    return window.CHUONG1_FULL_DATA;
+  }
+  if (typeof CHUONG1_FULL_DATA !== 'undefined') {
+    return CHUONG1_FULL_DATA;
+  }
+  return null;
+}
+
 function loadLesson(lessonKey) {
-  if (!window.CHUONG1_FULL_DATA || !window.CHUONG1_FULL_DATA[lessonKey]) {
-    console.error("Không tìm thấy dữ liệu bài học:", lessonKey);
+  const dataBank = getFullData();
+  if (!dataBank || !dataBank[lessonKey]) {
+    console.warn("Đang chờ nạp dữ liệu bài học:", lessonKey);
+    setTimeout(() => {
+      const retryBank = getFullData();
+      if (retryBank && retryBank[lessonKey]) {
+        loadLesson(lessonKey);
+      } else {
+        const promptEl = document.getElementById("questionPrompt");
+        if (promptEl) {
+          promptEl.innerHTML = "⚠️ Đang tải dữ liệu 228 câu hỏi... Vui lòng chờ vài giây hoặc nhấn <strong>Ctrl + F5</strong> để làm mới.";
+        }
+      }
+    }, 200);
     return;
   }
 
@@ -223,7 +246,7 @@ function loadLesson(lessonKey) {
   });
 
   // Set Timer based on lesson size
-  const fullBank = window.CHUONG1_FULL_DATA[lessonKey];
+  const fullBank = (dataBank && dataBank[lessonKey]) ? dataBank[lessonKey] : [];
   const qCount = fullBank.length;
   if (lessonKey === "exam") {
     totalTime = 20 * 60; // 20 phút
@@ -243,7 +266,8 @@ function loadLesson(lessonKey) {
 }
 
 function updateSectionCounts() {
-  const rawList = window.CHUONG1_FULL_DATA[currentLessonKey] || [];
+  const dataBank = getFullData();
+  const rawList = (dataBank && dataBank[currentLessonKey]) ? dataBank[currentLessonKey] : [];
   const cAll = rawList.length;
   const cA = rawList.filter(q => q.section === "A").length;
   const cB = rawList.filter(q => q.section === "B").length;
@@ -261,7 +285,8 @@ function updateSectionCounts() {
 }
 
 function applyFiltersAndRender(targetIndex = 0) {
-  const rawList = window.CHUONG1_FULL_DATA[currentLessonKey] || [];
+  const dataBank = getFullData();
+  const rawList = (dataBank && dataBank[currentLessonKey]) ? dataBank[currentLessonKey] : [];
   if (currentSectionFilter === "ALL") {
     currentQuestions = [...rawList];
   } else {
