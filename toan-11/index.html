@@ -55,16 +55,16 @@
       <div class="header-left">
         <div class="brand-badge badge-toan11">
           <i data-lucide="compass" class="brand-icon"></i>
-          <span>TOÁN 11 • CHƯƠNG 1: TỔNG HỢP BÀI 1 ĐẾN BÀI 3</span>
+          <span>TOÁN 11 • CHƯƠNG 1: TỔNG HỢP BÀI 1 ĐẾN BÀI 5</span>
         </div>
-        <h1 class="quiz-title">Kiểm Tra 15 Phút: Góc & Công Thức Lượng Giác</h1>
+        <h1 class="quiz-title">Kiểm Tra 20 Phút: Hàm Số & Phương Trình Lượng Giác</h1>
       </div>
 
       <div class="header-right">
-        <!-- Timer Display (15 phút) -->
+        <!-- Timer Display (20 phút) -->
         <div class="timer-box" id="timerContainer" title="Thời gian làm bài còn lại">
           <i data-lucide="clock" class="timer-icon"></i>
-          <span class="timer-text" id="timer">15:00</span>
+          <span class="timer-text" id="timer">20:00</span>
           <div class="timer-progress-ring">
             <svg viewBox="0 0 36 36">
               <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
@@ -209,7 +209,7 @@
         </div>
         <div class="meta-item">
           <i data-lucide="timer" class="meta-icon"></i>
-          <span>Thời gian: <strong>15 phút</strong></span>
+          <span>Thời gian: <strong id="durationMetaText">20 phút</strong></span>
         </div>
       </div>
 
@@ -321,7 +321,7 @@
             <h3><i data-lucide="info" class="sidebar-icon"></i> Hướng Dẫn Làm Bài</h3>
           </div>
           <ul class="mini-notes-list">
-            <li><strong>Thời gian:</strong> 15 phút đếm ngược. Hệ thống sẽ tự động thu bài và khóa bài thi khi hết giờ.</li>
+            <li><strong>Thời gian:</strong> 20 phút đếm ngược. Hệ thống sẽ tự động thu bài và khóa bài thi khi hết giờ.</li>
             <li><strong>Cấu trúc:</strong> Các câu trắc nghiệm 4 lựa chọn (A, B, C, D). Mỗi câu đúng được điểm tương ứng.</li>
             <li><strong>Tính năng:</strong>
               <br>&bull; Chọn các tab ở trên cùng để chuyển bài học tự luyện bất cứ lúc nào.
@@ -342,7 +342,7 @@
             <i data-lucide="trophy" class="trophy-icon"></i>
           </div>
           <div class="score-info">
-            <h2 class="score-congrats" id="scoreCongrats">Hoàn thành bài kiểm tra 15 phút!</h2>
+            <h2 class="score-congrats" id="scoreCongrats">Hoàn thành bài kiểm tra 20 phút!</h2>
             <p class="score-subtext" id="scoreSubtext">Học sinh: <strong id="resultStudentName">...</strong></p>
           </div>
         </div>
@@ -361,7 +361,7 @@
           <div class="metric-card">
             <span class="metric-label">Thời gian làm bài</span>
             <div class="metric-value text-info" id="timeSpent">00:00</div>
-            <span class="metric-sub">Giới hạn: 15 phút</span>
+            <span class="metric-sub" id="timeLimitSub">Giới hạn: 20 phút</span>
           </div>
           <div class="metric-card">
             <span class="metric-label">Đánh giá chung</span>

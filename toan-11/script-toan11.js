@@ -21,8 +21,8 @@ let currentIndex = 0;
 let userAnswers = {}; // { [q.id]: answerVal }
 let flaggedQuestions = new Set();
 let timerInterval = null;
-let timeRemaining = 15 * 60; // seconds
-let totalTime = 15 * 60;
+let timeRemaining = 20 * 60; // 20 phút (seconds)
+let totalTime = 20 * 60;
 let isSubmitted = false;
 
 // ==========================================
@@ -315,16 +315,12 @@ function loadLesson(lessonKey) {
   // Set Timer based on lesson size
   const fullBank = (dataBank && dataBank[lessonKey]) ? dataBank[lessonKey] : [];
   const qCount = fullBank.length;
-  if (lessonKey === "exam") {
-    totalTime = 20 * 60; // 20 phút
-  } else if (qCount <= 30) {
-    totalTime = 25 * 60;
-  } else if (qCount <= 45) {
-    totalTime = 35 * 60;
-  } else {
-    totalTime = 45 * 60;
-  }
+  totalTime = 20 * 60; // Chuẩn 20 phút theo yêu cầu
   timeRemaining = totalTime;
+  const durationMeta = document.getElementById("durationMetaText");
+  if (durationMeta) durationMeta.textContent = "20 phút";
+  const timeLimitSub = document.getElementById("timeLimitSub");
+  if (timeLimitSub) timeLimitSub.textContent = "Giới hạn: 20 phút";
   if (currentMode === "exam") {
     startTimer();
   }
