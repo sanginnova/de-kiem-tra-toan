@@ -693,30 +693,31 @@ function renderSolutionToggleBox(q, container) {
 // 7. QUESTION GRID & SIDEBAR NAVIGATION
 // ==========================================
 function renderQuestionGrid() {
-  const gridContainer = document.getElementById("questionGrid");
+  const gridContainer = document.getElementById("navGrid") || document.getElementById("questionGrid");
   if (!gridContainer) return;
   gridContainer.innerHTML = "";
 
   currentQuestions.forEach((q, idx) => {
     const btn = document.createElement("button");
-    btn.className = "grid-btn";
-    btn.textContent = q.id;
-    btn.title = `Câu ${q.id} (${q.section === 'A' ? 'Trắc nghiệm' : q.section === 'B' ? 'Đúng/Sai' : 'Trả lời ngắn'})`;
+    btn.className = "nav-item-btn";
+    btn.id = `navBtn_${idx}`;
+    btn.textContent = (idx + 1);
+    btn.title = `Câu ${idx + 1} (${q.section === 'A' ? 'Trắc nghiệm 4 lựa chọn' : q.section === 'B' ? 'Đúng/Sai' : 'Trả lời ngắn'})`;
 
     // Status classes
     const ans = userAnswers[q.id];
     let isAnswered = false;
     if (q.type === "multiple_choice") {
-      isAnswered = ans !== undefined;
+      isAnswered = ans !== undefined && ans !== null;
     } else if (q.type === "true_false") {
       isAnswered = ans && Object.keys(ans).length === 4;
     } else if (q.type === "short_answer") {
-      isAnswered = ans && ans.trim().length > 0;
+      isAnswered = ans && typeof ans === "string" && ans.trim().length > 0;
     }
 
     if (isAnswered) btn.classList.add("answered");
     if (flaggedQuestions.has(q.id)) btn.classList.add("flagged");
-    if (idx === currentIndex) btn.classList.add("current");
+    if (idx === currentIndex) btn.classList.add("active");
 
     // Submitted state (Green / Red)
     if (isSubmitted) {
@@ -727,6 +728,10 @@ function renderQuestionGrid() {
     btn.addEventListener("click", () => {
       currentIndex = idx;
       renderCurrentQuestion();
+      const card = document.getElementById("questionCard") || document.querySelector(".quiz-card");
+      if (card && window.innerWidth < 1024) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
 
     gridContainer.appendChild(btn);
@@ -734,9 +739,23 @@ function renderQuestionGrid() {
 }
 
 function updateQuestionGridActive() {
-  const btns = document.querySelectorAll(".grid-btn");
+  const btns = document.querySelectorAll(".nav-item-btn");
   btns.forEach((btn, idx) => {
-    btn.classList.toggle("current", idx === currentIndex);
+    btn.classList.toggle("active", idx === currentIndex);
+    if (currentQuestions[idx]) {
+      const q = currentQuestions[idx];
+      const ans = userAnswers[q.id];
+      let isAnswered = false;
+      if (q.type === "multiple_choice") {
+        isAnswered = ans !== undefined && ans !== null;
+      } else if (q.type === "true_false") {
+        isAnswered = ans && Object.keys(ans).length === 4;
+      } else if (q.type === "short_answer") {
+        isAnswered = ans && typeof ans === "string" && ans.trim().length > 0;
+      }
+      btn.classList.toggle("answered", isAnswered);
+      btn.classList.toggle("flagged", flaggedQuestions.has(q.id));
+    }
   });
 }
 
