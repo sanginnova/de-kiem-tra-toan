@@ -215,6 +215,26 @@ function loadLesson(lessonKey) {
   userAnswers = {};
   flaggedQuestions.clear();
 
+  // Reset Results Section & Quiz Body view
+  const resSec = document.getElementById("resultsSection");
+  if (resSec) resSec.style.display = "none";
+  const qBody = document.getElementById("quizBody");
+  if (qBody) qBody.style.display = "";
+  const viewScoreBtn = document.getElementById("viewScoreBoardBtn");
+  if (viewScoreBtn) viewScoreBtn.style.display = "none";
+
+  const headerSubmitBtn = document.getElementById("headerSubmitBtn");
+  if (headerSubmitBtn) {
+    headerSubmitBtn.disabled = false;
+    headerSubmitBtn.innerHTML = `<i data-lucide="send" class="btn-icon"></i><span>Nộp bài</span>`;
+  }
+  const submitQuizBtn = document.getElementById("submitQuizBtn");
+  if (submitQuizBtn) {
+    submitQuizBtn.disabled = false;
+    submitQuizBtn.innerHTML = `<i data-lucide="check-circle-2" class="btn-icon"></i><span>NỘP BÀI THI</span>`;
+  }
+  if (window.lucide) lucide.createIcons();
+
   // Update Active Pill
   document.querySelectorAll(".lesson-pill-btn").forEach(p => {
     p.classList.toggle("active", p.getAttribute("data-lesson") === lessonKey);
@@ -907,18 +927,21 @@ function submitQuiz(force = false) {
   clearInterval(timerInterval);
   isSubmitted = true;
 
-  // Calculate Score according to GDPT 2018 standard
-  // Phần I: 1đ / câu (hoặc tỷ trọng)
-  // Phần II: 1 ý đúng = 0.1, 2 ý đúng = 0.25, 3 ý đúng = 0.5, 4 ý đúng = 1.0
-  // Phần III: 1đ / câu
+  // Calculate Score according to GDPT 2018 standard:
+  // Phần I (Trắc nghiệm 4 lựa chọn): 1đ / câu
+  // Phần II (Đúng/Sai): 1 ý đúng = 0.1, 2 ý đúng = 0.25, 3 ý đúng = 0.5, 4 ý đúng = 1.0
+  // Phần III (Trả lời ngắn): 1đ / câu
   let rawScore = 0;
   let maxPossibleRaw = 0;
   let correctPartA = 0, totalPartA = 0;
   let correctPartB_items = 0, totalPartB_items = 0;
   let correctPartC = 0, totalPartC = 0;
+  let fullyCorrectCount = 0;
 
   currentQuestions.forEach(q => {
     const ans = userAnswers[q.id];
+    const isFullyCorrect = evaluateQuestionCorrectness(q);
+    if (isFullyCorrect) fullyCorrectCount++;
 
     if (q.type === "multiple_choice") {
       totalPartA++;
@@ -955,13 +978,41 @@ function submitQuiz(force = false) {
 
   const finalScore10 = maxPossibleRaw > 0 ? (rawScore / maxPossibleRaw) * 10 : 0;
   const timeTakenSec = totalTime - timeRemaining;
+  const accuracy = currentQuestions.length > 0 ? Math.round((fullyCorrectCount / currentQuestions.length) * 100) : 0;
 
-  renderScoreModal({
+  let rank = "Khá";
+  let feedback = "Cố gắng rèn luyện thêm";
+  if (finalScore10 >= 9.0) {
+    rank = "Xuất sắc";
+    feedback = "🌟 Hoàn hảo! Em làm chủ toàn diện từ lý thuyết đến bài tập vận dụng cao!";
+  } else if (finalScore10 >= 8.0) {
+    rank = "Giỏi";
+    feedback = "👏 Rất tốt! Kỹ năng tính toán và tư duy lượng giác rất chuẩn xác.";
+  } else if (finalScore10 >= 6.5) {
+    rank = "Khá";
+    feedback = "👍 Khá tốt. Hãy cẩn thận hơn ở phần Đúng/Sai và Trả lời ngắn nhé.";
+  } else if (finalScore10 >= 5.0) {
+    rank = "Trung bình";
+    feedback = "⚠️ Đạt mức cơ bản. Hãy xem kỹ lời giải chi tiết bên dưới để ôn tập.";
+  } else {
+    rank = "Cần cố gắng";
+    feedback = "⚠️ Chưa đạt yêu cầu. Em hãy bấm 'Làm lại bài' hoặc chọn từng bài để luyện tập.";
+  }
+
+  const studentInput = document.getElementById("studentNameInput");
+  const studentName = studentInput && studentInput.value.trim() ? studentInput.value.trim() : "Học sinh Toán 11";
+
+  displayQuizResults({
     score10: finalScore10.toFixed(2),
     rawScore: rawScore.toFixed(2),
     maxPossibleRaw: maxPossibleRaw.toFixed(2),
     timeTaken: formatDuration(timeTakenSec),
     totalQ: currentQuestions.length,
+    fullyCorrectCount,
+    accuracy,
+    rank,
+    feedback,
+    studentName,
     correctPartA, totalPartA,
     correctPartB_items, totalPartB_items,
     correctPartC, totalPartC
@@ -974,98 +1025,289 @@ function submitQuiz(force = false) {
 function formatDuration(sec) {
   const m = Math.floor(sec / 60);
   const s = sec % 60;
-  return `${m} phút ${s < 10 ? '0' : ''}${s} giây`;
+  return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
 }
 
-function renderScoreModal(data) {
-  const modal = document.getElementById("resultModal");
-  if (!modal) return;
+function displayQuizResults(data) {
+  const resultsSec = document.getElementById("resultsSection");
+  if (!resultsSec) return;
 
-  const scoreEl = document.getElementById("finalScore");
-  const timeEl = document.getElementById("timeTaken");
-  const correctEl = document.getElementById("correctCount");
-  const teacherNoteEl = document.getElementById("teacherComment");
+  // 1. Show results section and hide quiz body
+  const quizBody = document.getElementById("quizBody");
+  if (quizBody) quizBody.style.display = "none";
+  resultsSec.style.display = "block";
 
-  if (scoreEl) scoreEl.textContent = data.score10;
-  if (timeEl) timeEl.textContent = data.timeTaken;
-  if (correctEl) {
-    correctEl.innerHTML = `
-      <span>Điểm thô: <strong>${data.rawScore}/${data.maxPossibleRaw}</strong></span> • 
-      <span>Phần I: <strong>${data.correctPartA}/${data.totalPartA}</strong></span> • 
-      <span>Phần II: <strong>${data.correctPartB_items}/${data.totalPartB_items} ý</strong></span> • 
-      <span>Phần III: <strong>${data.correctPartC}/${data.totalPartC}</strong></span>
+  // 2. Populate Metrics
+  const finalScoreEl = document.getElementById("finalScore");
+  const correctCountEl = document.getElementById("correctCount");
+  const accuracyRateEl = document.getElementById("accuracyRate");
+  const timeSpentEl = document.getElementById("timeSpent");
+  const rankCategoryEl = document.getElementById("rankCategory");
+  const rankFeedbackEl = document.getElementById("rankFeedback");
+  const studentNameEl = document.getElementById("resultStudentName");
+
+  if (finalScoreEl) finalScoreEl.textContent = data.score10;
+  if (correctCountEl) correctCountEl.textContent = `${data.fullyCorrectCount} / ${data.totalQ}`;
+  if (accuracyRateEl) accuracyRateEl.textContent = `Tỉ lệ: ${data.accuracy}%`;
+  if (timeSpentEl) timeSpentEl.textContent = data.timeTaken;
+  if (rankCategoryEl) rankCategoryEl.textContent = data.rank;
+  if (rankFeedbackEl) rankFeedbackEl.textContent = data.feedback;
+  if (studentNameEl) studentNameEl.textContent = data.studentName;
+
+  // Show "Xem Bảng Điểm" button in question card header if student returns to quiz body
+  const viewScoreBtn = document.getElementById("viewScoreBoardBtn");
+  if (viewScoreBtn) viewScoreBtn.style.display = "inline-flex";
+
+  // Disable submit buttons
+  const headerSubmitBtn = document.getElementById("headerSubmitBtn");
+  if (headerSubmitBtn) {
+    headerSubmitBtn.disabled = true;
+    headerSubmitBtn.innerHTML = `<i data-lucide="check-circle" class="btn-icon"></i><span>Đã nộp bài</span>`;
+  }
+  const submitQuizBtn = document.getElementById("submitQuizBtn");
+  if (submitQuizBtn) {
+    submitQuizBtn.disabled = true;
+    submitQuizBtn.innerHTML = `<i data-lucide="check-circle" class="btn-icon"></i><span>Đã nộp bài</span>`;
+  }
+
+  // 3. Render Detailed Solutions List
+  renderDetailedSolutionsList();
+
+  // 4. Smooth scroll to top
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (window.lucide) lucide.createIcons();
+}
+
+function renderDetailedSolutionsList() {
+  const listEl = document.getElementById("solutionList");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+
+  const letters = ["A", "B", "C", "D"];
+  let wrongCount = 0;
+  let correctCount = 0;
+
+  currentQuestions.forEach((q, idx) => {
+    const isCorrect = evaluateQuestionCorrectness(q);
+    if (isCorrect) correctCount++; else wrongCount++;
+
+    const card = document.createElement("div");
+    card.className = `solution-card ${isCorrect ? "correct" : "wrong"}`;
+    card.setAttribute("data-status", isCorrect ? "correct" : "wrong");
+
+    const sectionLabel = q.section === "A" ? "Trắc nghiệm 4 lựa chọn" : q.section === "B" ? "Trắc nghiệm Đúng / Sai" : "Trả lời ngắn";
+    const levelLabel = q.level === "NB" ? "Nhận biết" : q.level === "TH" ? "Thông hiểu" : q.level === "VD" ? "Vận dụng" : "Vận dụng cao";
+
+    let answerHtml = "";
+
+    if (q.type === "multiple_choice") {
+      const userChoice = userAnswers[q.id];
+      const userChoiceText = userChoice !== undefined ? letters[userChoice] : "Chưa chọn";
+      const correctChoiceText = letters[q.correctIndex];
+
+      answerHtml = `
+        <div class="sol-options-grid" style="display:grid; grid-template-columns:1fr; gap:8px; margin:12px 0;">
+          ${q.options.map((opt, oIdx) => {
+            let optClass = "sol-opt";
+            if (oIdx === q.correctIndex) optClass += " correct-answer";
+            if (oIdx === userChoice && !isCorrect) optClass += " student-wrong";
+            let optClean = opt.replace(/^[A-D]\.\s*/, "");
+            return `
+              <div class="${optClass}" style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0;">
+                <strong style="min-width:24px;">${letters[oIdx]}.</strong>
+                <div style="flex:1;">${formatMathText(optClean)}</div>
+                ${oIdx === q.correctIndex ? '<span style="color:#059669; font-weight:700;">✓ Đáp án đúng</span>' : ""}
+                ${oIdx === userChoice && !isCorrect ? '<span style="color:#dc2626; font-weight:700;">✗ Lựa chọn của bạn</span>' : ""}
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <div class="sol-user-summary" style="margin:10px 0; font-size:0.95rem;">
+          <span>Lựa chọn của bạn: <strong>${userChoiceText}</strong></span> • 
+          <span>Đáp án đúng: <strong style="color:#059669;">${correctChoiceText}</strong></span>
+        </div>
+      `;
+    } else if (q.type === "true_false") {
+      const tfAns = userAnswers[q.id] || {};
+      answerHtml = `
+        <div class="sol-tf-table" style="margin:12px 0; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.92rem;">
+            <thead>
+              <tr style="background:#f1f5f9; text-align:left;">
+                <th style="padding:8px 12px;">Ý mệnh đề</th>
+                <th style="padding:8px 12px; width:120px; text-align:center;">Bạn chọn</th>
+                <th style="padding:8px 12px; width:120px; text-align:center;">Đáp án đúng</th>
+                <th style="padding:8px 12px; width:80px; text-align:center;">Kết quả</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${q.items.map(it => {
+                const uVal = tfAns[it.subId];
+                const uStr = uVal === true ? "Đúng" : uVal === false ? "Sai" : "Chưa chọn";
+                const cStr = it.correct ? "Đúng" : "Sai";
+                const isSubRight = uVal === it.correct;
+                return `
+                  <tr style="border-top:1px solid #e2e8f0; background:${isSubRight ? '#f0fdf4' : '#fef2f2'};">
+                    <td style="padding:8px 12px;"><strong>${it.subId})</strong> ${formatMathText(it.content)}</td>
+                    <td style="padding:8px 12px; text-align:center;">${uStr}</td>
+                    <td style="padding:8px 12px; text-align:center; font-weight:700; color:#059669;">${cStr}</td>
+                    <td style="padding:8px 12px; text-align:center;">${isSubRight ? '✅' : '❌'}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    } else if (q.type === "short_answer") {
+      const userText = (userAnswers[q.id] || "").trim();
+      answerHtml = `
+        <div class="sol-user-summary" style="margin:12px 0; padding:12px; background:#f8fafc; border-radius:8px; font-size:0.95rem;">
+          <div style="margin-bottom:6px;">Câu trả lời của bạn: <strong>${userText || "(Chưa trả lời)"}</strong></div>
+          <div>Đáp án chính xác: <strong style="color:#059669;">${q.correctAnswer}</strong></div>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="sol-card-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-weight:800; font-size:1.1rem; color:#1e293b;">Câu ${idx + 1}</span>
+          <span style="background:#e0e7ff; color:#3730a3; padding:2px 8px; border-radius:6px; font-size:0.8rem; font-weight:700;">${sectionLabel}</span>
+          <span style="background:#f1f5f9; color:#475569; padding:2px 8px; border-radius:6px; font-size:0.8rem; font-weight:600;">${levelLabel}</span>
+        </div>
+        <div class="sol-status-badge ${isCorrect ? 'correct' : 'wrong'}" style="display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; font-weight:700; font-size:0.85rem; background:${isCorrect ? '#dcfce7; color:#15803d;' : '#fee2e2; color:#b91c1c;'}">
+          <i data-lucide="${isCorrect ? 'check-circle' : 'x-circle'}" style="width:16px; height:16px;"></i>
+          <span>${isCorrect ? 'Chính xác' : 'Chưa đúng'}</span>
+        </div>
+      </div>
+
+      <div class="sol-prompt" style="font-size:1.05rem; line-height:1.6; color:#1e293b;">
+        <p><strong>Đề bài:</strong> ${formatMathText(q.prompt)}</p>
+        ${q.diagram ? `<div style="text-align:center; margin:10px 0;"><img src="${q.diagram}" style="max-height:220px; border-radius:8px; border:1px solid #e2e8f0;" /></div>` : ""}
+      </div>
+
+      ${answerHtml}
+
+      <div class="sol-explanation-box" style="margin-top:14px; background:#f8fafc; border-left:4px solid #3b82f6; border-radius:0 8px 8px 0; padding:14px;">
+        <div style="display:flex; align-items:center; gap:6px; font-weight:700; color:#1d4ed8; margin-bottom:6px;">
+          <i data-lucide="lightbulb" style="width:18px; height:18px;"></i>
+          <span>Hướng dẫn giải chi tiết (ThS. Nguyễn Văn Sang):</span>
+        </div>
+        <div style="font-size:0.95rem; line-height:1.7; color:#334155;">${formatMathText(q.explanation)}</div>
+      </div>
     `;
-  }
 
-  // Teacher Remarks based on Score
-  const scoreNum = parseFloat(data.score10);
-  let remark = "";
-  if (scoreNum >= 9.0) {
-    remark = "🌟 Xuất sắc! Em nắm rất vững toàn bộ kiến thức Chương 1 Lượng giác từ công thức đến kỹ năng giải phương trình!";
-  } else if (scoreNum >= 8.0) {
-    remark = "👏 Rất tốt! Em đã làm chủ các dạng toán cơ bản và nâng cao, chỉ cần cẩn thận thêm ở các câu Đúng/Sai và Trả lời ngắn.";
-  } else if (scoreNum >= 6.5) {
-    remark = "👍 Khá tốt. Hãy ôn tập lại các công thức biến đổi lượng giác và điều kiện xác định của phương trình lượng giác nhé!";
-  } else if (scoreNum >= 5.0) {
-    remark = "⚠️ Em đã đạt mức trung bình. Hãy chuyển sang Chế độ Tự Luyện để xem lời giải chi tiết và rèn luyện thêm từng bài!";
-  } else {
-    remark = "⚠️ Điểm số chưa đạt yêu cầu. Em cần xem lại lý thuyết Bài 1 - Bài 5 và làm lại bài tự luyện để củng cố kiến thức!";
-  }
+    listEl.appendChild(card);
+  });
 
-  if (teacherNoteEl) {
-    teacherNoteEl.innerHTML = `<strong>Thầy Nguyễn Văn Sang nhận xét:</strong><br>${remark}`;
-  }
+  const filterWrongEl = document.getElementById("filterWrongCount");
+  const filterCorrectEl = document.getElementById("filterCorrectCount");
+  if (filterWrongEl) filterWrongEl.textContent = wrongCount;
+  if (filterCorrectEl) filterCorrectEl.textContent = correctCount;
 
-  modal.classList.add("active");
+  // Trigger KaTeX rendering on solution list
+  if (window.renderMathInElement) {
+    renderMathInElement(listEl, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+      throwOnError: false
+    });
+  }
 }
 
 function initModalListeners() {
-  const modal = document.getElementById("resultModal");
-  const closeBtn = document.getElementById("closeModalBtn");
-  const reviewBtn = document.getElementById("reviewQuizBtn");
-  const retryBtn = document.getElementById("retryQuizBtn");
-
-  if (closeBtn && modal) {
-    closeBtn.addEventListener("click", () => modal.classList.remove("active"));
-  }
-
-  if (reviewBtn && modal) {
-    reviewBtn.addEventListener("click", () => {
-      modal.classList.remove("active");
-      currentIndex = 0;
-      renderCurrentQuestion();
-    });
-  }
-
-  if (retryBtn && modal) {
-    retryBtn.addEventListener("click", () => {
-      modal.classList.remove("active");
+  // Retake Quiz button
+  const retakeBtn = document.getElementById("retakeQuizBtn");
+  if (retakeBtn) {
+    retakeBtn.addEventListener("click", () => {
+      const resSec = document.getElementById("resultsSection");
+      const quizBody = document.getElementById("quizBody");
+      if (resSec) resSec.style.display = "none";
+      if (quizBody) quizBody.style.display = "";
       loadLesson(currentLessonKey);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  // Back to Quiz card view
+  const backToQuizBtn = document.getElementById("backToQuizBtn");
+  if (backToQuizBtn) {
+    backToQuizBtn.addEventListener("click", () => {
+      const resSec = document.getElementById("resultsSection");
+      const quizBody = document.getElementById("quizBody");
+      if (resSec) resSec.style.display = "none";
+      if (quizBody) quizBody.style.display = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // View Score Board button from quiz card
+  const viewScoreBtn = document.getElementById("viewScoreBoardBtn");
+  if (viewScoreBtn) {
+    viewScoreBtn.addEventListener("click", () => {
+      const resSec = document.getElementById("resultsSection");
+      const quizBody = document.getElementById("quizBody");
+      if (quizBody) quizBody.style.display = "none";
+      if (resSec) resSec.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Scroll to review solutions button
+  const scrollToReviewBtn = document.getElementById("scrollToReviewBtn");
+  if (scrollToReviewBtn) {
+    scrollToReviewBtn.addEventListener("click", () => {
+      const container = document.getElementById("solutionsContainer");
+      if (container) container.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  // Solution Filter chips
+  const filterChips = document.querySelectorAll(".filter-chip");
+  filterChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      filterChips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      const filter = chip.getAttribute("data-filter");
+      const cards = document.querySelectorAll(".solution-card");
+      cards.forEach(card => {
+        const status = card.getAttribute("data-status");
+        if (filter === "all") {
+          card.style.display = "block";
+        } else if (filter === "wrong" && status === "wrong") {
+          card.style.display = "block";
+        } else if (filter === "correct" && status === "correct") {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
 
   // Lesson Hub Modal
   const openHubBtn = document.getElementById("openLessonHubBtn");
-  const lessonModal = document.getElementById("lessonSelectModal");
-  const closeLessonModal = document.getElementById("closeLessonModal");
+  const lessonModal = document.getElementById("lessonHubModal") || document.getElementById("lessonSelectModal");
+  const closeLessonModal = document.getElementById("closeLessonHubBtn") || document.getElementById("closeLessonModal");
 
   if (openHubBtn && lessonModal) {
-    openHubBtn.addEventListener("click", () => lessonModal.classList.add("active"));
+    openHubBtn.addEventListener("click", () => {
+      lessonModal.style.display = "flex";
+      lessonModal.classList.add("active", "show");
+    });
   }
   if (closeLessonModal && lessonModal) {
-    closeLessonModal.addEventListener("click", () => lessonModal.classList.remove("active"));
-  }
-
-  // Hub Card clicks
-  document.querySelectorAll(".lesson-card-item[data-lesson]").forEach(card => {
-    card.addEventListener("click", () => {
-      const target = card.getAttribute("data-lesson");
-      if (target) {
-        if (lessonModal) lessonModal.classList.remove("active");
-        loadLesson(target);
-      }
+    closeLessonModal.addEventListener("click", () => {
+      lessonModal.style.display = "none";
+      lessonModal.classList.remove("active", "show");
     });
-  });
+  }
 }
 
 // ==========================================
