@@ -7,7 +7,7 @@
  * - Bài 4: Hàm số lượng giác (50 câu: 24 TN, 11 Đ/S, 15 TLN)
  * - Bài 5: Phương trình lượng giác (60 câu: 37 TN, 10 Đ/S, 13 TLN)
  * Đầy đủ đáp án, lời giải chi tiết và hình vẽ trích xuất gốc.
- * Tác giả: ThS. Nguyễn Văn Sang - Khoa Cơ bản - Trường Cao đẳng Nghề số 1 - BQP.
+ * Tác giả: ThS. Nguyễn Văn Sang.
  */
 
 const CHUONG1_FULL_DATA = {

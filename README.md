@@ -1,5 +1,5 @@
 # HỆ THỐNG ĐỀ KIỂM TRA TRẮC NGHIỆM 15 PHÚT MÔN TOÁN 10 (GDPT 2018)
-> **Biên soạn & Giảng dạy**: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP.
+> **Biên soạn & Giảng dạy**: ThS. Nguyễn Văn Sang.
 
 Hệ thống web app kiểm tra trắc nghiệm tương tác trực tuyến 15 phút, tự động chấm điểm, hiển thị công thức KaTeX sắc nét, đồ thị vector SVG và xuất bản in PDF chuẩn Sư phạm.
 

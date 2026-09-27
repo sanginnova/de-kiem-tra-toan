@@ -1,6 +1,6 @@
 /**
  * Đề Kiểm Tra Trắc Nghiệm 15 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10
- * Bộ môn Toán - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
+ * Bộ môn Toán & THPT GDPT 2018
  * Giáo viên biên soạn: ThS. Nguyễn Văn Sang
  */
 
@@ -946,8 +946,8 @@ function renderPrintableExamSheet() {
   container.innerHTML = `
     <div class="paper-exam-header">
       <div class="paper-header-left">
-        <h3>TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP</h3>
-        <p>Khoa Cơ Bản - Tổ Toán • GV: Nguyễn Văn Sang</p>
+        <h3>BỘ MÔN TOÁN HỌC</h3>
+        <p>Giáo viên: Nguyễn Văn Sang</p>
       </div>
       <div class="paper-header-right">
         <h2>ĐỀ KIỂM TRA 15 PHÚT MÔN TOÁN 10</h2>

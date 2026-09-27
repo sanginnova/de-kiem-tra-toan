@@ -1,7 +1,7 @@
 /**
  * Đề Kiểm Tra Trắc Nghiệm 30 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10
  * DẠNG 2: CÂU HỎI TRẮC NGHIỆM ĐÚNG / SAI (CÂU 17 -> 21)
- * Bộ môn Toán - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
+ * Bộ môn Toán & THPT GDPT 2018
  * Giáo viên biên soạn: ThS. Nguyễn Văn Sang
  */
 

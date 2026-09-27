@@ -1,6 +1,6 @@
 /**
  * Hệ Thống Bài Tập Dạng Viết Tay - 40 Chuyên Đề Ôn Thi TN 2026 (Tập 1: 1 - 21)
- * Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
+ * THPT GDPT 2018
  * GV: ThS. Nguyễn Văn Sang
  */
 

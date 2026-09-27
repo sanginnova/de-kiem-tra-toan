@@ -1,6 +1,6 @@
 /**
  * Dữ liệu 21 Chuyên đề Ôn thi Tốt nghiệp THPT 2026 (Tập 1: 1 - 21)
- * Chuẩn Sư phạm - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
+ * Chuẩn Sư phạm & THPT GDPT 2018
  * GV: Nguyễn Văn Sang
  * Đã cập nhật đầy đủ 60 câu hỏi cho Chuyên đề 10 (Tính đơn điệu của hàm số)
  */

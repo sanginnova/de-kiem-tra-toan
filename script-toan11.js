@@ -2,7 +2,7 @@
  * HỆ THỐNG ÔN TẬP VÀ KIỂM TRA TRẮC NGHIỆM TOÁN 11 - TOÀN BỘ CHƯƠNG 1
  * Chương 1: Hàm Số và Phương Trình Lượng Giác (Trọn bộ Bài 1 đến Bài 5)
  * Nguồn tài liệu gốc: TOÁN 11 - CHƯƠNG 1: HÀM SỐ và PHƯƠNG TRÌNH LƯỢNG GIÁC (GDPT 2018)
- * Biên soạn & Giảng dạy: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
+ * Biên soạn & Giảng dạy: ThS. Nguyễn Văn Sang & THPT GDPT 2018
  */
 
 // ==========================================
@@ -1493,8 +1493,8 @@ function renderPrintableExamSheet() {
     <div class="print-page-header">
       <div class="print-header-top">
         <div class="school-side">
-          <p><strong>TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP</strong></p>
-          <p>KHOA CƠ BẢN - TỔ TOÁN HỌC</p>
+          <p><strong>BỘ MÔN TOÁN HỌC</strong></p>
+          <p>CHƯƠNG TRÌNH GDPT 2018</p>
           <p class="exam-code">Mã đề: <strong>1101</strong></p>
         </div>
         <div class="exam-title-side">

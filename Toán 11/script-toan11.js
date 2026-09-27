@@ -6,7 +6,7 @@
  * - Phần I: Câu hỏi trắc nghiệm nhiều phương án (4 lựa chọn A, B, C, D)
  * - Phần II: Câu hỏi trắc nghiệm Đúng / Sai (4 ý a, b, c, d)
  * - Phần III: Câu hỏi trắc nghiệm Trả lời ngắn
- * Tác giả: ThS. Nguyễn Văn Sang - Khoa Cơ bản - Trường Cao đẳng Nghề số 1 - BQP.
+ * Tác giả: ThS. Nguyễn Văn Sang.
  */
 
 // ==========================================
