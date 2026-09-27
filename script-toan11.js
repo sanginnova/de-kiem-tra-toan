@@ -1,20 +1,20 @@
 /**
- * Đề Kiểm Tra Trắc Nghiệm & Hệ Thống Tự Luyện Toán 11
- * Chương 1: Hàm số & Phương trình Lượng giác (Bài 1 -> Bài 3)
- * Biên soạn: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
- * Nguồn tư liệu: Sách giáo khoa & Tài liệu Toán 11 - Từ Tâm
+ * HỆ THỐNG ÔN TẬP VÀ KIỂM TRA TRẮC NGHIỆM TOÁN 11 - TOÀN BỘ CHƯƠNG 1
+ * Chương 1: Hàm Số và Phương Trình Lượng Giác (Trọn bộ Bài 1 đến Bài 5)
+ * Nguồn tài liệu gốc: D:\TOAN\THPT\TÀI LIỆU DẠY THÊM\TOÁN 11 - TỪ TÂM\TOÁN 11 - TỪ TÂM\CHƯƠNG 1-HÀM SỐ và PHƯƠNG TRÌNH LƯỢNG GIÁC
+ * Biên soạn & Giảng dạy: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP & THPT GDPT 2018
  */
 
 // ==========================================
 // 1. NGÂN HÀNG CÂU HỎI THEO BÀI HỌC (LESSON BANKS)
 // ==========================================
 const LESSON_BANKS = {
-  // 1.1 ĐỀ KIỂM TRA TỔNG HỢP 15 PHÚT (BÀI 1 ĐẾN BÀI 3)
+  // 1.1 ĐỀ TỔNG ÔN CHƯƠNG 1 (TRỌN BỘ BÀI 1 ĐẾN BÀI 5)
   all: {
     id: "all",
-    title: "Kiểm Tra 15 Phút: Góc & Công Thức Lượng Giác",
-    badge: "TOÁN 11 • CHƯƠNG 1: TỔNG HỢP BÀI 1 ĐẾN BÀI 3",
-    durationMins: 15,
+    title: "Đề Tổng Ôn Chương 1: Hàm Số & Phương Trình Lượng Giác",
+    badge: "TOÁN 11 • TỔNG ÔN CHƯƠNG 1: BÀI 1 ĐẾN BÀI 5",
+    durationMins: 20,
     questions: [
       {
         id: 1,
@@ -29,7 +29,7 @@ const LESSON_BANKS = {
           "$\\dfrac{4\\pi}{5}\\text{ rad}$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>• Công thức chuyển đổi giữa độ và rađian là: $\\alpha\\text{ (rad)} = a^\\circ \\cdot \\dfrac{\\pi}{180^\\circ}$.<br>• Với $a = 108^\\circ$, ta có:<br>$$\\alpha = 108 \\cdot \\dfrac{\\pi}{180} = \\dfrac{108}{180}\\pi = \\dfrac{3\\pi}{5}\\text{ rad}$$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Công thức đổi độ sang rađian: $\\alpha = 108^\\circ \\cdot \\dfrac{\\pi}{180^\\circ} = \\dfrac{3\\pi}{5}\\text{ rad}$."
       },
       {
         id: 2,
@@ -44,7 +44,7 @@ const LESSON_BANKS = {
           "$l = 15\\pi\\text{ cm}$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>• Cung tròn có số đo $\\alpha\\text{ rad}$ trên đường tròn bán kính $R$ có độ dài tính theo công thức:<br>$$l = R \\cdot \\alpha$$<br>• Thay số: $R = 15\\text{ cm}$, $\\alpha = \\dfrac{2\\pi}{3}\\text{ rad}$, ta được:<br>$$l = 15 \\cdot \\dfrac{2\\pi}{3} = 10\\pi\\text{ cm}$$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Độ dài cung tròn: $l = R \\cdot \\alpha = 15 \\cdot \\dfrac{2\\pi}{3} = 10\\pi\\text{ cm}$."
       },
       {
         id: 3,
@@ -59,11 +59,11 @@ const LESSON_BANKS = {
           "$M\\left(-\\dfrac{\\sqrt{3}}{2}; -\\dfrac{1}{2}\\right)$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>• Theo định nghĩa trên đường tròn lượng giác, điểm $M$ biểu diễn góc lượng giác $\\alpha$ có tọa độ là $(x_M; y_M) = (\\cos\\alpha; \\sin\\alpha)$.<br>• Với $\\alpha = \\dfrac{5\\pi}{6}$, ta tính được:<br>- Hoành độ: $x_M = \\cos\\left(\\dfrac{5\\pi}{6}\\right) = -\\dfrac{\\sqrt{3}}{2}$.<br>- Tung độ: $y_M = \\sin\\left(\\dfrac{5\\pi}{6}\\right) = \\dfrac{1}{2}$.<br>• Vậy tọa độ điểm $M$ là $M\\left(-\\dfrac{\\sqrt{3}}{2}; \\dfrac{1}{2}\\right)$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Điểm ngọn $M(\\cos\\alpha; \\sin\\alpha)$. Với $\\alpha = \\dfrac{5\\pi}{6}$ thì $x_M = \\cos\\dfrac{5\pi}{6} = -\\dfrac{\\sqrt{3}}{2}$ và $y_M = \\sin\\dfrac{5\\pi}{6} = \\dfrac{1}{2}$."
       },
       {
         id: 4,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Nhận biết",
         prompt: "Cho góc lượng giác $\\alpha$ thỏa mãn $\\dfrac{\\pi}{2} < \\alpha < \\pi$. Khẳng định nào sau đây là <strong>đúng</strong>?",
         svgType: null,
@@ -74,26 +74,11 @@ const LESSON_BANKS = {
           "$\\sin\\alpha < 0$ và $\\cos\\alpha > 0$"
         ],
         correctIndex: 2,
-        explanation: "<strong>Đáp án C đúng.</strong><br>• Với $\\dfrac{\\pi}{2} < \\alpha < \\pi$, điểm biểu diễn của góc lượng giác $\\alpha$ nằm trong <strong>góc phần tư thứ II</strong> của mặt phẳng tọa độ $Oxy$.<br>• Trong góc phần tư thứ II:<br>- Hoành độ âm: $\\cos\\alpha < 0$.<br>- Tung độ dương: $\\sin\\alpha > 0$.<br>- Kéo theo $\\tan\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha} < 0$ và $\\cot\\alpha < 0$."
+        explanation: "<strong>Đáp án C đúng.</strong><br>Góc phần tư thứ II có tung độ dương ($\sin\\alpha > 0$) và hoành độ âm ($\cos\\alpha < 0$)."
       },
       {
         id: 5,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
-        level: "Thông hiểu",
-        prompt: "Trong các khẳng định sau về giá trị lượng giác của các góc có liên quan đặc biệt, khẳng định nào <strong>SAI</strong> với mọi góc lượng giác $\\alpha$?",
-        svgType: null,
-        options: [
-          "$\\sin(\\pi - \\alpha) = \\sin\\alpha$",
-          "$\\cos(\\pi - \\alpha) = -\\cos\\alpha$",
-          "$\\tan(\\pi + \\alpha) = \\tan\\alpha$",
-          "$\\cos\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = -\\sin\\alpha$"
-        ],
-        correctIndex: 3,
-        explanation: "<strong>Đáp án D đúng (vì mệnh đề D là khẳng định SAI).</strong><br>• Hai góc bù nhau: $\\sin(\\pi - \\alpha) = \\sin\\alpha$ (A đúng), $\\cos(\\pi - \\alpha) = -\\cos\\alpha$ (B đúng).<br>• Hai góc hơn kém $\\pi$: $\\tan(\\pi + \\alpha) = \\tan\\alpha$ (C đúng).<br>• Hai góc phụ nhau: $\\cos\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = \\sin\\alpha$. Do đó mệnh đề $\\cos\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = -\\sin\\alpha$ ở đáp án D là <strong>SAI</strong>."
-      },
-      {
-        id: 6,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Thông hiểu",
         prompt: "Cho góc lượng giác $\\alpha$ thỏa mãn $\\sin\\alpha = \\dfrac{3}{5}$ và $\\dfrac{\\pi}{2} < \\alpha < \\pi$. Giá trị của biểu thức $P = 2\\cos\\alpha + \\tan\\alpha$ bằng:",
         svgType: null,
@@ -104,10 +89,10 @@ const LESSON_BANKS = {
           "$P = -\\dfrac{23}{20}$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>1. Sử dụng hệ thức cơ bản $\\sin^2\\alpha + \\cos^2\\alpha = 1$, ta có:<br>$$\\cos^2\\alpha = 1 - \\sin^2\\alpha = 1 - \\left(\\dfrac{3}{5}\\right)^2 = \\dfrac{16}{25}$$<br>2. Vì $\\dfrac{\\pi}{2} < \\alpha < \\pi$ (góc phần tư thứ II) nên $\\cos\\alpha < 0$. Suy ra:<br>$$\\cos\\alpha = -\\sqrt{\\dfrac{16}{25}} = -\\dfrac{4}{5}$$<br>3. Tính $\\tan\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha} = \\dfrac{3/5}{-4/5} = -\\dfrac{3}{4}$.<br>4. Thay vào biểu thức $P$:<br>$$P = 2\\left(-\\dfrac{4}{5}\\right) + \\left(-\\dfrac{3}{4}\\right) = -\\dfrac{8}{5} - \\dfrac{3}{4} = -\\dfrac{32 + 15}{20} = -\\dfrac{47}{20}$$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Vì $\\alpha \\in (\\pi/2; \\pi)$ nên $\\cos\\alpha = -\\sqrt{1 - 9/25} = -4/5$. $\\tan\\alpha = -3/4$. Suy ra $P = 2(-4/5) + (-3/4) = -47/20$."
       },
       {
-        id: 7,
+        id: 6,
         lesson: "Bài 3: Công thức lượng giác",
         level: "Nhận biết",
         prompt: "Trong các công thức nhân đôi sau đây, công thức nào <strong>SAI</strong> với mọi góc lượng giác $a$?",
@@ -119,10 +104,10 @@ const LESSON_BANKS = {
           "$\\cos 2a = 1 - 2\\cos^2 a$"
         ],
         correctIndex: 3,
-        explanation: "<strong>Đáp án D đúng (vì khẳng định D là công thức SAI).</strong><br>• Công thức nhân đôi cho $\\sin 2a$: $\\sin 2a = 2\\sin a \\cos a$ (A đúng).<br>• Công thức nhân đôi cho $\\cos 2a$ gồm:<br>1) $\\cos 2a = \\cos^2 a - \\sin^2 a$ (B đúng)<br>2) $\\cos 2a = 2\\cos^2 a - 1$<br>3) $\\cos 2a = 1 - 2\\sin^2 a$ (C đúng)<br>• Phương án D viết $\\cos 2a = 1 - 2\\cos^2 a$ là <strong>SAI</strong> (công thức đúng là $2\\cos^2 a - 1$)."
+        explanation: "<strong>Đáp án D đúng (vì công thức D SAI).</strong><br>Công thức đúng của cosin nhân đôi là $\\cos 2a = 2\\cos^2 a - 1$."
       },
       {
-        id: 8,
+        id: 7,
         lesson: "Bài 3: Công thức lượng giác",
         level: "Thông hiểu",
         prompt: "Rút gọn biểu thức $M = \\cos 2x \\cos x + \\sin 2x \\sin x$, ta được kết quả là:",
@@ -134,10 +119,10 @@ const LESSON_BANKS = {
           "$M = \\sin x$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>• Áp dụng công thức cộng đối với cosin:<br>$$\\cos(a - b) = \\cos a \\cos b + \\sin a \\sin b$$<br>• Đặt $a = 2x$ và $b = x$, ta có:<br>$$M = \\cos 2x \\cos x + \\sin 2x \\sin x = \\cos(2x - x) = \\cos x$$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Công thức cộng: $\\cos(2x - x) = \\cos x$."
       },
       {
-        id: 9,
+        id: 8,
         lesson: "Bài 3: Công thức lượng giác",
         level: "Vận dụng",
         prompt: "Giá trị của biểu thức $T = \\dfrac{\\tan 20^\\circ + \\tan 25^\\circ}{1 - \\tan 20^\\circ \\tan 25^\\circ}$ bằng:",
@@ -149,27 +134,72 @@ const LESSON_BANKS = {
           "$T = \\sqrt{3}$"
         ],
         correctIndex: 2,
-        explanation: "<strong>Đáp án C đúng.</strong><br>• Áp dụng công thức cộng đối với hàm tang:<br>$$\\tan(a + b) = \\dfrac{\\tan a + \\tan b}{1 - \\tan a \\tan b}$$<br>• Áp dụng với $a = 20^\\circ$ và $b = 25^\\circ$:<br>$$T = \\dfrac{\\tan 20^\\circ + \\tan 25^\\circ}{1 - \\tan 20^\\circ \\tan 25^\\circ} = \\tan(20^\\circ + 25^\\circ) = \\tan 45^\\circ = 1$$."
+        explanation: "<strong>Đáp án C đúng.</strong><br>$T = \\tan(20^\\circ + 25^\\circ) = \\tan 45^\\circ = 1$."
+      },
+      {
+        id: 9,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Nhận biết",
+        prompt: "Trong các hàm số sau đây, hàm số nào là <strong>hàm số chẵn</strong> trên tập xác định của nó?",
+        svgType: null,
+        options: [
+          "$y = \\sin x$",
+          "$y = \\tan x$",
+          "$y = \\cos x$",
+          "$y = \\cot x$"
+        ],
+        correctIndex: 2,
+        explanation: "<strong>Đáp án C đúng.</strong><br>Hàm số $y = \\cos x$ có tập xác định $D = \\mathbb{R}$ và $\\cos(-x) = \\cos x$ với mọi $x$, do đó $y = \\cos x$ là hàm số chẵn. Các hàm số $\\sin x, \\tan x, \\cot x$ đều là hàm số lẻ."
       },
       {
         id: 10,
-        lesson: "Bài 3: Công thức lượng giác",
-        level: "Vận dụng cao",
-        prompt: "Cho góc lượng giác $x$ thỏa mãn $\\sin x + \\cos x = \\dfrac{1}{2}$. Giá trị của biểu thức $Q = \\sin 2x$ bằng:",
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Thông hiểu",
+        prompt: "Giá trị lớn nhất $M$ và giá trị nhỏ nhất $m$ của hàm số $y = 3\\sin x - 2$ trên $\\mathbb{R}$ lần lượt là:",
         svgType: null,
         options: [
-          "$Q = -\\dfrac{3}{4}$",
-          "$Q = \\dfrac{3}{4}$",
-          "$Q = -\\dfrac{1}{4}$",
-          "$Q = \\dfrac{1}{4}$"
+          "$M = 1; m = -5$",
+          "$M = 5; m = -1$",
+          "$M = 1; m = -1$",
+          "$M = 3; m = -2$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>1. Bình phương hai vế của giả thiết $\\sin x + \\cos x = \\dfrac{1}{2}$:<br>$$(\\sin x + \\cos x)^2 = \\left(\\dfrac{1}{2}\\right)^2 \\Leftrightarrow \\sin^2 x + 2\\sin x \\cos x + \\cos^2 x = \\dfrac{1}{4}$$<br>2. Nhận thấy $\\sin^2 x + \\cos^2 x = 1$ và $2\\sin x \\cos x = \\sin 2x$, thay vào ta được:<br>$$1 + \\sin 2x = \\dfrac{1}{4} \\Leftrightarrow \\sin 2x = \\dfrac{1}{4} - 1 = -\\dfrac{3}{4}$$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Với mọi $x \\in \\mathbb{R}$, ta có $-1 \\le \\sin x \\le 1$.<br>Nhân 3 và trừ 2: $3(-1) - 2 \\le 3\\sin x - 2 \\le 3(1) - 2 \\Leftrightarrow -5 \\le y \\le 1$.<br>Do đó $M = 1$ và $m = -5$."
+      },
+      {
+        id: 11,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Nhận biết",
+        prompt: "Phương trình lượng giác $\\cos x = 0$ có tất cả các nghiệm là:",
+        svgType: null,
+        options: [
+          "$x = k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{2} + k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = k2\\pi\\ (k \\in \\mathbb{Z})$"
+        ],
+        correctIndex: 1,
+        explanation: "<strong>Đáp án B đúng.</strong><br>Phương trình đặc biệt $\\cos x = 0 \\Leftrightarrow x = \\dfrac{\\pi}{2} + k\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 12,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Thông hiểu",
+        prompt: "Tập nghiệm của phương trình lượng giác $2\\sin x - 1 = 0$ là:",
+        svgType: null,
+        options: [
+          "$\\left\\{ \\dfrac{\\pi}{6} + k2\\pi; \\dfrac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\pm \\dfrac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\dfrac{\\pi}{3} + k2\\pi; \\dfrac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\dfrac{\\pi}{6} + k\\pi, k \\in \\mathbb{Z} \\right\\}$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>$2\\sin x - 1 = 0 \\Leftrightarrow \\sin x = \\dfrac{1}{2} = \\sin\\dfrac{\\pi}{6} \\Leftrightarrow \\begin{cases} x = \\dfrac{\\pi}{6} + k2\\pi \\\\ x = \\pi - \\dfrac{\\pi}{6} + k2\\pi = \\dfrac{5\\pi}{6} + k2\\pi \\end{cases}\\ (k \\in \\mathbb{Z})$."
       }
     ]
   },
 
-  // 1.2 TỰ LUYỆN BÀI 1: GÓC LƯỢNG GIÁC
+  // 1.2 BÀI 1: GÓC LƯỢNG GIÁC
   b1: {
     id: "b1",
     title: "Tự Luyện: Bài 1 - Góc Lượng Giác & Đường Tròn Lượng Giác",
@@ -204,7 +234,7 @@ const LESSON_BANKS = {
           "$36^\\circ$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Ta có: $\\alpha = \\dfrac{2\\pi}{5} \\cdot \\dfrac{180^\\circ}{\\pi} = \\dfrac{360^\\circ}{5} = 72^\\circ$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Ta có: $\\alpha = \\dfrac{2\\pi}{5} \\cdot \\dfrac{180^\\circ}{\\pi} = 72^\\circ$."
       },
       {
         id: 3,
@@ -234,7 +264,7 @@ const LESSON_BANKS = {
           "$72^\\circ$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>• Cả bánh xe là một vòng tròn $360^\\circ$ gồm 72 răng.<br>• Mỗi răng tương ứng với số đo góc: $\\dfrac{360^\\circ}{72} = 5^\\circ$.<br>• Khi bánh xe quay được 10 răng thì góc quay được là: $10 \\times 5^\\circ = 50^\\circ$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Mỗi răng tương ứng: $\\dfrac{360^\\circ}{72} = 5^\\circ$. Với 10 răng: $10 \\times 5^\\circ = 50^\\circ$."
       },
       {
         id: 5,
@@ -249,7 +279,7 @@ const LESSON_BANKS = {
           "$M\\left(-\\dfrac{\\sqrt{3}}{2}; -\\dfrac{1}{2}\\right)$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Điểm ngọn $M$ của góc lượng giác $\\alpha$ có tọa độ $M(\\cos\\alpha; \\sin\\alpha)$.<br>Với $\\alpha = \\dfrac{5\\pi}{6}$:<br>$x_M = \\cos\\left(\\dfrac{5\\pi}{6}\\right) = -\\dfrac{\\sqrt{3}}{2}$, $y_M = \\sin\\left(\\dfrac{5\\pi}{6}\\right) = \\dfrac{1}{2}$.<br>Vậy $M\\left(-\\dfrac{\\sqrt{3}}{2}; \\dfrac{1}{2}\\right)$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Điểm ngọn $M(\\cos\\alpha; \\sin\\alpha)$. Với $\\alpha = 5\\pi/6$, tọa độ là $M(-\\sqrt{3}/2; 1/2)$."
       },
       {
         id: 6,
@@ -264,12 +294,12 @@ const LESSON_BANKS = {
           "$240^\\circ$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>Đổi sang độ: $\\alpha = \\dfrac{5\\pi}{4} \\cdot \\dfrac{180^\\circ}{\\pi} = 5 \\cdot 45^\\circ = 225^\\circ$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Đổi sang độ: $\\alpha = \\dfrac{5\\pi}{4} \\cdot \\dfrac{180^\\circ}{\\pi} = 225^\\circ$."
       }
     ]
   },
 
-  // 1.3 TỰ LUYỆN BÀI 2: GIÁ TRỊ LƯỢNG GIÁC
+  // 1.3 BÀI 2: GIÁ TRỊ LƯỢNG GIÁC
   b2: {
     id: "b2",
     title: "Tự Luyện: Bài 2 - Giá Trị Lượng Giác Của Một Góc Lượng Giác",
@@ -278,7 +308,7 @@ const LESSON_BANKS = {
     questions: [
       {
         id: 1,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Nhận biết",
         prompt: "Cho góc lượng giác $\\alpha$ thỏa mãn $\\dfrac{\\pi}{2} < \\alpha < \\pi$. Khẳng định nào sau đây là <strong>đúng</strong>?",
         svgType: null,
@@ -289,11 +319,11 @@ const LESSON_BANKS = {
           "$\\sin\\alpha < 0$ và $\\cos\\alpha > 0$"
         ],
         correctIndex: 2,
-        explanation: "<strong>Đáp án C đúng.</strong><br>Vì $\\dfrac{\\pi}{2} < \\alpha < \\pi$ (góc phần tư thứ II) nên $\\sin\\alpha > 0$ và $\\cos\\alpha < 0$."
+        explanation: "<strong>Đáp án C đúng.</strong><br>Góc phần tư thứ II: $\\sin\\alpha > 0$ và $\\cos\\alpha < 0$."
       },
       {
         id: 2,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Nhận biết",
         prompt: "Trong các công thức cơ bản sau đây, công thức nào đúng với mọi góc $\\alpha$?",
         svgType: null,
@@ -304,11 +334,11 @@ const LESSON_BANKS = {
           "$\\tan\\alpha \\cdot \\cot\\alpha = -1$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$ với mọi $\\alpha$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$."
       },
       {
         id: 3,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Thông hiểu",
         prompt: "Rút gọn biểu thức $A = \\sin(\\pi - x) + \\cos(\\pi - x)$, ta được kết quả là:",
         svgType: null,
@@ -319,11 +349,11 @@ const LESSON_BANKS = {
           "$A = -\\sin x + \\cos x$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>Theo công thức hai góc bù nhau: $\\sin(\\pi - x) = \\sin x$ và $\\cos(\\pi - x) = -\\cos x$.<br>Do đó $A = \\sin x - \\cos x$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Theo công thức bù: $\\sin(\\pi - x) = \\sin x, \\cos(\\pi - x) = -\\cos x \\Rightarrow A = \\sin x - \\cos x$."
       },
       {
         id: 4,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Thông hiểu",
         prompt: "Trong các khẳng định sau về góc phụ nhau, khẳng định nào <strong>SAI</strong>?",
         svgType: null,
@@ -334,11 +364,11 @@ const LESSON_BANKS = {
           "$\\cot\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = \\tan\\alpha$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng (vì mệnh đề B là SAI).</strong><br>Công thức đúng của hai góc phụ nhau là $\\cos\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = \\sin\\alpha$ (không có dấu trừ)."
+        explanation: "<strong>Đáp án B đúng (vì mệnh đề B là SAI).</strong><br>Công thức đúng: $\\cos\\left(\\dfrac{\\pi}{2} - \\alpha\\right) = \\sin\\alpha$ (dương)."
       },
       {
         id: 5,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Thông hiểu",
         prompt: "Cho góc $\\alpha$ thỏa mãn $\\sin\\alpha = \\dfrac{3}{5}$ và $\\dfrac{\\pi}{2} < \\alpha < \\pi$. Giá trị của biểu thức $P = 2\\cos\\alpha + \\tan\\alpha$ bằng:",
         svgType: null,
@@ -349,11 +379,11 @@ const LESSON_BANKS = {
           "$P = -\\dfrac{23}{20}$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>• $\\cos^2\\alpha = 1 - (3/5)^2 = 16/25$. Do $\\alpha \\in (\\pi/2; \\pi)$ nên $\\cos\\alpha = -4/5$.<br>• $\\tan\\alpha = \\dfrac{3/5}{-4/5} = -3/4$.<br>• $P = 2(-4/5) + (-3/4) = -8/5 - 3/4 = -47/20$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>$\\cos\\alpha = -4/5, \\tan\\alpha = -3/4 \\Rightarrow P = 2(-4/5) + (-3/4) = -47/20$."
       },
       {
         id: 6,
-        lesson: "Bài 2: Giá trị lượng giác của một góc lượng giác",
+        lesson: "Bài 2: Giá trị lượng giác",
         level: "Vận dụng",
         prompt: "Cho $\\tan\\alpha = 2$. Giá trị của biểu thức $E = \\dfrac{2\\sin\\alpha + \\cos\\alpha}{\\sin\\alpha - 3\\cos\\alpha}$ bằng:",
         svgType: null,
@@ -364,12 +394,12 @@ const LESSON_BANKS = {
           "$E = -3$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>Vì $\\tan\\alpha$ xác định nên $\\cos\\alpha \\neq 0$. Chia cả tử và mẫu của $E$ cho $\\cos\\alpha$:<br>$$E = \\dfrac{2\\tan\\alpha + 1}{\\tan\\alpha - 3} = \\dfrac{2(2) + 1}{2 - 3} = \\dfrac{5}{-1} = -5$$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Chia cả tử và mẫu cho $\\cos\\alpha$: $E = \\dfrac{2\\tan\\alpha + 1}{\\tan\\alpha - 3} = \\dfrac{2(2) + 1}{2 - 3} = -5$."
       }
     ]
   },
 
-  // 1.4 TỰ LUYỆN BÀI 3: CÔNG THỨC LƯỢNG GIÁC
+  // 1.4 BÀI 3: CÔNG THỨC LƯỢNG GIÁC
   b3: {
     id: "b3",
     title: "Tự Luyện: Bài 3 - Công Thức Lượng Giác",
@@ -389,7 +419,7 @@ const LESSON_BANKS = {
           "$\\cos 2a = 1 - 2\\cos^2 a$"
         ],
         correctIndex: 3,
-        explanation: "<strong>Đáp án D đúng (vì khẳng định D là công thức SAI).</strong><br>Công thức đúng cho cosin nhân đôi là $\\cos 2a = 2\\cos^2 a - 1$."
+        explanation: "<strong>Đáp án D đúng (vì khẳng định D là công thức SAI).</strong><br>Công thức đúng: $\\cos 2a = 2\\cos^2 a - 1$."
       },
       {
         id: 2,
@@ -404,7 +434,7 @@ const LESSON_BANKS = {
           "$\\cos(a + b) = \\sin a \\cos b - \\cos a \\sin b$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Theo công thức cộng: $\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>Công thức cộng: $\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b$."
       },
       {
         id: 3,
@@ -419,7 +449,7 @@ const LESSON_BANKS = {
           "$M = \\sin x$"
         ],
         correctIndex: 1,
-        explanation: "<strong>Đáp án B đúng.</strong><br>Áp dụng công thức cộng: $M = \\cos(2x - x) = \\cos x$."
+        explanation: "<strong>Đáp án B đúng.</strong><br>Ta có: $M = \\cos(2x - x) = \\cos x$."
       },
       {
         id: 4,
@@ -434,7 +464,7 @@ const LESSON_BANKS = {
           "$P = \\sin 2x$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Ta có: $P = 2(2\\sin x \\cos x)\\cos 2x = 2\\sin 2x \\cos 2x = \\sin 4x$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>$P = 2(2\\sin x \\cos x)\\cos 2x = 2\\sin 2x \\cos 2x = \\sin 4x$."
       },
       {
         id: 5,
@@ -449,7 +479,7 @@ const LESSON_BANKS = {
           "$T = \\sqrt{3}$"
         ],
         correctIndex: 2,
-        explanation: "<strong>Đáp án C đúng.</strong><br>Ta có: $T = \\tan(20^\\circ + 25^\\circ) = \\tan 45^\\circ = 1$."
+        explanation: "<strong>Đáp án C đúng.</strong><br>$T = \\tan(20^\\circ + 25^\\circ) = \\tan 45^\\circ = 1$."
       },
       {
         id: 6,
@@ -464,7 +494,207 @@ const LESSON_BANKS = {
           "$Q = \\dfrac{1}{4}$"
         ],
         correctIndex: 0,
-        explanation: "<strong>Đáp án A đúng.</strong><br>Bình phương 2 vế: $(\\sin x + \\cos x)^2 = 1/4 \\Leftrightarrow 1 + \\sin 2x = 1/4 \\Leftrightarrow \\sin 2x = -3/4$."
+        explanation: "<strong>Đáp án A đúng.</strong><br>$(\\sin x + \\cos x)^2 = 1/4 \\Leftrightarrow 1 + \\sin 2x = 1/4 \\Leftrightarrow \\sin 2x = -3/4$."
+      }
+    ]
+  },
+
+  // 1.5 BÀI 4: HÀM SỐ LƯỢNG GIÁC
+  b4: {
+    id: "b4",
+    title: "Tự Luyện: Bài 4 - Hàm Số Lượng Giác",
+    badge: "TOÁN 11 • CHƯƠNG 1: BÀI 4 - HÀM SỐ LƯỢNG GIÁC",
+    durationMins: 15,
+    questions: [
+      {
+        id: 1,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Nhận biết",
+        prompt: "Tập xác định của hàm số $y = \\tan x$ là:",
+        svgType: null,
+        options: [
+          "$D = \\mathbb{R} \\setminus \\left\\{ \\dfrac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$D = \\mathbb{R} \\setminus \\{ k\\pi, k \\in \\mathbb{Z} \\}$",
+          "$D = \\mathbb{R}$",
+          "$D = \\mathbb{R} \\setminus \\left\\{ \\dfrac{\\pi}{2} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>Hàm số $y = \\tan x = \\dfrac{\\sin x}{\\cos x}$ xác định khi $\\cos x \\neq 0 \\Leftrightarrow x \\neq \\dfrac{\\pi}{2} + k\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 2,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Nhận biết",
+        prompt: "Trong các hàm số lượng giác sau đây, hàm số nào có đồ thị <strong>nhận trục tung $Oy$ làm trục đối xứng</strong>?",
+        svgType: null,
+        options: [
+          "$y = \\sin x$",
+          "$y = \\tan x$",
+          "$y = \\cos x$",
+          "$y = \\cot x$"
+        ],
+        correctIndex: 2,
+        explanation: "<strong>Đáp án C đúng.</strong><br>Đồ thị nhận trục tung làm trục đối xứng khi và chỉ khi hàm số đó là hàm số chẵn. Trong 4 hàm số cơ bản, chỉ có $y = \\cos x$ là hàm số chẵn."
+      },
+      {
+        id: 3,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Thông hiểu",
+        prompt: "Tập xác định của hàm số $y = \\dfrac{1}{\\sin x}$ là:",
+        svgType: null,
+        options: [
+          "$D = \\mathbb{R} \\setminus \\{ k\\pi, k \\in \\mathbb{Z} \\}$",
+          "$D = \\mathbb{R} \\setminus \\left\\{ \\dfrac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$D = \\mathbb{R} \\setminus \\{ 0 \\}$",
+          "$D = \\mathbb{R}$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>Hàm số xác định khi mẫu số khác 0: $\\sin x \\neq 0 \\Leftrightarrow x \\neq k\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 4,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Thông hiểu",
+        prompt: "Chu kỳ tuần hoàn $T$ của hàm số $y = \\sin 2x$ là:",
+        svgType: null,
+        options: [
+          "$T = 2\\pi$",
+          "$T = \\pi$",
+          "$T = \\dfrac{\\pi}{2}$",
+          "$T = 4\\pi$"
+        ],
+        correctIndex: 1,
+        explanation: "<strong>Đáp án B đúng.</strong><br>Hàm số $y = \\sin(\\omega x + \\varphi)$ có chu kỳ tuần hoàn là $T = \\dfrac{2\\pi}{|\\omega|}$. Với $\\omega = 2$, ta có: $T = \\dfrac{2\\pi}{2} = \\pi$."
+      },
+      {
+        id: 5,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Thông hiểu",
+        prompt: "Giá trị lớn nhất $M$ và giá trị nhỏ nhất $m$ của hàm số $y = 3\\sin x - 2$ trên $\\mathbb{R}$ lần lượt là:",
+        svgType: null,
+        options: [
+          "$M = 1; m = -5$",
+          "$M = 5; m = -1$",
+          "$M = 1; m = -1$",
+          "$M = 3; m = -2$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>Vì $-1 \\le \\sin x \\le 1$ nên $-3 - 2 \\le 3\\sin x - 2 \\le 3 - 2 \\Leftrightarrow -5 \\le y \\le 1$.<br>Do đó $M = 1$ và $m = -5$."
+      },
+      {
+        id: 6,
+        lesson: "Bài 4: Hàm số lượng giác",
+        level: "Vận dụng",
+        prompt: "Hàm số $y = \\sin x$ đồng biến trên khoảng nào dưới đây?",
+        svgType: null,
+        options: [
+          "$(0; \\pi)$",
+          "$\\left( -\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2} \\right)$",
+          "$(\\pi; 2\\pi)$",
+          "$\\left( \\dfrac{\\pi}{2}; \\dfrac{3\\pi}{2} \\right)$"
+        ],
+        correctIndex: 1,
+        explanation: "<strong>Đáp án B đúng.</strong><br>Theo tính chất hàm số $y = \\sin x$, trên khoảng $\\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$, khi góc $x$ tăng từ $-\\pi/2$ đến $\\pi/2$ thì giá trị $\\sin x$ tăng liên tục từ $-1$ đến $1$, nên hàm số đồng biến."
+      }
+    ]
+  },
+
+  // 1.6 BÀI 5: PHƯƠNG TRÌNH LƯỢNG GIÁC
+  b5: {
+    id: "b5",
+    title: "Tự Luyện: Bài 5 - Phương Trình Lượng Giác",
+    badge: "TOÁN 11 • CHƯƠNG 1: BÀI 5 - PHƯƠNG TRÌNH LƯỢNG GIÁC",
+    durationMins: 15,
+    questions: [
+      {
+        id: 1,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Nhận biết",
+        prompt: "Phương trình lượng giác $\\cos x = 0$ có tất cả các nghiệm là:",
+        svgType: null,
+        options: [
+          "$x = k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{2} + k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = k2\\pi\\ (k \\in \\mathbb{Z})$"
+        ],
+        correctIndex: 1,
+        explanation: "<strong>Đáp án B đúng.</strong><br>Nghiệm phương trình cơ bản: $\\cos x = 0 \\Leftrightarrow x = \\dfrac{\\pi}{2} + k\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 2,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Nhận biết",
+        prompt: "Tập nghiệm của phương trình lượng giác $2\\sin x - 1 = 0$ là:",
+        svgType: null,
+        options: [
+          "$\\left\\{ \\dfrac{\\pi}{6} + k2\\pi; \\dfrac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\pm \\dfrac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\dfrac{\\pi}{3} + k2\\pi; \\dfrac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\dfrac{\\pi}{6} + k\\pi, k \\in \\mathbb{Z} \\right\\}$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>$\\sin x = \\dfrac{1}{2} = \\sin\\dfrac{\\pi}{6} \\Leftrightarrow x = \\dfrac{\\pi}{6} + k2\\pi$ hoặc $x = \\dfrac{5\\pi}{6} + k2\\pi$."
+      },
+      {
+        id: 3,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Thông hiểu",
+        prompt: "Nghiệm của phương trình lượng giác $\\cos x = \\dfrac{1}{2}$ là:",
+        svgType: null,
+        options: [
+          "$x = \\pm \\dfrac{\\pi}{3} + k2\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\pm \\dfrac{\\pi}{6} + k2\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{3} + k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\pm \\dfrac{2\\pi}{3} + k2\\pi\\ (k \\in \\mathbb{Z})$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>$\\cos x = \\dfrac{1}{2} = \\cos\\dfrac{\\pi}{3} \\Leftrightarrow x = \\pm \\dfrac{\\pi}{3} + k2\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 4,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Thông hiểu",
+        prompt: "Nghiệm của phương trình lượng giác $\\tan x = \\sqrt{3}$ là:",
+        svgType: null,
+        options: [
+          "$x = \\dfrac{\\pi}{3} + k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{6} + k\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\dfrac{\\pi}{3} + k2\\pi\\ (k \\in \\mathbb{Z})$",
+          "$x = \\pm \\dfrac{\\pi}{3} + k\\pi\\ (k \\in \\mathbb{Z})$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>$\\tan x = \\sqrt{3} = \\tan\\dfrac{\\pi}{3} \\Leftrightarrow x = \\dfrac{\\pi}{3} + k\\pi\\ (k \\in \\mathbb{Z})$."
+      },
+      {
+        id: 5,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Thông hiểu",
+        prompt: "Số nghiệm của phương trình lượng giác $\\sin x = 0$ thuộc đoạn $[0; 2\\pi]$ là:",
+        svgType: null,
+        options: [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        correctIndex: 2,
+        explanation: "<strong>Đáp án C đúng.</strong><br>$\\sin x = 0 \\Leftrightarrow x = k\\pi\\ (k \\in \\mathbb{Z})$.<br>Trên đoạn $[0; 2\\pi]$, ta có $0 \\le k\\pi \\le 2\\pi \\Leftrightarrow 0 \\le k \\le 2 \\Rightarrow k \\in \\{0; 1; 2\\}$.<br>Vậy có đúng 3 nghiệm là $x_1 = 0, x_2 = \\pi, x_3 = 2\\pi$."
+      },
+      {
+        id: 6,
+        lesson: "Bài 5: Phương trình lượng giác",
+        level: "Vận dụng",
+        prompt: "Tập nghiệm của phương trình lượng giác $2\\cos^2 x - 3\\cos x + 1 = 0$ là:",
+        svgType: null,
+        options: [
+          "$\\left\\{ k2\\pi; \\pm \\dfrac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ k\\pi; \\pm \\dfrac{\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ k2\\pi; \\pm \\dfrac{\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$",
+          "$\\left\\{ \\dfrac{\\pi}{2} + k\\pi; \\pm \\dfrac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}$"
+        ],
+        correctIndex: 0,
+        explanation: "<strong>Đáp án A đúng.</strong><br>Đặt $t = \\cos x\\ (-1 \\le t \\le 1)$, phương trình trở thành $2t^2 - 3t + 1 = 0 \\Leftrightarrow t = 1$ hoặc $t = 1/2$.<br>• Với $\\cos x = 1 \\Leftrightarrow x = k2\\pi$.<br>• Với $\\cos x = 1/2 \\Leftrightarrow x = \\pm \\dfrac{\\pi}{3} + k2\\pi$."
       }
     ]
   }
@@ -539,8 +769,8 @@ const QuizState = {
   currentQuestionIndex: 0,
   userAnswers: [],
   flaggedQuestions: new Set(),
-  timeRemainingSeconds: 15 * 60,
-  totalSeconds: 15 * 60,
+  timeRemainingSeconds: 20 * 60,
+  totalSeconds: 20 * 60,
   isSubmitted: false,
   timerInterval: null,
   studentName: "Học sinh Toán 11"
@@ -560,7 +790,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSavedFontSize();
   bindEvents();
   
-  // Khởi tạo bài học mặc định
   loadLesson(QuizState.currentLessonKey);
 });
 
@@ -729,15 +958,12 @@ function renderQuestion(index) {
 
   QuizState.currentQuestionIndex = index;
 
-  // Level Badge & Lesson
   document.getElementById("questionLevelText").textContent = `${q.lesson} • Mức độ: ${q.level}`;
   document.getElementById("questionIndexIndicator").textContent = `Câu ${index + 1} / ${questions.length}`;
 
-  // Trạng thái Prev / Next
   document.getElementById("prevQuestionBtn").disabled = (index === 0);
   document.getElementById("nextQuestionBtn").disabled = (index === questions.length - 1);
 
-  // Đặt cờ
   const flagBtn = document.getElementById("flagBtn");
   if (QuizState.flaggedQuestions.has(index)) {
     flagBtn.classList.add("active");
@@ -747,11 +973,9 @@ function renderQuestion(index) {
     document.getElementById("flagText").textContent = "Đặt cờ";
   }
 
-  // Tiêu đề câu hỏi
   const promptEl = document.getElementById("questionPrompt");
   promptEl.innerHTML = `Câu ${index + 1}: ${q.prompt}`;
 
-  // Đồ thị SVG (nếu có)
   const diagramWrapper = document.getElementById("diagramWrapper");
   const svgContainer = document.getElementById("svgContainer");
   if (q.svgType && SVG_DIAGRAMS[q.svgType]) {
@@ -762,7 +986,6 @@ function renderQuestion(index) {
     svgContainer.innerHTML = "";
   }
 
-  // Dàn phương án A, B, C, D
   const optionsContainer = document.getElementById("optionsContainer");
   optionsContainer.innerHTML = "";
 
@@ -966,7 +1189,6 @@ function submitQuiz() {
 
   const questions = getCurrentQuestions();
 
-  // Tính điểm
   let correctCount = 0;
   QuizState.userAnswers.forEach((ans, idx) => {
     if (ans === questions[idx].correctIndex) {
@@ -981,27 +1203,25 @@ function submitQuiz() {
   const spentSecs = spentSeconds % 60;
   const spentFormatted = `${String(spentMins).padStart(2, "0")}:${String(spentSecs).padStart(2, "0")}`;
 
-  // Đánh giá xếp loại
   let rank = "Giỏi";
-  let feedback = "Kiến thức Lượng giác rất vững vàng!";
+  let feedback = "Nắm vững toàn bộ kiến thức Chương 1!";
   if (finalScore >= 9.0) {
     rank = "Xuất sắc";
-    feedback = "Hoàn hảo! Nắm chắc từ góc lượng giác đến công thức biến đổi.";
+    feedback = "Hoàn hảo! Làm chủ từ góc lượng giác đến hàm số & phương trình lượng giác.";
   } else if (finalScore >= 8.0) {
     rank = "Giỏi";
-    feedback = "Rất tốt! Tư duy công thức nhanh và chuẩn xác.";
+    feedback = "Rất tốt! Khả năng biến đổi công thức và giải phương trình chuẩn xác.";
   } else if (finalScore >= 6.5) {
     rank = "Khá";
-    feedback = "Khá tốt! Hãy củng cố thêm các công thức biến đổi.";
+    feedback = "Khá tốt! Hãy rèn luyện thêm phương trình lượng giác và TXĐ hàm số.";
   } else if (finalScore >= 5.0) {
     rank = "Trung bình";
-    feedback = "Cần rèn luyện thêm hệ thức cơ bản và công thức góc liên kết.";
+    feedback = "Cần rèn luyện thêm hệ thức cơ bản và công thức nghiệm phương trình.";
   } else {
     rank = "Cần cố gắng";
-    feedback = "Hãy ôn tập kỹ lý thuyết và bấm 'Làm lại bài thi' để cải thiện.";
+    feedback = "Hãy bấm 'Làm lại bài này' hoặc chọn từng bài học để tự luyện từng bước.";
   }
 
-  // Cập nhật DOM kết quả
   document.getElementById("finalScore").textContent = finalScore;
   document.getElementById("correctCount").textContent = `${correctCount} / ${questions.length}`;
   document.getElementById("accuracyRate").textContent = `Tỉ lệ: ${accuracy}%`;
@@ -1058,7 +1278,7 @@ function renderDetailedSolutions() {
         </div>
         <div class="sol-status-badge ${isCorrect ? "success" : "danger"}">
           <i data-lucide="${isCorrect ? "check-circle" : "x-circle"}"></i>
-          <span>${isCorrect ? "Chính xác (+1.0 đ)" : "Chưa đúng (0 đ)"}</span>
+          <span>${isCorrect ? "Chính xác" : "Chưa đúng"}</span>
         </div>
       </div>
 
