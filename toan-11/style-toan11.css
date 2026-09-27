@@ -3,6 +3,112 @@
    Chuẩn GDPT 2018: Trắc nghiệm 4 lựa chọn, Đúng/Sai (a,b,c,d), Trả lời ngắn
    ========================================================================== */
 
+/* ==========================================================================
+   TYPE A: TRẮC NGHIỆM 4 LỰA CHỌN (OPTION ITEMS)
+   ========================================================================== */
+.options-grid,
+.options-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-top: 16px !important;
+}
+
+.option-item,
+.option-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 14px 20px !important;
+  background: var(--bg-surface, #ffffff) !important;
+  border: 2px solid var(--border-color, #cbd5e1) !important;
+  border-radius: var(--radius-md, 12px) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  user-select: none !important;
+  position: relative !important;
+}
+
+.option-item:hover,
+.option-card:hover {
+  border-color: #4f46e5 !important;
+  background: #eef2ff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.15);
+}
+
+.option-item.selected,
+.option-card.selected {
+  border-color: #4f46e5 !important;
+  background: #eef2ff !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25) !important;
+}
+
+.option-key,
+.option-prefix {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: var(--bg-subtle, #f1f5f9) !important;
+  border: 2px solid var(--border-color, #cbd5e1) !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  color: var(--text-secondary, #334155) !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.option-item:hover .option-key,
+.option-card:hover .option-prefix {
+  color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+}
+
+.option-item.selected .option-key,
+.option-card.selected .option-prefix {
+  background: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.4) !important;
+}
+
+.option-text,
+.option-content {
+  font-size: 1.15rem !important;
+  font-weight: 500 !important;
+  color: var(--text-primary, #0f172a) !important;
+  line-height: 1.6 !important;
+  flex-grow: 1 !important;
+}
+
+/* Practice & Submission Colors */
+.option-item.correct,
+.option-card.correct {
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+}
+.option-item.correct .option-key,
+.option-card.correct .option-prefix {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.option-item.incorrect,
+.option-card.incorrect {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+}
+.option-item.incorrect .option-key,
+.option-card.incorrect .option-prefix {
+  background: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
 /* Section Filter Bar */
 .section-filter-bar {
   display: flex;

@@ -453,15 +453,14 @@ function renderCurrentQuestion() {
 function renderMultipleChoice(q, container) {
   const currentAnswer = userAnswers[q.id];
   const grid = document.createElement("div");
-  grid.className = "options-grid";
+  grid.className = "options-container";
 
   const optLabels = ["A", "B", "C", "D"];
   q.options.forEach((optText, idx) => {
     const card = document.createElement("div");
-    card.className = "option-card";
-    if (currentAnswer === idx) {
-      card.classList.add("selected");
-    }
+    card.className = `option-item ${currentAnswer === idx ? "selected" : ""}`;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
 
     // In Practice Mode (or after submit), show colors
     if (isSubmitted || currentMode === "practice") {
@@ -482,8 +481,8 @@ function renderMultipleChoice(q, container) {
     }
 
     card.innerHTML = `
-      <div class="option-prefix">${optLabels[idx]}</div>
-      <div class="option-content">${formatMathText(displayContent)}</div>
+      <span class="option-key">${optLabels[idx]}</span>
+      <span class="option-text">${formatMathText(displayContent)}</span>
     `;
 
     card.addEventListener("click", () => {
