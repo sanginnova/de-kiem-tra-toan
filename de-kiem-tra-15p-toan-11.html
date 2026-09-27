@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đề Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10</title>
-  <meta name="description" content="Đề kiểm tra trắc nghiệm 15 phút môn Toán 10 bám sát tài liệu Bài 1: Bất phương trình bậc nhất hai ẩn, có hình vẽ đồ thị trực quan, chấm điểm tự động và lời giải chi tiết.">
+  <title>Đề Kiểm Tra 15 Phút: Góc & Công Thức Lượng Giác - Toán 11 (GDPT 2018)</title>
+  <meta name="description" content="Đề kiểm tra trắc nghiệm 15 phút môn Toán 11 Chương 1: Từ Bài 1 đến Bài 3 (Góc lượng giác, Giá trị lượng giác và Công thức lượng giác), chuẩn GDPT 2018 và Khoa Cơ bản CĐN01. Tự động chấm điểm, đồ thị SVG trực quan và lời giải chi tiết.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,31 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Core CSS -->
   <link rel="stylesheet" href="style.css">
+  <style>
+    .brand-badge.badge-toan11 {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+    .sol-lesson {
+      font-size: 0.8rem;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .print-diagram-box {
+      margin: 10px 0;
+      text-align: center;
+    }
+    .print-diagram-box svg {
+      max-height: 200px;
+    }
+  </style>
 </head>
 <body>
   <!-- App Container -->
@@ -28,11 +52,11 @@
     <!-- Top Header -->
     <header class="quiz-header">
       <div class="header-left">
-        <div class="brand-badge">
-          <i data-lucide="book-marked" class="brand-icon"></i>
-          <span>TOÁN 10 - TỪ TÂM • CHƯƠNG 2: BPT BẬC NHẤT HAI ẨN</span>
+        <div class="brand-badge badge-toan11">
+          <i data-lucide="compass" class="brand-icon"></i>
+          <span>TOÁN 11 • CHƯƠNG 1: BÀI 1 ĐẾN BÀI 3 (LƯỢNG GIÁC)</span>
         </div>
-        <h1 class="quiz-title">Kiểm Tra 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn</h1>
+        <h1 class="quiz-title">Kiểm Tra 15 Phút: Góc & Công Thức Lượng Giác</h1>
       </div>
 
       <div class="header-right">
@@ -49,10 +73,10 @@
         </div>
 
         <!-- Font Size Controls -->
-        <div class="font-zoom-group" title="Tăng giảm cỡ chữ cho dễ nhìn">
+        <div class="font-zoom-group" title="Tăng giảm cỡ chữ">
           <button id="fontDecreaseBtn" class="font-zoom-btn" title="Cỡ chữ nhỏ hơn">A-</button>
           <button id="fontResetBtn" class="font-zoom-btn active" title="Cỡ chữ mặc định">A</button>
-          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to rõ hơn">A+</button>
+          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to hơn">A+</button>
         </div>
 
         <!-- Theme Toggle -->
@@ -60,30 +84,18 @@
           <i data-lucide="moon" id="themeIcon"></i>
         </button>
 
-        <!-- Link to Quizzes & Workbooks -->
+        <!-- Topic Navigation Links -->
         <a href="he-thong-40-chuyen-de-on-tn.html" class="btn btn-secondary" title="Hệ thống Vở bài tập viết tay 21 Chuyên đề ôn TN 2026" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fef3c7; border-color:#f59e0b; color:#92400e; font-weight:700;">
           <i data-lucide="sparkles" class="btn-icon"></i>
-          <span>40 CĐ Ôn TN 2026</span>
+          <span>40 CĐ Ôn TN</span>
         </a>
-        <a href="Toán 11/" class="btn btn-secondary" title="Đề kiểm tra 15 phút Toán 11: Góc & Công thức lượng giác (Bài 1 - 3)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#eff6ff; border-color:#3b82f6; color:#1d4ed8; font-weight:700;">
-          <i data-lucide="compass" class="btn-icon"></i>
-          <span>Đề KT 15p Toán 11</span>
+        <a href="index.html" class="btn btn-secondary" title="Mở Đề kiểm tra Bài 1: BPT Bậc nhất hai ẩn (Toán 10)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="book-marked" class="btn-icon"></i>
+          <span>KT 15p T10 B1</span>
         </a>
-        <a href="de-kiem-tra-b2.html" class="btn btn-secondary" title="Mở Đề kiểm tra 15 phút Bài 2: Hệ bất phương trình bậc nhất hai ẩn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#e0e7ff; border-color:#818cf8; color:#3730a3; font-weight:700;">
+        <a href="de-kiem-tra-b2.html" class="btn btn-secondary" title="Đề kiểm tra 15 phút Bài 2: Hệ BPT (Toán 10)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
           <i data-lucide="award" class="btn-icon"></i>
-          <span>Đề KT 15p B2</span>
-        </a>
-        <a href="de-kiem-tra-30p-b2.html" class="btn btn-secondary" title="Đề kiểm tra 30 phút Bài 2: Đúng / Sai (Câu 17-21)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
-          <i data-lucide="help-circle" class="btn-icon"></i>
-          <span>Đề KT 30p (Đ/S)</span>
-        </a>
-        <a href="ban-viet-tay.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 1 (41 câu)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-          <i data-lucide="book-open" class="btn-icon"></i>
-          <span>Bản VT B1</span>
-        </a>
-        <a href="ban-viet-tay-b2.html" class="btn btn-secondary" title="Mở Bản Viết Tay Bài 2: Hệ BPT (37 câu, dòng kẻ 1.5, 14pt)" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
-          <i data-lucide="pen-tool" class="btn-icon"></i>
-          <span>Bản VT B2 (14pt)</span>
+          <span>KT 15p T10 B2</span>
         </a>
 
         <!-- Print / Export PDF Button -->
@@ -106,7 +118,7 @@
         <div class="meta-item">
           <i data-lucide="user" class="meta-icon"></i>
           <span>Thí sinh: </span>
-          <input type="text" id="studentNameInput" placeholder="Nhập họ và tên..." class="student-name-input" value="Học sinh Toán 10">
+          <input type="text" id="studentNameInput" placeholder="Nhập họ và tên..." class="student-name-input" value="Học sinh Toán 11">
         </div>
         <div class="meta-item">
           <i data-lucide="layers" class="meta-icon"></i>
@@ -156,7 +168,7 @@
             <div class="diagram-wrapper" id="diagramWrapper" style="display: none;">
               <div class="diagram-caption">
                 <i data-lucide="image" class="caption-icon"></i>
-                <span id="diagramCaptionText">Hình vẽ minh họa miền nghiệm trên mặt phẳng tọa độ Oxy</span>
+                <span id="diagramCaptionText">Hình vẽ minh họa đường tròn lượng giác gốc A(1; 0)</span>
               </div>
               <div class="svg-canvas-container" id="svgContainer">
                 <!-- Injected SVG Diagram -->
@@ -196,7 +208,7 @@
 
           <!-- Question Grid Numbers (1 -> 10) -->
           <div class="nav-grid" id="navGrid">
-            <!-- 1 to 10 rendered in JS -->
+            <!-- Rendered via JS -->
           </div>
 
           <!-- Status Legend -->
@@ -216,18 +228,32 @@
           </div>
         </div>
 
-        <!-- Document Reference Guide -->
+        <!-- Document Reference Guide (Trọng tâm Bài 1 -> Bài 3) -->
         <div class="sidebar-card formula-mini-card">
           <div class="sidebar-card-header">
-            <h3><i data-lucide="book-open" class="sidebar-icon"></i> Nhắc nhớ trọng tâm</h3>
+            <h3><i data-lucide="book-open" class="sidebar-icon"></i> Trọng tâm Bài 1 - Bài 3</h3>
           </div>
           <ul class="mini-notes-list">
-            <li>Dạng tổng quát: $ax + by \le c$ ($a^2 + b^2 \neq 0$).</li>
-            <li>Đường bờ $d: ax + by = c$:
-              <br>&bull; Có dấu $\le, \ge$: vẽ <strong>nét liền</strong> (lấy cả bờ).
-              <br>&bull; Có dấu $<, >$: vẽ <strong>nét đứt</strong> (không lấy bờ).
+            <li><strong>Đổi đơn vị:</strong> $\alpha\text{ (rad)} = a^\circ \cdot \dfrac{\pi}{180^\circ}$; độ dài cung $l = R \alpha$.</li>
+            <li><strong>Tọa độ trên ĐTLG:</strong> Điểm ngọn $M(\cos\alpha; \sin\alpha)$, $\tan\alpha = \dfrac{\sin\alpha}{\cos\alpha}$.</li>
+            <li><strong>Dấu lượng giác:</strong>
+              <br>&bull; Phần tư I: $\sin, \cos, \tan > 0$.
+              <br>&bull; Phần tư II: $\sin > 0; \cos, \tan < 0$.
+              <br>&bull; Phần tư III: $\sin, \cos < 0; \tan > 0$.
+              <br>&bull; Phần tư IV: $\cos > 0; \sin, \tan < 0$.
             </li>
-            <li>Phương pháp: Thử điểm $O(0;0)$ khi đường bờ không đi qua gốc tọa độ.</li>
+            <li><strong>Hệ thức cơ bản:</strong>
+              <br>&bull; $\sin^2\alpha + \cos^2\alpha = 1$
+              <br>&bull; $1 + \tan^2\alpha = \dfrac{1}{\cos^2\alpha}$
+            </li>
+            <li><strong>Công thức cộng:</strong>
+              <br>&bull; $\cos(a \pm b) = \cos a \cos b \mp \sin a \sin b$
+              <br>&bull; $\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b$
+            </li>
+            <li><strong>Công thức nhân đôi:</strong>
+              <br>&bull; $\sin 2a = 2\sin a \cos a$
+              <br>&bull; $\cos 2a = \cos^2 a - \sin^2 a = 2\cos^2 a - 1 = 1 - 2\sin^2 a$
+            </li>
           </ul>
         </div>
       </aside>
@@ -289,7 +315,7 @@
       <!-- Solutions and Detailed Breakdown -->
       <div class="solutions-container" id="solutionsContainer">
         <div class="solutions-header">
-          <h2><i data-lucide="check-square" class="section-icon"></i> Bảng Đáp Án & Lời Giải Chi Tiết (Tài liệu Bài 1)</h2>
+          <h2><i data-lucide="check-square" class="section-icon"></i> Bảng Đáp Án & Hướng Dẫn Giải Chi Tiết (Toán 11 - Bài 1 đến Bài 3)</h2>
           
           <!-- Filter options -->
           <div class="solution-filter">
@@ -316,7 +342,7 @@
           <h3>Xác nhận nộp bài kiểm tra</h3>
         </div>
         <div class="modal-body">
-          <p id="confirmModalText">Bạn có chắc chắn muốn hoàn thành và nộp bài kiểm tra 15 phút?</p>
+          <p id="confirmModalText">Bạn có chắc chắn muốn hoàn thành và nộp bài kiểm tra 15 phút (Góc & Công thức lượng giác - Toán 11)?</p>
           <div class="unanswered-warning" id="unansweredWarning" style="display: none;">
             <i data-lucide="alert-triangle" class="warning-icon"></i>
             <span>Cảnh báo: Bạn còn <strong id="unansweredModalCount">0</strong> câu chưa chọn đáp án!</span>
@@ -336,7 +362,7 @@
           <div class="modal-icon-wrap">
             <i data-lucide="printer" class="modal-icon"></i>
           </div>
-          <h3>Tùy chọn In / Xuất file PDF</h3>
+          <h3>Tùy chọn In / Xuất file PDF (A4)</h3>
         </div>
         <div class="modal-body">
           <p>Thầy/Cô vui lòng chọn định dạng muốn in hoặc lưu thành file PDF:</p>
@@ -344,15 +370,15 @@
             <button id="printExamOnlyBtn" class="print-choice-card">
               <div class="choice-icon"><i data-lucide="file-text"></i></div>
               <div class="choice-info">
-                <strong>1. In Đề thi giấy (Dành cho học sinh)</strong>
-                <span>Trang in A4 gồm 10 câu trắc nghiệm, hình vẽ đồ thị và bảng điền đáp án, không có lời giải.</span>
+                <strong>1. In Đề thi giấy (Dành cho học sinh làm bài)</strong>
+                <span>Trang in A4 gồm 10 câu trắc nghiệm Toán 11 (B1-B3), hình vẽ vector đường tròn lượng giác và bảng trả lời 10 ô, không có đáp án.</span>
               </div>
             </button>
             <button id="printFullSolutionBtn" class="print-choice-card">
               <div class="choice-icon"><i data-lucide="check-circle-2"></i></div>
               <div class="choice-info">
                 <strong>2. In Đề thi kèm Đáp án & Lời giải chi tiết</strong>
-                <span>Đầy đủ 10 câu hỏi, hình vẽ kèm lời giải chi tiết từng bước cho giáo viên và học sinh ôn tập.</span>
+                <span>Đầy đủ 10 câu hỏi, hình vẽ vector kèm hướng dẫn giải chi tiết từng bước cho giáo viên và học sinh ôn tập.</span>
               </div>
             </button>
           </div>
@@ -363,20 +389,20 @@
       </div>
     </div>
 
-    <!-- Container In Ấn Chuyên Dụng Khổ A4 (Chỉ xuất hiện khi in / xuất PDF) -->
+    <!-- Container In Ấn Chuyên Dụng Khổ A4 -->
     <div id="printableExamSheet" class="printable-exam-sheet" style="display: none;">
-      <!-- Nội dung 10 câu in giấy được render tự động -->
+      <!-- Rendered via JS -->
     </div>
 
     <!-- Footer -->
     <footer class="quiz-footer">
-      <p>Đề kiểm tra trắc nghiệm 15 phút bám sát tài liệu <strong>Bài 1: Bất phương trình bậc nhất hai ẩn (Toán 10)</strong>.</p>
-      <p class="footer-sub">Hệ thống hỗ trợ tự động chấm điểm, hiển thị đồ thị vector SVG sắc nét, tương thích trên mọi thiết bị máy tính và điện thoại di động.</p>
+      <p>Đề kiểm tra trắc nghiệm 15 phút <strong>Chương 1: Bài 1 đến Bài 3 - Góc & Công thức lượng giác (Toán 11)</strong>.</p>
+      <p class="footer-sub">Biên soạn: ThS. Nguyễn Văn Sang - Khoa Cơ Bản - Trường Cao Đẳng Nghề Số 1 - BQP. Hỗ trợ tự động chấm điểm, hiển thị KaTeX và đồ thị vector SVG sắc nét.</p>
     </footer>
 
   </div>
 
   <!-- App Script -->
-  <script src="script.js"></script>
+  <script src="script-toan11.js"></script>
 </body>
 </html>
