@@ -1531,3 +1531,184 @@ body {
   }
 }
 
+/* ==========================================================================
+   LESSON SELECTOR & PRACTICE HUB STYLES
+   ========================================================================== */
+.lesson-selector-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 16px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  scrollbar-width: thin;
+}
+
+.lesson-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.lesson-pills-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lesson-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: var(--bg-primary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.lesson-pill-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+.lesson-pill-btn.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 10px -1px rgba(79, 70, 229, 0.35);
+}
+
+.lesson-pill-badge {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
+.lesson-pill-btn.active .lesson-pill-badge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Lesson Hub Modal */
+.hub-category-section {
+  margin-bottom: 24px;
+}
+
+.hub-category-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgba(79, 70, 229, 0.15);
+}
+
+.hub-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.hub-lesson-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.hub-lesson-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.hub-lesson-card.is-current {
+  border-color: var(--primary-color);
+  background-color: rgba(79, 70, 229, 0.04);
+}
+
+.hub-lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.hub-lesson-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.hub-lesson-card.is-current .hub-lesson-icon {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+.hub-lesson-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hub-lesson-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.hub-lesson-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 8px;
+}
+
+.hub-active-tag {
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+}
+
+
