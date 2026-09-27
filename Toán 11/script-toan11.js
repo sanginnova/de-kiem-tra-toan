@@ -207,15 +207,12 @@ const SVG_DIAGRAMS = {
         <circle cx="106.1" cy="120" r="6" fill="#dc2626" />
         <text x="75" y="112" font-size="17" font-weight="bold" fill="#dc2626" font-family="Times New Roman, serif">M</text>
 
-        <!-- Đường dóng hình chiếu lên Ox và Oy -->
+        <!-- Đường dóng hình chiếu vuông góc lên Ox và Oy (không ghi số tọa độ) -->
         <line x1="106.1" y1="120" x2="106.1" y2="180" stroke="#64748b" stroke-width="1.6" stroke-dasharray="4,4" />
         <line x1="106.1" y1="120" x2="210" y2="120" stroke="#64748b" stroke-width="1.6" stroke-dasharray="4,4" />
 
         <circle cx="106.1" cy="180" r="3.5" fill="#64748b" />
-        <text x="80" y="215" font-size="13" font-weight="bold" fill="#475569">-√3/2</text>
-
         <circle cx="210" cy="120" r="3.5" fill="#64748b" />
-        <text x="216" y="125" font-size="13" font-weight="bold" fill="#475569">1/2</text>
 
         <!-- Cung góc alpha = 150 độ từ A đến M -->
         <path d="M 260 180 A 50 50 0 0 0 166.7 155" fill="none" stroke="#d97706" stroke-width="2.2" marker-end="url(#arr_arc)" />
