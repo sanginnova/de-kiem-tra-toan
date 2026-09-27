@@ -211,6 +211,53 @@ function loadLesson(lessonKey) {
   }
 
   currentLessonKey = lessonKey;
+
+  // Check if this lesson has already been submitted (Locked)
+  const isAlreadySubmitted = sessionStorage.getItem("quiz_submitted_" + lessonKey) === "true";
+  if (isAlreadySubmitted) {
+    isSubmitted = true;
+    userAnswers = {};
+    flaggedQuestions.clear();
+
+    const savedAns = sessionStorage.getItem("quiz_answers_" + lessonKey);
+    if (savedAns) {
+      try { userAnswers = JSON.parse(savedAns); } catch(e) {}
+    }
+
+    // Update Active Pill
+    document.querySelectorAll(".lesson-pill-btn").forEach(p => {
+      p.classList.toggle("active", p.getAttribute("data-lesson") === lessonKey);
+    });
+
+    // Update Header Title & Badge
+    const lessonTitles = {
+      exam: "Đề Kiểm Tra Tổng Ôn: Toàn Bộ 5 Bài Học Chương 1 (20 Câu)",
+      b1: "Bài 1: Góc Lượng Giác & Đổi Đơn Vị (35 Câu)",
+      b2: "Bài 2: Giá Trị Lượng Giác Của Một Góc Lượng Giác (54 Câu)",
+      b3: "Bài 3: Công Thức Lượng Giác (29 Câu)",
+      b4: "Bài 4: Hàm Số Lượng Giác (50 Câu)",
+      b5: "Bài 5: Phương Trình Lượng Giác (60 Câu)",
+      all: "Tổng Hợp Trọn Bộ Toàn Chương 1 (228 Câu Hỏi)"
+    };
+    const titleEl = document.querySelector(".quiz-title");
+    if (titleEl) {
+      titleEl.textContent = lessonTitles[lessonKey] || "Tự Luyện & Kiểm Tra Toán 11";
+    }
+
+    updateSectionCounts();
+    applyFiltersAndRender(0);
+
+    const savedRes = sessionStorage.getItem("quiz_results_" + lessonKey);
+    if (savedRes) {
+      try {
+        const resData = JSON.parse(savedRes);
+        displayQuizResults(resData);
+        return;
+      } catch(e) {}
+    }
+    return;
+  }
+
   isSubmitted = false;
   userAnswers = {};
   flaggedQuestions.clear();
@@ -522,6 +569,7 @@ function renderMultipleChoice(q, container) {
 }
 
 function selectMultipleChoice(qid, idx) {
+  if (isSubmitted) return;
   userAnswers[qid] = idx;
   renderCurrentQuestion();
   updateProgressStats();
@@ -588,6 +636,7 @@ function renderTrueFalse(q, container) {
 }
 
 function selectTrueFalse(qid, subId, val) {
+  if (isSubmitted) return;
   if (!userAnswers[qid]) {
     userAnswers[qid] = {};
   }
@@ -850,7 +899,7 @@ function initCardControls() {
   if (flagBtn) {
     flagBtn.addEventListener("click", () => {
       const q = currentQuestions[currentIndex];
-      if (!q) return;
+      if (!q || isSubmitted) return;
       if (flaggedQuestions.has(q.id)) {
         flaggedQuestions.delete(q.id);
       } else {
@@ -1002,7 +1051,7 @@ function submitQuiz(force = false) {
   const studentInput = document.getElementById("studentNameInput");
   const studentName = studentInput && studentInput.value.trim() ? studentInput.value.trim() : "Học sinh Toán 11";
 
-  displayQuizResults({
+  const resultData = {
     score10: finalScore10.toFixed(2),
     rawScore: rawScore.toFixed(2),
     maxPossibleRaw: maxPossibleRaw.toFixed(2),
@@ -1016,7 +1065,14 @@ function submitQuiz(force = false) {
     correctPartA, totalPartA,
     correctPartB_items, totalPartB_items,
     correctPartC, totalPartC
-  });
+  };
+
+  // Lock submission permanently in sessionStorage (Cannot retake once submitted)
+  sessionStorage.setItem("quiz_submitted_" + currentLessonKey, "true");
+  sessionStorage.setItem("quiz_answers_" + currentLessonKey, JSON.stringify(userAnswers));
+  sessionStorage.setItem("quiz_results_" + currentLessonKey, JSON.stringify(resultData));
+
+  displayQuizResults(resultData);
 
   renderCurrentQuestion();
   renderQuestionGrid();
@@ -1222,16 +1278,11 @@ function renderDetailedSolutionsList() {
 }
 
 function initModalListeners() {
-  // Retake Quiz button
+  // Retake Quiz button (Strictly forbidden upon submission)
   const retakeBtn = document.getElementById("retakeQuizBtn");
   if (retakeBtn) {
     retakeBtn.addEventListener("click", () => {
-      const resSec = document.getElementById("resultsSection");
-      const quizBody = document.getElementById("quizBody");
-      if (resSec) resSec.style.display = "none";
-      if (quizBody) quizBody.style.display = "";
-      loadLesson(currentLessonKey);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      alert("⚠️ Quy chế phòng thi: Bài kiểm tra đã nộp thành công và đã được khóa bảo mật. Học sinh không được phép làm lại bài thi!");
     });
   }
 
