@@ -1,15 +1,15 @@
 /**
  * Đề Kiểm Tra Trắc Nghiệm 15 Phút: Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10
- * NGUỒN DỮ LIỆU: TOÁN 10 - TỪ TÂM (CHƯƠNG 2: BPT VÀ HỆ BPT BẬC NHẤT HAI ẨN)
+ * NGUỒN DỮ LIỆU: TOÁN 10 - GDPT 2018 (CHƯƠNG 2: BPT VÀ HỆ BPT BẬC NHẤT HAI ẨN)
  */
 
 // ==========================================
-// 1. DỮ LIỆU CÂU HỎI (TRÍCH 100% TỪ NGUỒN TOÁN 10 - TỪ TÂM)
+// 1. DỮ LIỆU CÂU HỎI (TRÍCH 100% TỪ NGUỒN TOÁN 10 - GDPT 2018)
 // ==========================================
 const QUIZ_QUESTIONS = [
   {
     id: 1,
-    level: "Nhận biết (Trích Câu 8 - Trang 7 | Toán 10 Từ Tâm)",
+    level: "Nhận biết (Trích Câu 8 - Trang 7)",
     prompt: "Trong các bất phương trình sau, bất phương trình nào là <strong>bất phương trình bậc nhất hai ẩn</strong>?",
     svgType: null,
     options: [
@@ -23,7 +23,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 2,
-    level: "Nhận biết (Trích Câu 1 - Trang 7 | Toán 10 Từ Tâm)",
+    level: "Nhận biết (Trích Câu 1 - Trang 7)",
     prompt: "Trong mặt phẳng tọa độ $Oxy$, khẳng định nào sau đây là <strong>đúng</strong> về miền nghiệm của bất phương trình bậc nhất hai ẩn $ax + by \\le c$ ($a^2 + b^2 \\ne 0$)?",
     svgType: null,
     options: [
@@ -33,11 +33,11 @@ const QUIZ_QUESTIONS = [
       "Tập nghiệm của bất phương trình bậc nhất hai ẩn luôn là tập rỗng."
     ],
     correctIndex: 0,
-    explanation: "<strong>Đáp án A đúng.</strong><br>Theo định nghĩa trong SGK và tài liệu Toán Từ Tâm:<br>Trong mặt phẳng toạ độ $Oxy$, tập hợp các điểm có toạ độ là nghiệm của bất phương trình $ax + by \\le c$ được gọi là miền nghiệm của nó. Miền nghiệm là nửa mặt phẳng có bờ là đường thẳng $d: ax + by = c$ (kể cả bờ)."
+    explanation: "<strong>Đáp án A đúng.</strong><br>Theo định nghĩa trong SGK và tài liệu SGK GDPT 2018:<br>Trong mặt phẳng toạ độ $Oxy$, tập hợp các điểm có toạ độ là nghiệm của bất phương trình $ax + by \\le c$ được gọi là miền nghiệm của nó. Miền nghiệm là nửa mặt phẳng có bờ là đường thẳng $d: ax + by = c$ (kể cả bờ)."
   },
   {
     id: 3,
-    level: "Nhận biết (Trích Câu 9 - Trang 7 | Toán 10 Từ Tâm)",
+    level: "Nhận biết (Trích Câu 9 - Trang 7)",
     prompt: "Điểm nào sau đây thuộc miền nghiệm của bất phương trình $2x + y - 3 > 0$?",
     svgType: null,
     options: [
@@ -51,7 +51,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 4,
-    level: "Thông hiểu (Trích Câu 7 - Trang 7 | Toán 10 Từ Tâm)",
+    level: "Thông hiểu (Trích Câu 7 - Trang 7)",
     prompt: "Trong các cặp số sau đây, cặp số nào <strong>KHÔNG</strong> là nghiệm của bất phương trình $x - 4y + 5 \\ge 0$?",
     svgType: null,
     options: [
@@ -65,7 +65,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 5,
-    level: "Thông hiểu (Trích Câu 10 - Trang 7-8 | Toán 10 Từ Tâm)",
+    level: "Thông hiểu (Trích Câu 10 - Trang 7-8)",
     prompt: "Miền nghiệm của bất phương trình $-3x + y + 2 \\le 0$ <strong>không chứa</strong> điểm nào sau đây?",
     svgType: null,
     options: [
@@ -79,7 +79,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 6,
-    level: "Thông hiểu (Trích Câu 21 - Trang 9 | Toán 10 Từ Tâm)",
+    level: "Thông hiểu (Trích Câu 21 - Trang 9)",
     prompt: "Đường thẳng bờ $d$ đi qua hai điểm $(2; 0)$ và $(0; 3)$ có phương trình $3x + 2y = 6$. Miền nghiệm của bất phương trình $3x + 2y > 6$ (minh họa bởi phần tô màu trên hình vẽ bên dưới) là nửa mặt phẳng bờ $d$:",
     svgType: "tutam_q21_diagram",
     options: [
@@ -93,7 +93,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 7,
-    level: "Thông hiểu (Trích Câu 20 - Trang 8-9 | Toán 10 Từ Tâm)",
+    level: "Thông hiểu (Trích Câu 20 - Trang 8-9)",
     prompt: "Miền nghiệm của bất phương trình $3x - 2y > -6$ (được minh họa bởi phần tô màu trên hình vẽ bên dưới) là nửa mặt phẳng có bờ là đường thẳng $d: 3x - 2y = -6$:",
     svgType: "tutam_q20_diagram",
     options: [
@@ -107,7 +107,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 8,
-    level: "Thông hiểu (Trích Câu 24 - Trang 10 | Toán 10 Từ Tâm)",
+    level: "Thông hiểu (Trích Câu 24 - Trang 10)",
     prompt: "Cặp số $(x_0; y_0)$ nào sau đây là <strong>nghiệm</strong> của bất phương trình $3x - 3y \\ge 4$?",
     svgType: null,
     options: [
@@ -121,7 +121,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 9,
-    level: "Vận dụng (Trích Câu 33 - Trang 12 | Toán 10 Từ Tâm)",
+    level: "Vận dụng (Trích Câu 33 - Trang 12)",
     prompt: "Một đội sản xuất cần $3$ giờ để làm xong một sản phẩm loại I và $2$ giờ để làm xong một sản phẩm loại II. Biết tổng thời gian tối đa cho việc sản xuất hai sản phẩm trên là $18$ giờ. Gọi $x, y$ lần lượt là số sản phẩm loại I và loại II mà đội làm được trong thời gian cho phép ($x, y \\in \\mathbb{N}$). Bất phương trình bậc nhất hai ẩn mô tả điều kiện thời gian của đội sản xuất là:",
     svgType: null,
     options: [
@@ -135,7 +135,7 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 10,
-    level: "Vận dụng (Trích Câu 36 - Trang 12 | Toán 10 Từ Tâm)",
+    level: "Vận dụng (Trích Câu 36 - Trang 12)",
     prompt: "Có bao nhiêu giá trị nguyên của tham số $m$ trong đoạn $[-10; 10]$ sao cho cặp số $(x; y) = (1; -1)$ là nghiệm của bất phương trình $2(m - 1)x + (m + 2)y \\ge 0$?",
     svgType: null,
     options: [
@@ -150,10 +150,10 @@ const QUIZ_QUESTIONS = [
 ];
 
 // ==========================================
-// 2. BỘ PHÁT SINH HÌNH VẼ SVG ĐỒ THỊ CHUẨN TOÁN TỪ TÂM
+// 2. BỘ PHÁT SINH HÌNH VẼ SVG ĐỒ THỊ CHUẨN TOÁN HỌC GDPT 2018
 // ==========================================
 const SVG_DIAGRAMS = {
-  // Câu 6 (Trích Câu 21 Từ Tâm): 3x + 2y = 6, qua (2,0) và (0,3), miền tô màu không chứa O(0,0), nét đứt
+  // Câu 6 (Trích Câu 21 GDPT 2018): 3x + 2y = 6, qua (2,0) và (0,3), miền tô màu không chứa O(0,0), nét đứt
   tutam_q21_diagram: function() {
     return `
       <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:12px; border:1px solid #e2e8f0;">
@@ -190,7 +190,7 @@ const SVG_DIAGRAMS = {
     `;
   },
 
-  // Câu 7 (Trích Câu 20 Từ Tâm): 3x - 2y = -6, qua (-2,0) và (0,3), miền tô màu chứa O(0,0), nét đứt
+  // Câu 7 (Trích Câu 20 GDPT 2018): 3x - 2y = -6, qua (-2,0) và (0,3), miền tô màu chứa O(0,0), nét đứt
   tutam_q20_diagram: function() {
     return `
       <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:12px; border:1px solid #e2e8f0;">
