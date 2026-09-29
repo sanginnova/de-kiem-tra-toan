@@ -732,6 +732,7 @@ function renderMath() {
 function saveState() {
   const state = {
     answers: userAnswers,
+    isSubmitted: isSubmitted,
     studentName: document.getElementById("studentName")?.value || "",
     studentClass: document.getElementById("studentClass")?.value || "",
     studentId: document.getElementById("studentId")?.value || ""
@@ -755,6 +756,11 @@ function loadSavedState() {
       }
       if (state.studentId && document.getElementById("studentId")) {
         document.getElementById("studentId").value = state.studentId;
+      }
+      if (state.isSubmitted) {
+        setTimeout(() => {
+          finalizeSubmit();
+        }, 200);
       }
     }
   } catch(e) {}
@@ -1470,7 +1476,74 @@ function finalizeSubmit() {
 
   const finalTotal = Math.min(10, Math.round((scorePart1 + scorePart2 + scorePart3 + scorePart4) * 10) / 10);
 
-  // Update Score Modal
+  let rankTitle = "Xếp loại: Xuất sắc";
+  let rankDesc = "Học sinh nắm vững toàn diện kiến thức hệ bất phương trình bậc nhất hai ẩn và các bài toán thực tế tối ưu hóa.";
+  let rankColor = "#10b981";
+
+  if (finalTotal >= 8.5) {
+    rankTitle = "Xếp loại: Xuất sắc";
+    rankDesc = "Nắm rất vững lý thuyết, biểu diễn miền nghiệm chính xác và giải quyết thành thạo bài toán quy hoạch tuyến tính.";
+    rankColor = "#10b981";
+  } else if (finalTotal >= 7.0) {
+    rankTitle = "Xếp loại: Giỏi";
+    rankDesc = "Nắm tốt kiến thức trọng tâm, tính toán chính xác hầu hết các dạng câu hỏi trắc nghiệm và tự luận.";
+    rankColor = "#4f46e5";
+  } else if (finalTotal >= 5.0) {
+    rankTitle = "Xếp loại: Khá";
+    rankDesc = "Đạt yêu cầu kiến thức cơ bản. Cần rèn luyện thêm kỹ năng tìm cực trị trên miền đa giác và bài toán kinh tế.";
+    rankColor = "#d97706";
+  } else {
+    rankTitle = "Xếp loại: Cần cố gắng";
+    rankDesc = "Chưa nắm chắc phương pháp xác định miền nghiệm. Hãy đọc kỹ phần Tóm tắt Lý thuyết & Ví dụ mẫu B2.1!";
+    rankColor = "#ef4444";
+  }
+
+  // 1. Update On-Page Result Banner
+  const now = new Date();
+  const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} ngày ${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth()+1).padStart(2, '0')}/${now.getFullYear()}`;
+  
+  const banner = document.getElementById("examResultBanner");
+  if (banner) {
+    banner.style.display = "flex";
+    document.getElementById("bannerScoreNum").textContent = finalTotal.toFixed(1);
+    document.getElementById("bannerRankTitle").textContent = rankTitle;
+    document.getElementById("bannerRankTitle").style.color = rankColor;
+    document.getElementById("bannerRankDesc").textContent = rankDesc;
+    document.getElementById("bannerPart1").textContent = `${scorePart1.toFixed(2)} / 4.0 đ`;
+    document.getElementById("bannerPart2").textContent = `${scorePart2.toFixed(2)} / 3.0 đ`;
+    document.getElementById("bannerPart3").textContent = `${scorePart3.toFixed(2)} / 2.0 đ`;
+    document.getElementById("bannerPart4").textContent = `${scorePart4.toFixed(1)} / 1.0 đ`;
+    const submitTimeEl = document.getElementById("bannerSubmitTime");
+    if (submitTimeEl) submitTimeEl.textContent = `Nộp bài lúc: ${timeStr}`;
+  }
+
+  // 2. Update Header Score Pill
+  const headerScoreWrap = document.getElementById("headerScoreWrap");
+  const headerScoreVal = document.getElementById("headerScoreVal");
+  const headerSubmitBtn = document.getElementById("headerSubmitBtn");
+  if (headerScoreWrap && headerScoreVal) {
+    headerScoreVal.textContent = finalTotal.toFixed(1);
+    headerScoreWrap.style.display = "inline-flex";
+    if (headerSubmitBtn) headerSubmitBtn.style.display = "none";
+  }
+
+  // 3. Update Sidebar Score Area
+  const sideScoreArea = document.getElementById("sidebarScoreArea");
+  const sideScoreVal = document.getElementById("sidebarScoreVal");
+  const sideRankVal = document.getElementById("sidebarRankVal");
+  const sideSubmitBtn = document.getElementById("sidebarSubmitBtn");
+  if (sideScoreArea && sideScoreVal && sideRankVal) {
+    sideScoreVal.textContent = finalTotal.toFixed(1);
+    sideRankVal.textContent = rankTitle;
+    sideRankVal.style.color = rankColor;
+    sideScoreArea.style.display = "flex";
+    if (sideSubmitBtn) {
+      sideSubmitBtn.innerHTML = '<i data-lucide="bar-chart-2" class="btn-icon"></i> <span>Xem bảng điểm kết quả</span>';
+      sideSubmitBtn.onclick = () => showScoreModalAgain();
+    }
+  }
+
+  // 4. Update Score Modal
   document.getElementById("finalScoreVal").textContent = finalTotal.toFixed(1);
   document.getElementById("scorePart1Val").textContent = `${scorePart1.toFixed(2)} / 4.0 đ`;
   document.getElementById("scorePart2Val").textContent = `${scorePart2.toFixed(2)} / 3.0 đ`;
@@ -1479,24 +1552,23 @@ function finalizeSubmit() {
 
   const rankEl = document.getElementById("scoreRankBadge");
   if (rankEl) {
-    if (finalTotal >= 8.5) {
-      rankEl.textContent = "Xếp loại: Xuất sắc • Nắm vững toàn diện kiến thức B2!";
-      rankEl.style.color = "#10b981";
-    } else if (finalTotal >= 7.0) {
-      rankEl.textContent = "Xếp loại: Giỏi • Đạt yêu cầu cao chuẩn kiến thức kỹ năng!";
-      rankEl.style.color = "#4f46e5";
-    } else if (finalTotal >= 5.0) {
-      rankEl.textContent = "Xếp loại: Khá • Cần rèn luyện thêm bài toán thực tế cực trị!";
-      rankEl.style.color = "#d97706";
-    } else {
-      rankEl.textContent = "Xếp loại: Cần cố gắng • Hãy đọc lại tóm tắt Lý thuyết B2.1!";
-      rankEl.style.color = "#ef4444";
-    }
+    rankEl.textContent = rankTitle + " • " + rankDesc;
+    rankEl.style.color = rankColor;
   }
 
+  // Show score modal popup
   document.getElementById("scoreModal")?.classList.add("show");
+  
+  // Smooth scroll to top of exam
+  banner?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   renderMath();
+  initLucideIcons();
 }
+
+window.showScoreModalAgain = function() {
+  document.getElementById("scoreModal")?.classList.add("show");
+};
 
 function resetExam() {
   if (!confirm("Bạn có chắc chắn muốn làm lại bài thi từ đầu?")) return;
