@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Kiểm Tra 60 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn - Toán 10 (B2.1 - B2.5)</title>
+  <meta name="description" content="Đề kiểm tra định kỳ 60 phút môn Toán 10: Hệ bất phương trình bậc nhất hai ẩn (Bản viết tay B2.1 - B2.5). Chuẩn ma trận GDPT 2018, tự động chấm điểm, KaTeX sắc nét, bảng điều hướng 37 câu và lời giải chi tiết.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for crisp Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Base Theme Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Specialized Styling for 60-Minute Exam */
+    :root {
+      --exam-primary: #4f46e5;
+      --exam-secondary: #0d9488;
+      --exam-accent: #e11d48;
+      --exam-warning: #f59e0b;
+    }
+
+    .exam-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .exam-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Student Info Card */
+    .student-info-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .info-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .info-group input {
+      padding: 8px 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .info-group input:focus {
+      border-color: var(--primary);
+      background: var(--bg-surface);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    /* Tab Filter Bar */
+    .exam-tab-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .exam-tab-btn {
+      padding: 10px 18px;
+      border-radius: 8px 8px 0 0;
+      border: 1.5px solid transparent;
+      border-bottom: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .exam-tab-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--primary);
+    }
+
+    .exam-tab-btn.active {
+      background: var(--bg-surface);
+      color: var(--primary);
+      border-color: var(--border-color);
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .exam-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--bg-surface);
+    }
+
+    .tab-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 12px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+    }
+
+    .exam-tab-btn.active .tab-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* Section Banner */
+    .part-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #ffffff;
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+      margin: 16px 0 10px;
+    }
+
+    .part-banner.theory {
+      background: linear-gradient(135deg, #0d9488, #0f766e);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+    }
+
+    .part-banner.danger {
+      background: linear-gradient(135deg, #e11d48, #be123c);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+    }
+
+    .part-banner.warning {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+    }
+
+    .part-banner.purple {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+
+    /* Question Block Card */
+    .exam-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .exam-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .exam-card.answered {
+      border-left: 5px solid var(--primary);
+    }
+
+    .exam-card.correct-res {
+      border-left: 5px solid #10b981 !important;
+      background: rgba(16, 185, 129, 0.03);
+    }
+
+    .exam-card.wrong-res {
+      border-left: 5px solid #ef4444 !important;
+      background: rgba(239, 68, 68, 0.03);
+    }
+
+    .card-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .q-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .q-level-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .q-content {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .q-image-box {
+      max-width: 520px;
+      margin: 8px auto;
+      text-align: center;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .q-image-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* Question 4 Diagram Grid */
+    .diagram-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .diagram-option-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .diagram-option-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .diagram-option-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .diagram-option-card img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    /* Multiple Choice Options */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .options-grid.four-cols {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      .options-grid.four-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .options-grid.four-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .option-item:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 700;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .option-item.correct-ans {
+      border-color: #10b981 !important;
+      background: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+
+    .option-item.wrong-ans {
+      border-color: #ef4444 !important;
+      background: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+
+    .option-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .option-item.selected .option-letter {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .option-item.correct-ans .option-letter {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+    }
+
+    /* True/False Statements Grid */
+    .tf-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .tf-table tr {
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .tf-table tr:hover {
+      background: var(--bg-subtle);
+    }
+
+    .tf-table td {
+      padding: 12px 14px;
+      vertical-align: middle;
+    }
+
+    .tf-stmt-text {
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .tf-action-group {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .tf-choice-btn {
+      padding: 7px 16px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      min-width: 74px;
+      text-align: center;
+    }
+
+    .tf-choice-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .tf-choice-btn.active-true {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .tf-choice-btn.active-false {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+
+    /* Short Answer Box */
+    .short-input-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      margin-top: 8px;
+    }
+
+    .short-input-field {
+      padding: 10px 14px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      max-width: 220px;
+      outline: none;
+      transition: var(--transition);
+      background: var(--bg-surface);
+    }
+
+    .short-input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    /* Handwriting Lines Area for Essay */
+    .essay-area-box {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .essay-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 14pt;
+      line-height: 1.5;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      outline: none;
+      resize: vertical;
+      transition: var(--transition);
+    }
+
+    .essay-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .essay-lines-canvas {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 6px;
+    }
+
+    .notebook-row {
+      height: 32px;
+      border-bottom: 1px dotted #cbd5e1;
+      display: flex;
+      align-items: center;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    /* Detailed Solution Drawer */
+    .solution-box {
+      display: none;
+      margin-top: 16px;
+      padding: 18px 22px;
+      background: var(--bg-subtle);
+      border: 1.5px solid #6366f1;
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .solution-box.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .solution-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #4f46e5;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 8px;
+    }
+
+    /* Sticky Question Palette Navigator */
+    .sticky-navigator {
+      position: sticky;
+      top: 18px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-md);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+
+    .nav-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .progress-bar-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: var(--bg-subtle);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .palette-section-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .palette-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .palette-btn.active-q {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-glow);
+    }
+
+    .palette-btn.done {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .palette-btn.res-correct {
+      background: #10b981 !important;
+      color: #ffffff !important;
+      border-color: #10b981 !important;
+    }
+
+    .palette-btn.res-wrong {
+      background: #ef4444 !important;
+      color: #ffffff !important;
+      border-color: #ef4444 !important;
+    }
+
+    .palette-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-color);
+      padding-top: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+    }
+
+    /* Modal Overlay & Score Result */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      display: flex !important;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .score-modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .score-circle-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+    }
+
+    .score-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-sub {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .score-breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      text-align: left;
+    }
+
+    .breakdown-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .breakdown-card h5 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .breakdown-card .b-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      .top-actions-bar,
+      .sticky-navigator,
+      .exam-tab-bar,
+      .btn,
+      .modal-overlay,
+      .font-zoom-group,
+      #timerContainer {
+        display: none !important;
+      }
+
+      .exam-layout {
+        display: block !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 13pt !important;
+      }
+
+      .exam-card {
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 20px !important;
+      }
+
+      .solution-box {
+        display: block !important;
+        border: 1px solid #64748b !important;
+        background: #f8fafc !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-container">
+    
+    <!-- Top Header Sticky -->
+    <header class="quiz-header">
+      <div class="header-left">
+        <div class="brand-badge" style="background:#e0e7ff; color:#3730a3; border:1px solid #c7d2fe;">
+          <i data-lucide="award" class="brand-icon"></i>
+          <span>TOÁN HỌC THPT • ĐỀ KIỂM TRA ĐỊNH KỲ 60 PHÚT</span>
+        </div>
+        <h1 class="quiz-title">Kiểm Tra 60 Phút: Hệ Bất Phương Trình Bậc Nhất Hai Ẩn</h1>
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:2px;">
+          Bao quát trọn bộ <b>Bản viết tay B2.1 đến B2.5</b> (Lý thuyết, 16 câu Trắc nghiệm 4 phương án, 5 câu Đúng/Sai, 9 câu Điền đáp án ngắn, 7 bài Tự luận thực tế).
+        </p>
+      </div>
+
+      <div class="header-right">
+        <!-- Timer 60 Phút -->
+        <div class="timer-box" id="timerContainer" title="Thời gian làm bài còn lại (60 phút)">
+          <i data-lucide="clock" class="timer-icon"></i>
+          <span class="timer-text" id="timer">60:00</span>
+          <div class="timer-progress-ring">
+            <svg viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="timerRing" class="ring-fill" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Font Zoom Group -->
+        <div class="font-zoom-group" title="Tăng giảm cỡ chữ">
+          <button id="fontDecreaseBtn" class="font-zoom-btn" title="Cỡ chữ nhỏ hơn">A-</button>
+          <button id="fontResetBtn" class="font-zoom-btn active" title="Cỡ chữ mặc định">A</button>
+          <button id="fontIncreaseBtn" class="font-zoom-btn" title="Cỡ chữ to hơn">A+</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="icon-btn" title="Chuyển đổi giao diện Sáng / Tối">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Topic Navigation Links -->
+        <a href="de-kiem-tra-b2.html" class="btn btn-secondary" title="Đề kiểm tra 15 phút Bài 2" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="check-circle" class="btn-icon"></i>
+          <span>Đề 15p B2</span>
+        </a>
+        <a href="de-kiem-tra-30p-b2.html" class="btn btn-secondary" title="Đề kiểm tra 30 phút Đúng/Sai Bài 2" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="help-circle" class="btn-icon"></i>
+          <span>Đề 30p Đ/S</span>
+        </a>
+        <a href="ban-viet-tay-b2.html" class="btn btn-secondary" title="Vở bài tập Bản Viết Tay Bài 2" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#fdf2f8; border-color:#f43f5e; color:#be123c; font-weight:700;">
+          <i data-lucide="pen-tool" class="btn-icon"></i>
+          <span>Bản VT B2</span>
+        </a>
+
+        <!-- Print Button -->
+        <button id="headerPrintBtn" class="btn btn-secondary print-action-btn" title="In hoặc Xuất đề thi ra PDF (Khổ A4)">
+          <i data-lucide="printer" class="btn-icon"></i>
+          <span>In / Xuất PDF</span>
+        </button>
+
+        <!-- Submit Button in Header -->
+        <button id="headerSubmitBtn" class="btn btn-primary submit-action-btn" style="background:linear-gradient(135deg, #e11d48, #be123c); border-color:transparent;">
+          <i data-lucide="send" class="btn-icon"></i>
+          <span>Nộp bài thi</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Student Information Banner -->
+    <div class="student-info-card">
+      <div class="info-group">
+        <label><i data-lucide="user" style="width:14px;height:14px;display:inline;"></i> Họ và tên học sinh:</label>
+        <input type="text" id="studentName" placeholder="Nguyễn Văn A...">
+      </div>
+      <div class="info-group">
+        <label><i data-lucide="school" style="width:14px;height:14px;display:inline;"></i> Lớp & Trường:</label>
+        <input type="text" id="studentClass" value="10A8 - Trường CĐN Số 1 - BQP">
+      </div>
+      <div class="info-group">
+        <label><i data-lucide="hash" style="width:14px;height:14px;display:inline;"></i> Số báo danh:</label>
+        <input type="text" id="studentId" placeholder="SBD: 1001...">
+      </div>
+      <div class="info-group">
+        <label><i data-lucide="calendar" style="width:14px;height:14px;display:inline;"></i> Ngày kiểm tra:</label>
+        <input type="text" id="examDate" readonly value="29/09/2026">
+      </div>
+    </div>
+
+    <!-- Exam Tab Filter Bar -->
+    <nav class="exam-tab-bar" id="examTabBar">
+      <button class="exam-tab-btn active" data-filter="all">
+        <i data-lucide="grid"></i>
+        <span>Tất cả nội dung</span>
+        <span class="tab-badge">37 câu + LT</span>
+      </button>
+      <button class="exam-tab-btn" data-filter="theory">
+        <i data-lucide="bookmark"></i>
+        <span>B2.1: Lý thuyết & Ví dụ</span>
+        <span class="tab-badge">3 mục + 4 VD</span>
+      </button>
+      <button class="exam-tab-btn" data-filter="part1">
+        <i data-lucide="check-circle-2"></i>
+        <span>Phần I (B2.2): Trắc nghiệm 4 lựa chọn</span>
+        <span class="tab-badge">Câu 1 - 16</span>
+      </button>
+      <button class="exam-tab-btn" data-filter="part2">
+        <i data-lucide="help-circle"></i>
+        <span>Phần II (B2.3): Trắc nghiệm Đúng / Sai</span>
+        <span class="tab-badge">Câu 17 - 21</span>
+      </button>
+      <button class="exam-tab-btn" data-filter="part3">
+        <i data-lucide="edit-2"></i>
+        <span>Phần III (B2.4): Trả lời ngắn</span>
+        <span class="tab-badge">Câu 22 - 30</span>
+      </button>
+      <button class="exam-tab-btn" data-filter="part4">
+        <i data-lucide="pen-tool"></i>
+        <span>Phần IV (B2.5): Tự luận viết tay</span>
+        <span class="tab-badge">Câu 31 - 37</span>
+      </button>
+    </nav>
+
+    <!-- Main Exam Layout (Grid 2 Columns) -->
+    <div class="exam-layout">
+      
+      <!-- Left Column: All Questions & Content -->
+      <main class="exam-main-content" id="examMainContent">
+        <!-- Rendered dynamically via script-60p-b2.js -->
+        <div style="text-align:center; padding:40px; color:var(--text-muted);">
+          <i data-lucide="loader" class="spin" style="width:36px;height:36px;margin:0 auto 12px;display:block;"></i>
+          Đang tải dữ liệu đề thi 60 phút...
+        </div>
+      </main>
+
+      <!-- Right Column: Sticky Question Navigator -->
+      <aside class="sticky-navigator">
+        <div class="nav-head">
+          <div class="nav-title">
+            <i data-lucide="layout-grid" style="color:var(--primary);"></i>
+            <span>BẢNG CÂU HỎI</span>
+          </div>
+          <span class="badge-pill pill-primary" id="answeredCountBadge">0 / 37</span>
+        </div>
+
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="examProgressFill"></div>
+          </div>
+          <div class="progress-text-row">
+            <span>Tiến độ làm bài</span>
+            <span id="examProgressPercent">0%</span>
+          </div>
+        </div>
+
+        <!-- Section 1 Palette -->
+        <div class="palette-section-title">Phần I: 4 Lựa chọn (Câu 1 - 16)</div>
+        <div class="palette-grid" id="palettePart1">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Section 2 Palette -->
+        <div class="palette-section-title">Phần II: Đúng / Sai (Câu 17 - 21)</div>
+        <div class="palette-grid" id="palettePart2">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Section 3 Palette -->
+        <div class="palette-section-title">Phần III: Trả lời ngắn (Câu 22 - 30)</div>
+        <div class="palette-grid" id="palettePart3">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Section 4 Palette -->
+        <div class="palette-section-title">Phần IV: Tự luận (Câu 31 - 37)</div>
+        <div class="palette-grid" id="palettePart4">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="palette-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:var(--bg-subtle);border:1px solid var(--border-color);"></span> Chưa làm</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#4f46e5;"></span> Đã làm</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Đúng</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ef4444;"></span> Sai</div>
+        </div>
+
+        <!-- Quick Submit Button inside Palette -->
+        <button id="sidebarSubmitBtn" class="btn btn-primary" style="margin-top:8px; width:100%; justify-content:center; background:linear-gradient(135deg, #e11d48, #be123c); border-color:transparent;">
+          <i data-lucide="check-square" class="btn-icon"></i>
+          <span>Nộp bài & Chấm điểm</span>
+        </button>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- Submit Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="score-modal-box">
+      <div style="font-size:2.8rem; color:#f59e0b; margin:0 auto;">
+        <i data-lucide="alert-triangle" style="width:52px;height:52px;"></i>
+      </div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:var(--text-primary);">Xác nhận nộp bài thi?</h2>
+      <p id="confirmWarningText" style="color:var(--text-secondary); line-height:1.6; font-size:1rem;">
+        Bạn đã hoàn thành <b id="confirmAnsweredNum">0</b> / 37 câu hỏi.<br>
+        Bạn có chắc chắn muốn nộp bài để xem điểm số và lời giải chi tiết?
+      </p>
+      <div style="display:flex; justify-content:center; gap:14px; margin-top:10px;">
+        <button id="cancelSubmitBtn" class="btn btn-secondary" style="min-width:120px;">
+          Làm tiếp
+        </button>
+        <button id="finalizeSubmitBtn" class="btn btn-primary" style="min-width:140px; background:#e11d48; border-color:#e11d48;">
+          Nộp bài ngay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Score & Analytics Modal -->
+  <div class="modal-overlay" id="scoreModal">
+    <div class="score-modal-box">
+      <h2 style="font-size:1.35rem; font-weight:800; color:var(--text-primary);">KẾT QUẢ BÀI KIỂM TRA 60 PHÚT</h2>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-top:-10px;">Hệ bất phương trình bậc nhất hai ẩn (B2.1 - B2.5)</p>
+      
+      <div class="score-circle-wrap">
+        <span class="score-number" id="finalScoreVal">0.0</span>
+        <span class="score-sub">Thang điểm 10</span>
+      </div>
+
+      <div style="font-size:1.1rem; font-weight:800;" id="scoreRankBadge">
+        Xếp loại: Giỏi
+      </div>
+
+      <div class="score-breakdown-grid">
+        <div class="breakdown-card">
+          <h5>Phần I: 4 Lựa chọn (16 câu)</h5>
+          <div class="b-val" id="scorePart1Val">0 / 4.0 đ</div>
+        </div>
+        <div class="breakdown-card">
+          <h5>Phần II: Đúng/Sai (5 câu)</h5>
+          <div class="b-val" id="scorePart2Val">0 / 3.0 đ</div>
+        </div>
+        <div class="breakdown-card">
+          <h5>Phần III: Trả lời ngắn (9 câu)</h5>
+          <div class="b-val" id="scorePart3Val">0 / 2.0 đ</div>
+        </div>
+        <div class="breakdown-card">
+          <h5>Phần IV: Tự luận (7 câu)</h5>
+          <div class="b-val" id="scorePart4Val">1.0 đ (Tự chấm)</div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:12px; flex-wrap:wrap;">
+        <button id="closeScoreModalBtn" class="btn btn-primary" style="min-width:160px;">
+          <i data-lucide="eye"></i>
+          <span>Xem lại đề & Lời giải</span>
+        </button>
+        <button id="retakeExamBtn" class="btn btn-secondary" style="min-width:140px;">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Làm lại bài thi</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script-60p-b2.js"></script>
+</body>
+</html>
